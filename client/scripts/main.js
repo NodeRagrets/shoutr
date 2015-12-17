@@ -5,5 +5,5 @@ angular.module('shoutr',[
   'shoutr.newsFeed'
 ])
 .config([function(){
-  
+
 }])
