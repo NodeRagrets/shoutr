@@ -31,3 +31,22 @@ angular.module('shoutr.services', [])
   }
 
 }])
+
+.factory('Users', ['$http', function($http) {
+
+  var pullUser = function() {
+    return $http({
+      method: 'GET',
+      url: '/api/userprofile'
+    }).then(function(response) {
+      return response.data
+    }).catch(function(error) {
+      console.log(error);
+    });
+  }
+
+  return {
+    pullUser: pullUser
+  }
+
+}])
