@@ -31,7 +31,7 @@ models.Shout = sequelize.define('Shout', {
   blurb: {
     type: Sequelize.STRING
   },
-  text: {
+  story: {
     type: Sequelize.TEXT
   },
   color: {
@@ -39,31 +39,31 @@ models.Shout = sequelize.define('Shout', {
   }
 });
 
-models.User.hasMany(models.Shout, {as: 'creator'});
-models.User.hasMany(models.Shout, {as: 'recipient'});
-models.Group.hasMany(models.Shout);
+models.User.hasMany(models.Shout, {as: 'creatorID'});
+models.User.hasMany(models.Shout, {as: 'recipientID'});
+models.Group.hasMany(models.Shout, {as: 'groupID'});
 // models.Group.hasMany(models.User);
-models.User.belongsToMany(models.Group, {through: 'UserGroupJoin'});
-models.Group.belongsToMany(models.User, {through: 'UserGroupJoin'});
+models.User.belongsToMany(models.Group, {as: 'member', through: 'UserGroupJoin', foreignKey: 'userID'});
+models.Group.belongsToMany(models.User, {as: 'org', through: 'UserGroupJoin', foreignKey: 'groupID'});
 // for(var key in models){
 //   models[key].sync({})
 // }
 
-models.Group.sync({force: true}).then(function() {
+models.Group.sync({force: false}).then(function() {
   return models.Group.create({
     groupName:"Tomz Group"
   });
 });
 
-models.Shout.sync({force: true}).then(function() {
+models.Shout.sync({force: false}).then(function() {
   return models.Shout.create({
     blurb: "I love puppies! Plus, node ragrets.",
-    text: "Shoutout to puppies.",
+    story: "Shoutout to puppies.",
     color:"#1eabd9"
   });
 });
 
-models.User.sync({force: true}).then(function() {
+models.User.sync({force: false}).then(function() {
   return models.User.create({
     username: "Tom",
     password: "abc123",
