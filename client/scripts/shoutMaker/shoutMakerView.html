@@ -4,8 +4,8 @@
   <!-- front of card -->
   <div class= 'frontOfCard'>
     <form ng-submit = ' '  name = 'frontCardForm' novalidate>
-      <input type = 'text' name = 'toText' ng-model = ' '>
-      <input type = 'text' name = 'blurbText' ng-model = ' '>
+      <input type = 'text' name = 'toText' ng-model = 'shout.recipient'>
+      <input type = 'text' name = 'blurbText' ng-model = 'shout.title'>
     </form>
     <!-- actual card -->
     <div class = 'card'></div>
@@ -14,7 +14,7 @@
   <!-- back of card -->
   <div class= 'backOfCard'>
     <form ng-submit = ' ' name = 'backCardForm' novalidate>
-      <input type = 'text' name = 'storyText' ng-model = ' '>
+      <input type = 'text' name = 'storyText' ng-model = 'shout.message'>
     </form>
     <!-- actual card -->
     <div class = 'card'></div>
