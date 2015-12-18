@@ -19,6 +19,6 @@ User.sync({force: true}).then(function() {
 		password: "abc123",
 		email:"tom@tom.com"
 	});
-})
+});
 
 module.exports = User;
