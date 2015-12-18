@@ -1,4 +1,4 @@
-angular.module('shoutr.services', []).
+angular.module('shoutr.services', [])
 
 .factory('Shouts', ['$http', function($http) {
 

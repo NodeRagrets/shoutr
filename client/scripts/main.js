@@ -1,12 +1,14 @@
 angular.module('shoutr',[
+  'ui.router',
   'shoutr.groupCreation',
   'shoutr.shoutCreation',
   'shoutr.auth',
-  'shoutr.newsFeed'
+  'shoutr.newsFeed',
+  'shoutr.services'
 ])
-.config([function($stateProvider, $urlRouterProvider){
+.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider){
 
-  $urlRouterProvider.otherwise('/');
+  $urlRouterProvider.otherwise('shoutmaker');
 
   $stateProvider
     .state('login', {
@@ -20,7 +22,7 @@ angular.module('shoutr',[
     .state('newsfeed', {
       url: '/newsfeed/:groupname',
       templateUrl: './newsFeed/newsFeedView.html'
-    });
+    })
     .state('shoutmaker', {
       url: '/shoutmaker',
       templateUrl: './shoutMaker/shoutMakerView.html'
