@@ -2,7 +2,8 @@ angular.module('shoutr',[
   'shoutr.groupCreation',
   'shoutr.shoutCreation',
   'shoutr.auth',
-  'shoutr.newsFeed'
+  'shoutr.newsFeed',
+  'shoutr.services'
 ])
 .config([function($stateProvider, $urlRouterProvider){
 
