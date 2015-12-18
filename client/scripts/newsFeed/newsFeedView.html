@@ -3,6 +3,12 @@
   <div class = 'navBar'></div>
 
   <!-- container for the cards that will be added -->
-  <div class = 'cardContainer'></div>
+  <div class = 'cardContainer'>
+      <div ng-repeat= 'shout in data.shouts'>
+        <p>recipient: {{data.shouts.recipient}} </p>
+        <p>title: {{data.shouts.title}} </p>
+        <p>message: {{data.shouts.message}}</p>
+      </div>
+  </div>
 
 </div>
