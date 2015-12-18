@@ -1,6 +1,5 @@
-angular.module('shoutr.shoutCreation', [
+angular.module('shoutr.shoutCreation', [])
 
-])
-.controller('shoutCreationController', [function(){
+.controller('shoutCreationController', ['$scope', 'Shouts', function($scope, Shouts) {
   
-}])
+}]);
