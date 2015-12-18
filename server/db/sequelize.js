@@ -41,7 +41,8 @@ models.Shout = sequelize.define('Shout', {
 
 models.User.hasMany(models.Shout, {as: 'creator'});
 models.User.hasMany(models.Shout, {as: 'recipient'});
-models.Group.hasMany(models.User);
+models.Group.hasMany(models.Shout);
+// models.Group.hasMany(models.User);
 models.User.belongsToMany(models.Group, {through: 'UserGroupJoin'});
 models.Group.belongsToMany(models.User, {through: 'UserGroupJoin'});
 // for(var key in models){
