@@ -5,10 +5,15 @@
   <div class= 'frontOfCard'>
     <form ng-submit = ' '  name = 'frontCardForm' novalidate>
       <input type = 'text' name = 'toText' ng-model = 'shout.recipient'>
+
       <input type = 'text' name = 'blurbText' ng-model = 'shout.title'>
     </form>
     <!-- actual card -->
-    <div class = 'card'></div>
+    <div class = 'card'>
+      <p>Recpient: {{shout.recipient}}</p>
+      <p>Title: {{shout.title}} </p>
+
+    </div>
   </div>
 
   <!-- back of card -->
@@ -17,7 +22,9 @@
       <input type = 'text' name = 'storyText' ng-model = 'shout.message'>
     </form>
     <!-- actual card -->
-    <div class = 'card'></div>
+    <div class = 'card'>
+      <p>Message: {{shout.message}} </p>
+    </div>
   </div>
 
 </div>
