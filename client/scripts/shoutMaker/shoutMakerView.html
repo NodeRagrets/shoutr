@@ -1,0 +1,21 @@
+<div ng-controller = 'shoutCreationController'>
+  <!-- front of card -->
+  <div class= 'frontOfCard'>
+    <form ng-submit = ' '  name = 'frontCardForm' novalidate>
+      <input type = 'text' name = 'toText' ng-model = ' '>
+      <input type = 'text' name = 'blurbText' ng-model = ' '>
+    </form>
+    <!-- actual card -->
+    <div class = 'card'></div>
+  </div>
+  
+  <!-- back of card -->
+  <div class= 'backOfCard'>
+    <form ng-submit = ' ' name = 'backCardForm' novalidate>
+      <input type = 'text' name = 'storyText' ng-model = ' '>
+    </form>
+    <!-- actual card -->
+    <div class = 'card'></div>
+  </div>
+
+</div>
