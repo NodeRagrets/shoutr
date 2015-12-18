@@ -35,7 +35,7 @@ watch: {
     files: [
     ],
     tasks: [
-      'concat',
+        'concat',
       'uglify'
     ]
   },
