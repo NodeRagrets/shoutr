@@ -1,0 +1,25 @@
+<div ng-controller = 'userProfileController'>
+  <nav class = 'navBar'></nav>
+  <!-- Profile Pic -->
+  <img>
+  <div class = 'userInfo'>
+    <p> Name: {{}} </p>
+    <p> Info: {{}} </p>
+  </div>
+  <!-- Shouts From  -->
+  <div>
+    <div ng-repeat= ''>
+      <p>recipient: {{}} </p>
+      <p>title: {{}} </p>
+      <p>message: {{}} </p>
+    </div>
+  </div>
+  <!-- Shouts To -->
+  <div>
+    <div ng-repeat= ''>
+      <p>recipient: {{}} </p>
+      <p>title: {{}} </p>
+      <p>message: {{}} </p>
+    </div>
+  </div>
+</div>
