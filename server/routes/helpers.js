@@ -35,14 +35,16 @@ helpers.addShout = function(shoutData) {
     })
     .then(function(recipient){
         shoutRecipientID = recipient.get('id');
+        console.log(shoutRecipientID, shoutGroupID, shoutCreatorID, "These are the IDs");
         return db.Shout.create({
          groupID: shoutGroupID, 
          blurb: shoutData.blurb,
          story: shoutData.story,
+         color: shoutData.color,
          creatorID: shoutCreatorID,
          recipientID: shoutRecipientID
         }).then(function(shout){
-          console.log('rachel wants to ', shout.get('story'));
+          console.log('rachel wants to ', shout);
         });
       })
     })
@@ -55,6 +57,7 @@ helpers.addShout({
   creator: 'Tom',
   recipient: 'Tom',
   blurb: 'bah',
-  story: 'humbug'
+  story: 'THIS IS DIFFERENT',
+  color: "#1eabd9"
 });
 module.exports = helpers;

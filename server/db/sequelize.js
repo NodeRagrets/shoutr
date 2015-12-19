@@ -56,11 +56,11 @@ models.Group.sync({force: false}).then(function() {
 });
 
 models.Shout.sync({force: false}).then(function() {
-  return models.Shout.create({
-    blurb: "I love puppies! Plus, node ragrets.",
-    story: "Shoutout to puppies.",
-    color:"#1eabd9"
-  });
+  // return models.Shout.create({
+  //   blurb: "I love puppies! Plus, node ragrets.",
+  //   story: "Shoutout to puppies.",
+  //   color:"#1eabd9"
+  // });
 });
 
 models.User.sync({force: false}).then(function() {
