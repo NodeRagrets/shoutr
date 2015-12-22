@@ -36,23 +36,33 @@ models.Shout = sequelize.define('Shout', {
   },
   color: {
     type: Sequelize.STRING
+  },
+  recipientId: {
+    type: Sequelize.INTEGER
+  },
+  userId: {
+    type: Sequelize.INTEGER,
+    references: {
+      model: models.User,
+      key: 'id'
+    }
   }
 });
 
-models.User.hasMany(models.Shout, {as: 'creatorID'});
-models.User.hasMany(models.Shout, {as: 'recipientID'});
-models.Group.hasMany(models.Shout, {as: 'groupID'});
+// models.User.hasMany(models.Shout);
+models.Shout.hasOne(models.User);
+// models.Group.hasMany(models.Shout, {as: 'groupID'});
 // models.Group.hasMany(models.User);
-models.User.belongsToMany(models.Group, {as: 'member', through: 'UserGroupJoin', foreignKey: 'userID'});
-models.Group.belongsToMany(models.User, {as: 'org', through: 'UserGroupJoin', foreignKey: 'groupID'});
+// models.User.belongsToMany(models.Group, {through: 'UserGroupJoin', foreignKey: 'userId'});
+// models.Group.belongsToMany(models.User, {through: 'UserGroupJoin', foreignKey: 'groupId'});
 // for(var key in models){
 //   models[key].sync({})
 // }
 
 models.Group.sync({force: false}).then(function() {
-  return models.Group.create({
-    groupName:"Tomz Group"
-  });
+  // return models.Group.create({
+  //   groupName:"Tomz Group"
+  // });
 });
 
 models.Shout.sync({force: false}).then(function() {
@@ -64,11 +74,11 @@ models.Shout.sync({force: false}).then(function() {
 });
 
 models.User.sync({force: false}).then(function() {
-  return models.User.create({
-    username: "Tom",
-    password: "abc123",
-    email:"tom@tom.com"
-  });
+  // return models.User.create({
+  //   username: "Tom",
+  //   password: "abc123",
+  //   email:"tom@tom.com"
+  // });
 });
 
 

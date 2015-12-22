@@ -1,4 +1,4 @@
-var db = require('./sequelize.js');
+var db = require('../db/sequelize.js');
 var helpers = {};
 //to be called from the requesthandlers to send the data to the database
 //this is our interface between server and DB. 
@@ -37,12 +37,12 @@ helpers.addShout = function(shoutData) {
         shoutRecipientID = recipient.get('id');
         console.log(shoutRecipientID, shoutGroupID, shoutCreatorID, "These are the IDs");
         return db.Shout.create({
-         // groupID: shoutGroupID,
+         groupID: shoutGroupID, 
          blurb: shoutData.blurb,
          story: shoutData.story,
          color: shoutData.color,
-         userId: shoutCreatorID,
-         recipientId: shoutRecipientID
+         creatorID: shoutCreatorID,
+         recipientID: shoutRecipientID
         }).then(function(shout){
           console.log('rachel wants to ', shout);
         });
