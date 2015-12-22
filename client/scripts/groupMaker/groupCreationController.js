@@ -1,6 +1,6 @@
 angular.module('shoutr.groupCreation', [
 
 ])
-.controller('groupCreationController', [function(){
-  
+.controller('groupCreationController', ['$scope', function($scope){
+
 }])

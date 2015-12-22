@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html ng-app ='shoutr'>
+  <head>
+    <meta charset = "utf-8" />
+    <title>Shoutr</title>
+
+    <!-- Stylesheets -->
+    <link rel = 'stylesheet' type ='text/css' href ='styles.css' />
+
+    <!-- Javascript Library Dependencies -->
+    <script src = './permlib/angular/angular.min.js'></script>
+    <script src = './permlib/angular-ui-router/release/angular-ui-router.min.js'></script>
+    <script src = './permlib/jquery/dist/jquery.min.js'></script>
+    <script src = './permlib/bootstrap/dist/css/bootstrap.min.css'></script>
+    <script src = './permlib/bootstrap/dist/js/bootstrap.min.js'></script>
+
+    <!-- Native Javascript Dependencies -->
+    <script src = './scripts/services/services.js'></script>
+    <script src = './scripts/groupMaker/groupCreationController.js'></script>
+    <script src = './scripts/newsFeed/newsFeedController.js'></script>
+    <script src = './scripts/shoutMaker/shoutMakerController.js'></script>
+    <script src = './scripts/auth/authController.js'></script>
+    <script src = './scripts/main.js'></script>
+
+  </head>
+    <body>
+      <div ui-view></div>
+    </body>
+</html>
