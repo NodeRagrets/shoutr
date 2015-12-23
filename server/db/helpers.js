@@ -10,11 +10,38 @@ helpers.addUser = function(userData) {
   });
 };
 helpers.addGroup = function(groupData) {
+  //TODO: check to see if the group already exists before creating it. 
   db.Group.create({
     groupName: groupData.groupName
   });
 };
 
+
+helpers.addUserToGroup = function(username, groupName) {
+    //query to get the userId
+    var userGroup = {};
+    db.User.findOne({
+      where: {"username": username}
+    })
+    .then(function(user) {
+      if(!user) {
+        throw Error("User not found");
+      }
+      userGroup.user = user;
+
+      db.Group.findOne({
+        where: {"groupName": groupName}
+      })
+      .then(function(group) {
+        if(!group) {
+          throw Error("Group not found!!!!");
+        }
+        //when you say, "belongsToMany" (in the sequelize.js file), it creates a lot of methods, one of which is addUser
+        group.addUser(userGroup.user);
+      });
+    }); 
+    //query to get the groupId
+};
 
 helpers.addShout = function(shoutData) {
   //take in the shoutData from client (services.js)
@@ -23,7 +50,6 @@ helpers.addShout = function(shoutData) {
   //add the group and user IDs, plus the correct shoutData, 
     //to a new object
   //pass that object into the create fn and send to DB 
-  
   //Promises are being nested below to ensure queries return before their data is used
   var shoutGroupID;
   var shoutCreatorID;
@@ -74,9 +100,10 @@ helpers.addShout = function(shoutData) {
 //   email: 'malek@tom.com'
 // });
 
-helpers.addGroup({
-  groupName: "Lizzzes groop"
-});
+// helpers.addGroup({
+//   groupName: "Lizzzes groop"
+// });
 
+helpers.addUserToGroup("Tom", "Tomz Group");
 
 module.exports = helpers;
