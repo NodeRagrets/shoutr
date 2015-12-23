@@ -3,11 +3,19 @@ var helpers = {};
 //to be called from the requesthandlers to send the data to the database
 //this is our interface between server and DB. 
 helpers.addUser = function(userData) {
-  //check for correct formatting 
-  db.User.create(userData);
+  db.User.create({
+    username: userData.username,
+    password: userData.password,
+    email: userData.email
+  });
 };
 helpers.addGroup = function(groupData) {
+  db.Group.create({
+    groupName: groupData.groupName
+  });
 };
+
+
 helpers.addShout = function(shoutData) {
   //take in the shoutData from client (services.js)
   //query Group for the group ID
@@ -21,7 +29,6 @@ helpers.addShout = function(shoutData) {
   var shoutCreatorID;
   var shoutRecipientID;
   db.Group.findOne({
-    // attributes: ['id'],
     where: {groupName: shoutData.groupName}
   }).then(function(group){
     shoutGroupID = group.get('id');
@@ -35,16 +42,14 @@ helpers.addShout = function(shoutData) {
     })
     .then(function(recipient){
         shoutRecipientID = recipient.get('id');
-        console.log(shoutRecipientID, shoutGroupID, shoutCreatorID, "These are the IDs");
         return db.Shout.create({
-         groupID: shoutGroupID, 
+         GroupId: shoutGroupID, 
          blurb: shoutData.blurb,
          story: shoutData.story,
          color: shoutData.color,
-         creatorID: shoutCreatorID,
-         recipientID: shoutRecipientID
+         UserId: shoutCreatorID,
+         recipientId: shoutRecipientID
         }).then(function(shout){
-          console.log('rachel wants to ', shout);
         });
       })
     })
@@ -52,12 +57,26 @@ helpers.addShout = function(shoutData) {
   
 };
 
-helpers.addShout({
-  groupName: "Tomz Group",
-  creator: 'Tom',
-  recipient: 'Tom',
-  blurb: 'bah',
-  story: 'THIS IS DIFFERENT',
-  color: "#1eabd9"
+//TEST OBJECT: 
+// helpers.addShout({
+//   groupName: "Tomz Group",
+//   creator: 'Tom',
+//   recipient: 'Tom',
+//   blurb: 'bah',
+//   story: 'THIS IS DIFFERENT',
+//   color: "#1eabd9"
+// });
+
+
+// helpers.addUser({
+//   username: 'Malek',
+//   password: 'Malek',
+//   email: 'malek@tom.com'
+// });
+
+helpers.addGroup({
+  groupName: "Lizzzes groop"
 });
+
+
 module.exports = helpers;
