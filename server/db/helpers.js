@@ -3,6 +3,15 @@ var helpers = {};
 //to be called from the requesthandlers to send the data to the database
 //this is our interface between server and DB. 
 helpers.addUser = function(userData) {
+  //check to see if the user already exists before creating it.
+  db.User.findOne({
+    where: {"groupName":userData.username}
+  })
+  .then(function(user){
+    if(user){
+      throw Error("Username already taken!")
+    }
+  })
   db.User.create({
     username: userData.username,
     password: userData.password,
@@ -10,7 +19,15 @@ helpers.addUser = function(userData) {
   });
 };
 helpers.addGroup = function(groupData) {
-  //TODO: check to see if the group already exists before creating it. 
+  //check to see if the group already exists before creating it. 
+  db.Group.findOne({
+    where: {"groupName":groupData.groupName}
+  })
+  .then(function(group){
+    if(group){
+      throw Error("Group name already taken!")
+    }
+  })
   db.Group.create({
     groupName: groupData.groupName
   });
