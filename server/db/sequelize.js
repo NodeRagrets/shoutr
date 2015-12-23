@@ -43,6 +43,12 @@ models.Shout = sequelize.define('Shout', {
   // userId is added automatically by the "hasMany" relationship established below
 });
 
+models.UserGroupJoin = sequelize.define('UserGroupJoin', {
+  status: {
+    type: Sequelize.STRING
+  }
+});
+
 models.User.hasMany(models.Shout);
 models.Group.hasMany(models.Shout);
 models.User.belongsToMany(models.Group, {through: 'UserGroupJoin'});
@@ -70,5 +76,7 @@ models.User.sync({force: false}).then(function() {
   });
 });
 
+models.UserGroupJoin.sync({force: false}).then(function() {
+});
 
 module.exports = models;
