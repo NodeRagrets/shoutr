@@ -3,22 +3,43 @@ var helpers = {};
 //to be called from the requesthandlers to send the data to the database
 //this is our interface between server and DB. 
 helpers.addUser = function(userData) {
+  //check to see if the user already exists before creating it.
+  db.User.findOne({
+    where: {"groupName":userData.username}
+  })
+  .then(function(user){
+    if(user){
+      throw Error("Username already taken!");
+    }
+  })
+
   db.User.create({
     username: userData.username,
     password: userData.password,
     email: userData.email
   });
+
 };
 helpers.addGroup = function(groupData) {
-  //TODO: check to see if the group already exists before creating it. 
+  //check to see if the group already exists before creating it. 
+  db.Group.findOne({
+    where: {"groupName":groupData.groupName}
+  })
+  .then(function(group){
+    if(group){
+      throw Error("Group name already taken!");
+    }
+  })
+
   db.Group.create({
     groupName: groupData.groupName
   });
+
 };
 
 
 helpers.addUserToGroup = function(username, groupName) {
-    //query to get the userId
+    //queries to get the relevant user and group
     var userGroup = {};
     db.User.findOne({
       where: {"username": username}
@@ -27,6 +48,7 @@ helpers.addUserToGroup = function(username, groupName) {
       if(!user) {
         throw Error("User not found");
       }
+      
       userGroup.user = user;
 
       db.Group.findOne({
@@ -34,7 +56,7 @@ helpers.addUserToGroup = function(username, groupName) {
       })
       .then(function(group) {
         if(!group) {
-          throw Error("Group not found!!!!");
+          throw Error("Group not found");
         }
         //when you say, "belongsToMany" (in the sequelize.js file), it creates a lot of methods, one of which is addUser
         group.addUser(userGroup.user);
@@ -44,19 +66,14 @@ helpers.addUserToGroup = function(username, groupName) {
 };
 
 helpers.addShout = function(shoutData) {
-  //take in the shoutData from client (services.js)
-  //query Group for the group ID
-  //query Users for the user ID 
-  //add the group and user IDs, plus the correct shoutData, 
-    //to a new object
-  //pass that object into the create fn and send to DB 
-  //Promises are being nested below to ensure queries return before their data is used
   var shoutGroupID;
   var shoutCreatorID;
   var shoutRecipientID;
+  //queries to retrieve Id's for relevant group, shout creator and shout recipient
   db.Group.findOne({
     where: {groupName: shoutData.groupName}
-  }).then(function(group){
+  })
+  .then(function(group){
     shoutGroupID = group.get('id');
     db.User.findOne({
       where: {username: shoutData.creator}
@@ -65,17 +82,16 @@ helpers.addShout = function(shoutData) {
       shoutCreatorID = creator.get('id');
       db.User.findOne({
         where: {username: shoutData.recipient}
-    })
-    .then(function(recipient){
+      })
+      .then(function(recipient){
         shoutRecipientID = recipient.get('id');
         return db.Shout.create({
-         GroupId: shoutGroupID, 
-         blurb: shoutData.blurb,
-         story: shoutData.story,
-         color: shoutData.color,
-         UserId: shoutCreatorID,
-         recipientId: shoutRecipientID
-        }).then(function(shout){
+          GroupId: shoutGroupID, 
+          blurb: shoutData.blurb,
+          story: shoutData.story,
+          color: shoutData.color,
+          UserId: shoutCreatorID,
+          recipientId: shoutRecipientID
         });
       })
     })
@@ -83,7 +99,7 @@ helpers.addShout = function(shoutData) {
   
 };
 
-//TEST OBJECT: 
+//Function Tests: 
 // helpers.addShout({
 //   groupName: "Tomz Group",
 //   creator: 'Tom',
@@ -104,6 +120,6 @@ helpers.addShout = function(shoutData) {
 //   groupName: "Lizzzes groop"
 // });
 
-helpers.addUserToGroup("Tom", "Tomz Group");
+// helpers.addUserToGroup("Tom", "Tomz Group");
 
 module.exports = helpers;
