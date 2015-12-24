@@ -1,4 +1,4 @@
 node_modules/*
 client/node_modules/*
-server/db/db.sqlite
+server/db/*.sqlite
 client/lib

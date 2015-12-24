@@ -1,5 +1,8 @@
 var Sequelize = require('sequelize');
 
+//TODO: 1. make a table for profile images (higher priority)
+//      2. make a table for images on shouts 
+
 var sequelize = new Sequelize('test', null, null, {
   host: 'localhost',
   dialect: 'sqlite',
@@ -55,9 +58,9 @@ models.User.belongsToMany(models.Group, {through: 'UserGroupJoin'});
 models.Group.belongsToMany(models.User, {through: 'UserGroupJoin'});
 
 models.Group.sync({force: false}).then(function() {
-  return models.Group.create({
-    groupName:"Tomz Group"
-  });
+  // return models.Group.create({
+  //   groupName:"Tomz Group"
+  // });
 });
 
 models.Shout.sync({force: false}).then(function() {
@@ -69,11 +72,11 @@ models.Shout.sync({force: false}).then(function() {
 });
 
 models.User.sync({force: false}).then(function() {
-  return models.User.create({
-    username: "Tom",
-    password: "abc123",
-    email:"tom@tom.com"
-  });
+  // return models.User.create({
+  //   username: "Tom",
+  //   password: "abc123",
+  //   email:"tom@tom.com"
+  // });
 });
 
 models.UserGroupJoin.sync({force: false}).then(function() {
