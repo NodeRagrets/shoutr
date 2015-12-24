@@ -99,6 +99,48 @@ helpers.addShout = function(shoutData) {
   
 };
 
+//no need for a getGroup function because all the group's table stores is groupName and IDs.
+helpers.getShouts = function(groupName, options) { 
+  //options: for future versions of this project we'll want to sort the data in different way (e.g. hashtags or datatype)
+  //sort by user 
+  var groupId;
+  var shoutResults;
+
+  //when the getSHouts funciton is being used in the request handlers file, treat the return of that function 
+  //as a promise. So, use a .then(function(resultsArray){ }) 
+  return db.Group.findOne({
+    where: {"groupName": groupName} 
+  })
+  .then(function(group) {
+    groupId = group.id;
+    return db.Shout.findAll({
+      where: {"groupId": groupId}
+    })
+    .then(function(shouts) {
+      if(options && options.username) {
+        shoutResults = shouts.filter(function(shout) {
+          if(shout.groupId === groupId) {
+            return true;
+          } 
+          return false;
+        });
+      } else {
+        shoutResults = shouts;
+      }
+    });
+  })
+  .then(function(shoutsPromise) {
+    return shoutResults;
+  })
+};
+
+
+helpers.getUser = function() {
+
+};
+
+//
+
 //Function Tests: 
 // helpers.addShout({
 //   groupName: "Tomz Group",
@@ -121,5 +163,12 @@ helpers.addShout = function(shoutData) {
 // });
 
 // helpers.addUserToGroup("Tom", "Tomz Group");
+
+
+//BELOW IS A TEMPLATE FOR HOW THE CALL TO GETSHOUtS SHOULD BE MADE:
+// helpers.getShouts("Tomz Group").then(function(shoutsArray){
+//   console.log("HERE IS SHOUTSARRAY", shoutsArray);
+// });
+
 
 module.exports = helpers;
