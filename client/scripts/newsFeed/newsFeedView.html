@@ -3,12 +3,14 @@
   <nav class = 'navBar'></nav>
 
   <!-- container for the cards that will be added -->
-  <div class = 'cardContainer'>
-      <div ng-repeat= 'shout in data.shouts'>
-        <p>recipient: {{data.shouts.recipient}} </p>
-        <p>title: {{data.shouts.title}} </p>
-        <p>message: {{data.shouts.message}}</p>
+  <div class = 'row' ng-repeat= 'shout in data.shouts track by $index' ng-if= '$index % 3 === 0'>
+    <div class = 'col-xs-4' ng-repeat = 'i in [$index, $index + 1, $index + 2]' ng-if= 'data.shouts[i] !== undefined'>
+      <div class = 'cardContainer'>
+            <p>{{data.shouts[i].recipient}} </p>
+            <p>{{data.shouts[i].title}} </p>
+            <p>{{data.shouts[i].message}}</p> 
       </div>
+    </div>
   </div>
 
 </div>
