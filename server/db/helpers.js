@@ -135,8 +135,15 @@ helpers.getShouts = function(groupName, options) {
 };
 
 
-helpers.getUser = function() {
+helpers.getUser = function(username) {
+  var userId;
 
+  return db.User.findOne({
+    where: {"username":username}
+  })
+  .then(function(user){
+    return user;
+  })
 };
 
 //
