@@ -8,7 +8,7 @@ angular.module('shoutr',[
 ])
 .config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider){
 
-   $urlRouterProvider.otherwise('/shoutmaker');
+   $urlRouterProvider.otherwise('/newsfeed');
 
   $stateProvider
 
@@ -21,7 +21,7 @@ angular.module('shoutr',[
       templateUrl: './scripts/auth/signupView.html'
     })
     .state('newsfeed', {
-      url: '/newsfeed/:groupname',
+      url: '/newsfeed',
       templateUrl: './scripts/newsFeed/newsFeedView.html'
     })
     .state('shoutmaker', {
