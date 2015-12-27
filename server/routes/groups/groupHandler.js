@@ -1,10 +1,22 @@
 var express = require('express');
 var app = express();
-
+var helpers = require('./../../db/helpers.js');
 module.exports = {
-  app.post('/', function(req, res){
-    //find on req where the Group data is
-    //call helpers.addGroup and pass in req's user data
-    //.then throw an error or res.send
-    res.send('Got a POST request, groupHandler');
+
+    // getGroupHandler: function(req, res){
+    // no getGroup helper?
+    // },
+    postGroupHandler: function(req, res){
+      var groupData = req.body //TODO find where data is
+      helpers.addGroup(groupData)
+             .then( function(err, resultData){
+               if(err){
+                 console.log('ERROR INSIDE POSTGROUPHANDLER');
+                 res.send(404);
+               } else{
+                 console.log('SUCCESS GOT A POST REQUEST, GROUPHANDLER');
+                 res.send(200);
+               }
+             });
+    }
 }
