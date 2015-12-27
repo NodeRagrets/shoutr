@@ -3,10 +3,10 @@ var app = express();
 var helpers = require('./../../db/helpers.js');
 module.exports = {
 
-    // getGroupHandler: function(req, res){
+    // loadGroup: function(req, res){
     // no getGroup helper?
     // },
-    postGroupHandler: function(req, res){
+    saveGroup: function(req, res){
       var groupData = req.body //TODO find where data is
       helpers.addGroup(groupData)
              .then( function(err, resultData){

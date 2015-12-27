@@ -4,7 +4,7 @@ var helpers = require('./../../db/helpers.js');
 
 
 module.exports = {
-  getUserHandler: function(req, res){
+  login: function(req, res){
     var userNameData = req.body //TODO find where the data is;
     helpers.getUser(userNameData)
            .then( function(err, resultData){
@@ -18,7 +18,7 @@ module.exports = {
              }
            });
   },
-  postUserHandler: function(req, res){
+  signup: function(req, res){
     var userData = req.body //TODO find where the data is
     var groupData = req.body //TODO find where the data is
     helpers.addUserToGroup(userData, groupData)
