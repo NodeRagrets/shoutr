@@ -4,7 +4,7 @@ var helpers = require('./../../db/helpers.js');
 //should i require the db
 
 module.exports = {
-    getShoutHandler: function(req, res){
+    loadShouts: function(req, res){
       var groupNameData = req.body; //find the data
       helpers.getShouts(groupNameData)
              .then( function(err, resultData){
@@ -18,7 +18,7 @@ module.exports = {
                }
              });
     },
-    postShoutHandler: function(req, res){
+    saveShout: function(req, res){
       var shoutData = req.body;//find the data or req.params.shouts
       helpers.addShout(shoutData)
              .then( function(err, resultData) {
