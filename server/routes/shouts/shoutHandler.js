@@ -1,17 +1,35 @@
 var express = require('express');
-var helpers = require('../helpers.js');
-var app = express();
+var helpers = require('./../../db/helpers.js');
+//var app = express();
+//should i require the db
 
 module.exports = {
-  app.get('/', function(req, res){
-    //find on the req where the groupName is stored
-    //call helpers.getShouts and pass it in
-    //.then with the data, retrieve all the shouts of that group in res.send
-  })
-  app.post('/', function(req, res){
-    //find on req where the shout data is
-    //call helpers.addShout and pass in req's shout data
-    //.then with that data, retrieve all the shouts in the res.send
-    res.send('Got a POST request, shoutHandler');
-  });
-}
+    getShoutHandler: function(req, res){
+      var groupNameData = req.body; //find the data
+      helpers.getShouts(groupNameData)
+             .then( function(err, resultData){
+               if(err){
+                 console.log('ERROR INSIDE GETSHOUTHANDLER', err);
+                 res.send(404);
+               } else{
+                 console.log('SUCCESS GOT A POST REQUEST, SHOUTHANDLER');
+                 res.send(200, resultData);
+                 //TODO deal with how resultData is returned--- look at db cheatsheet
+               }
+             })
+    },
+    postShoutHandler: function(req, res){
+      var shoutData = req.body;//find the data or req.params.shouts
+      helpers.addShout(shoutData)
+             .then( function(err, resultData) {
+               if(err){
+                 console.log('ERROR INSIDE POSTSHOUTHANDLER', err);
+                 res.send(404);
+               } else{
+                 console.log('SUCCESS GOT A POST REQUEST, SHOUTHANDLER')
+                 res.send(200);
+               }
+          });
+    }
+
+};
