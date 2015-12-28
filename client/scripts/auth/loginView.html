@@ -1,16 +1,9 @@
-<!-- TODO: make this, low priority -->
 <div ng-controller = 'authController'>
-  <form name='signinForm' ng-submit='login()'>
-    <!-- WIP  -->
-   <span ng-if = ''> Username must be between 5 and 10 characters long </span>
-   <span ng-if = ''> Enter yo username... please</span>
-   <input type ='text'ng-model = '' ng-minlength = '5' ng-maxlength = '10' required>
-
-   <!-- WIP     -->
-   <span ng-if = ''> Username must be between 6 and 18 characters long </span>
-   <span ng-if = ''> Enter yo username... please </span>
-   <input type='password' ng-model='' ng-minlength='6' ng-maxlength='18' required>
-   <button> login </button>
+  <h1> LOGIN </h1>
+  <form name='loginForm' ng-submit='login()'>
+   <input class='login' placeholder='username' type ='text' ng-model = '' ng-minlength = '5' ng-maxlength = '10' required>
+   <input class='login' placeholder='password' type='password' ng-model='' ng-minlength='6' ng-maxlength='18' required>
+   <button class='login'> Login </button>
  </form>
- <a href=''>Don't have an account? <strong> Signup </strong> ...</a>
+ <p>Don't have an account?</p><a href='#'> <strong> Sign Up </strong></a>
 </div>
