@@ -13,7 +13,7 @@ module.exports = function(app, express){
   //Use respective routers for all requests based on category
   app.use('/api/groups', groupRouter);
   app.use('/api/users', userRouter);
-  app.use('/api/shoutmaker', shoutRouter);
+  app.use('/api/shouts', shoutRouter);
 
   //Inject routers into respective route files
   require('../routes/groups/groupRoutes.js')(groupRouter);
