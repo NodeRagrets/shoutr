@@ -17,7 +17,8 @@ module.exports = function(config) {
     files: [
       'server/**/*.js',
       'client/**/*.js',
-      'spec/**/*.js'
+      'spec/**/*.js',
+      'spec/*.js'
     ],
 
 
