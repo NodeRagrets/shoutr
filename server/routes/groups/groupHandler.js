@@ -22,4 +22,5 @@ module.exports = {
                console.log('ERROR INSIDE SIGNUP');
              });
     }
+    
 }
