@@ -9,14 +9,17 @@ module.exports = {
     saveGroup: function(req, res){
       var groupData = req.body //TODO find where data is
       helpers.addGroup(groupData)
-             .then( function(err, resultData){
-               if(err){
-                 console.log('ERROR INSIDE POSTGROUPHANDLER');
-                 res.send(404);
-               } else{
+             .then( function(resultData){
+              //  if(err){
+              //    console.log('ERROR INSIDE POSTGROUPHANDLER');
+              //    res.send(404);
+              //  } else{
                  console.log('SUCCESS GOT A POST REQUEST, GROUPHANDLER');
-                 res.send(200);
-               }
+                 res.status(200).send(resultData);
+              //  }
+             })
+             .catch( function(err){
+               console.log('ERROR INSIDE SIGNUP');
              });
     }
 }
