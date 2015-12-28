@@ -1,7 +1,7 @@
 angular.module('shoutr.shoutCreation', [])
 
 .controller('shoutCreationController', ['$scope', 'Shouts', function($scope, Shouts) {
-  
+
   $scope.shout = {
     recipient: '',
     title: '',
@@ -11,5 +11,4 @@ angular.module('shoutr.shoutCreation', [])
   $scope.postShout = function() {
     Shouts.saveShout($scope.shout);
   }
-
 }]);
