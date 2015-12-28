@@ -5,7 +5,7 @@ angular.module('shoutr.services', [])
   var getShouts = function() {
     return $http({
       method: 'GET',
-      url:'/api/shoutmaker'
+      url:'/api/shouts'
     }).then(function(response) {
       return response.data;
     }).catch(function(error) {
@@ -16,7 +16,7 @@ angular.module('shoutr.services', [])
   var saveShout = function(shout) {
     return $http({
       method: 'POST',
-      url:'/api/shoutmaker',
+      url:'/api/shouts',
       data: shout
     }).then(function(response) {
       console.log('successful post')
@@ -34,10 +34,34 @@ angular.module('shoutr.services', [])
 
 .factory('Users', ['$http', function($http) {
 
+  var login = function() {
+    return $http({
+      method: 'POST',
+      url: '/api/users/login',
+      data: userInfo
+    }).then(function(response) {
+      console.log('Successful Login');
+    }).catch(function(error) {
+      console.log(error);
+    });
+  }
+
+  var signup = function() {
+    return $http({
+      method: 'POST',
+      url: '/api/users/signup',
+      data: signupInfo
+    }).then(function(response) {
+      console.log('Successful Signup!');
+    }).catch(function(error) {
+      console.log(error);
+    });
+  }
+
   var pullUser = function() {
     return $http({
       method: 'GET',
-      url: '/api/userprofile'
+      url: '/api/users/profile'
     }).then(function(response) {
       return response.data
     }).catch(function(error) {
@@ -46,6 +70,8 @@ angular.module('shoutr.services', [])
   }
 
   return {
+    login: login,
+    signup: signup,
     pullUser: pullUser
   }
 
