@@ -21,6 +21,7 @@ module.exports = {
              .catch( function(err){
                console.log('ERROR INSIDE SIGNUP');
              });
+
     }
-    
+
 }

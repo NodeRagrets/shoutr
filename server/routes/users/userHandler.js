@@ -20,11 +20,12 @@ module.exports = {
            .catch( function(err){
              console.log(err, "ERROR INSIDE login");
            });
-           
+
   },
   signup: function(req, res){
     var userData = req.body //TODO find where the data is
     var groupData = req.body //TODO find where the data is
+
     helpers.addUserToGroup(userData, groupData)
            .then(function(resultData){
             //  if(err){

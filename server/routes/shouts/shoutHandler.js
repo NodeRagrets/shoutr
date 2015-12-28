@@ -27,6 +27,7 @@ module.exports = {
                console.log(err, "ERROR INSIDE LOADSHOUTS");
              });
     },
+
     saveShout: function(req, res){
       // console.log("SAVESHOUTS", req, "SAVESHOUTS")
       var shoutData = req.body;//TODO find the data or req.params.shouts
@@ -44,6 +45,6 @@ module.exports = {
             console.log(err, "ERROR INSIDE SAVESHOUTS");
           });
     }
-    
+
 
 };
