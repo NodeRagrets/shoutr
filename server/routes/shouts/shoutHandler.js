@@ -1,34 +1,47 @@
 var express = require('express');
 var helpers = require('./../../db/helpers.js');
-//var app = express();
-//should i require the db
+
 
 module.exports = {
     loadShouts: function(req, res){
-      var groupNameData = req.body; //find the data
+      // if(err){
+      //   console.log("ERROR", err);
+      // }
+      console.log("LOADSHOUTS", req.body, "LOADSHOUTS")
+      var groupNameData = req.params; //TODO find the data
+      // helpers.addGroup({groupName: 'Tomz Group'});
+      console.log(req.params, "REQ.PARAMS");
       helpers.getShouts(groupNameData)
-             .then( function(err, resultData){
-               if(err){
-                 console.log('ERROR INSIDE GETSHOUTHANDLER', err);
-                 res.send(404);
-               } else{
+             .then( function(resultData){
+              //  if(err){
+              //    console.log('ERROR INSIDE GETSHOUTHANDLER', err);
+              //    res.json(404);
+              //  } else{
+                 console.log('Result Data', resultData)
                  console.log('SUCCESS GOT A GET REQUEST, SHOUTHANDLER');
-                 res.send(200, resultData);
+                 res.status(200).send(resultData);
                  //TODO deal with how resultData is returned--- look at db cheatsheet
-               }
+              //  }
+             })
+             .catch( function(err){
+               console.log(err, "ERROR INSIDE LOADSHOUTS");
              });
     },
     saveShout: function(req, res){
-      var shoutData = req.body;//find the data or req.params.shouts
+      // console.log("SAVESHOUTS", req, "SAVESHOUTS")
+      var shoutData = req.body;//TODO find the data or req.params.shouts
       helpers.addShout(shoutData)
-             .then( function(err, resultData) {
-               if(err){
-                 console.log('ERROR INSIDE POSTSHOUTHANDLER', err);
-                 res.send(404);
-               } else{
+             .then( function(resultData) {
+              //  if(err){
+              //    console.log('ERROR INSIDE POSTSHOUTHANDLER', err);
+              //    res.json(404);
+              //  } else{
                  console.log('SUCCESS GOT A POST REQUEST, SHOUTHANDLER')
-                 res.send(200);
-               }
+                 res.status(200).send(resultData);
+              //  }
+          })
+          .catch( function(err){
+            console.log(err, "ERROR INSIDE SAVESHOUTS");
           });
     }
 
