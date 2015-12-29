@@ -1,15 +1,16 @@
 angular.module('shoutr.groupCreation', [
 
 ])
-.controller('groupCreationController', ['$scope', function($scope){
+.controller('groupCreationController', ['$scope', 'Groups', function($scope, Groups){
   $scope.groupCreated = false;
   $scope.groupSubmission = function(){
     if($scope.groupname){
-      //At this point, I will call the addGroup function in the relevant factory in services.js
-      //I am unsure about setting this up, so I am waiting until our meeting tomorrow
+      Groups.createGroup(scope.groupname);
+      $scope.groupname = '';
+      $scope.groupCreated = true;
+    } else {
+      alert('You must input a name!');
     }
-    $scope.groupname = '';
-    $scope.groupCreated = true;
   }
 
 }])
