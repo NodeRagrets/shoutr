@@ -1,7 +1,4 @@
 <div ng-controller = 'newsFeedController'>
-  <!-- div for potential navbar -->
-  <nav class = 'navBar'></nav>
-
   <!-- container for the cards that will be added -->
   <div class = 'row' ng-repeat= 'shout in data.shouts track by $index' ng-if= '$index % 3 === 0'>
     <div class = 'col-xs-4' ng-repeat = 'i in [$index, $index + 1, $index + 2]' ng-if= 'data.shouts[i] !== undefined'>
