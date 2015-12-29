@@ -9,16 +9,16 @@ angular.module('shoutr.newsFeed', [
   {recipient: 'Bobi', title: 'Good jobd', message:'placeholder'},
   {recipient: 'Bobb', title: 'Good jobf', message:'placeholder'},
   {recipient: 'Bab', title: 'Good jobg', message:'placeholder'}]
-  // $scope.getShout = function(){
-  //   Shouts.getShouts()
-  //     .then(function(data){
-  //       $scope.data['shouts'] = data;
-  //     })
-  //     .catch(function(err){
-  //       console.log(err, "Caught an error in getShouts");
-  //     })
-  // }
+  $scope.getShout = function(){
+    Shouts.getShouts()
+      .then(function(data){
+        $scope.data['shouts'] = data;
+      })
+      .catch(function(err){
+        console.log(err, "Caught an error in getShouts");
+      })
+  }
 
-  // $scope.getShout();
+  $scope.getShout();
 
 }])
