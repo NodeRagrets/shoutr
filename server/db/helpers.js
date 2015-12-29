@@ -4,22 +4,29 @@ var helpers = {};
 //this is our interface between server and DB. 
 helpers.addUser = function(userData) {
   //check to see if the user already exists before creating it.
-  db.User.findOne({
-    where: {"groupName":userData.username}
+  return db.User.findOne({
+    where: {"username": userData.username}
   })
   .then(function(user){
     if(user){
+      console.log(user);
       throw Error("Username already taken!");
+    }
+    else {
+      return db.User.create({
+        username: userData.username,
+        password: userData.password,
+        email: userData.email
+      });
     }
   })
 
-  db.User.create({
-    username: userData.username,
-    password: userData.password,
-    email: userData.email
-  });
+  
 
 };
+
+
+
 helpers.addGroup = function(groupData) {
   //check to see if the group already exists before creating it. 
   db.Group.findOne({
@@ -136,7 +143,7 @@ helpers.getShouts = function(groupName, options) {
 
 
 helpers.getUser = function(username) {
-  var userId;
+  var userId; //pretty sure this line is doing nothing...
 
   return db.User.findOne({
     where: {"username":username}
