@@ -76,3 +76,24 @@ angular.module('shoutr.services', [])
   }
 
 }])
+
+.factory('Groups', ['$http', function($http){
+
+  var createGroup = function(groupName){
+    return $http({
+      method: 'POST',
+      url: '/api/groups/create',
+      data: groupName
+    }).then(function(response){
+      return response.data;
+    }).catch(function(error){
+      console.log(error);
+    })
+  }
+
+  return {
+    createGroup: createGroup
+  }
+
+
+}])

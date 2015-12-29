@@ -8,7 +8,16 @@ angular.module('shoutr.shoutCreation', [])
     message: ''
   };
 
+  $scope.shoutCreated = false;
+
   $scope.postShout = function() {
     Shouts.saveShout($scope.shout);
+    $scope.shout = {
+      recipient: '',
+      title: '',
+      message: ''
+    };
+    $scope.shoutCreated = true;
   }
+  
 }]);

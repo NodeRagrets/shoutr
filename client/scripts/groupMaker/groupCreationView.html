@@ -1,9 +1,7 @@
-<div ng-controller = 'groupCreationController'>
-  <form ng-submit = ' ' name = 'groupCreator' novalidate>
-    <input type = 'text' name = 'nameText' ng-model = ' '>
-    <input type = 'text' name = 'descriptionText' ng-model = ' '>
-    <input type = 'text' name = 'inviteListText' ng-model = ' '>
+<div ng-controller='groupCreationController'>
+  <form ng-submit='groupSubmission()' name='groupCreator' novalidate>
+    <input placeholder='Group Name' type='text' name='groupnameText' ng-model='groupname'>
+    <input type='submit' value='Create Group'>
   </form>
-
-  <!-- TODO: implement a logo makerstuff -->
+  <h3 ng-if='groupCreated'> Group Created! </h3>
 </div>

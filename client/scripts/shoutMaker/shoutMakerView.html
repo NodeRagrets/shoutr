@@ -1,30 +1,30 @@
 <div ng-controller = 'shoutCreationController'>
-  <!-- div for navBar -->
-  <nav class = 'navBar'></nav>
   <!-- front of card -->
   <div class= 'frontOfCard'>
-    <form ng-submit = ' '  name = 'frontCardForm' novalidate>
-      <input type = 'text' name = 'toText' ng-model = 'shout.recipient'>
-
-      <input type = 'text' name = 'blurbText' ng-model = 'shout.title'>
+    <form ng-submit = 'postShout()'  name = 'frontCardForm' novalidate>
+      <input placeholder='Recipient' type = 'text' name = 'toText' ng-model = 'shout.recipient'>
+      <input placeholder='Title Text' type = 'text' name = 'blurbText' ng-model = 'shout.title'>
     </form>
     <!-- actual card -->
     <div class = 'card'>
-      <p>Recpient: {{shout.recipient}}</p>
+      <p>Recipient: {{shout.recipient}}</p>
       <p>Title: {{shout.title}} </p>
-
     </div>
   </div>
 
   <!-- back of card -->
   <div class= 'backOfCard'>
-    <form ng-submit = ' ' name = 'backCardForm' novalidate>
-      <input type = 'text' name = 'storyText' ng-model = 'shout.message'>
+    <form ng-submit = 'postShout()' name = 'backCardForm' novalidate>
+      <input placeholder='Message' type = 'text' name = 'storyText' ng-model = 'shout.message'>
     </form>
     <!-- actual card -->
     <div class = 'card'>
       <p>Message: {{shout.message}} </p>
     </div>
   </div>
+
+  <button ng-click='postShout()'> Create Shout </button>
+
+  <h3 ng-if='shoutCreated'> Shout Created! </h3>
 
 </div>
