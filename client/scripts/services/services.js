@@ -43,7 +43,7 @@ angular.module('shoutr.services', [])
       console.log('Successful Login');
       return response;
     }).catch(function(error) {
-      console.log(error);
+      // console.log(error);
       return error;
     });
   }
