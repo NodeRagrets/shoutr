@@ -162,7 +162,6 @@ helpers.getUser = function(username) {
 helpers.getUserGroups = function(username){
   return helpers.getUser(username)
           .then(function(user){
-            var userId = user.get('id');
             return user.getGroups()
           })
 }
