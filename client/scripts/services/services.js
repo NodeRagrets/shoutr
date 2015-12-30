@@ -41,8 +41,10 @@ angular.module('shoutr.services', [])
       data: loginInfo
     }).then(function(response) {
       console.log('Successful Login');
+      return response;
     }).catch(function(error) {
       console.log(error);
+      return error;
     });
   }
 
@@ -53,7 +55,7 @@ angular.module('shoutr.services', [])
       data: signupInfo
     }).then(function(response) {
       console.log('Successful Signup!');
-      return response.data;
+      return response;
     }).catch(function(error) {
       console.log(error);
       return error;
