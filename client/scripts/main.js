@@ -4,7 +4,8 @@ angular.module('shoutr',[
   'shoutr.shoutCreation',
   'shoutr.auth',
   'shoutr.newsFeed',
-  'shoutr.services'
+  'shoutr.services',
+  'RDash'
 ])
 .config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider){
 
