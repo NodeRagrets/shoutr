@@ -48,7 +48,8 @@ module.exports = {
       res.status(200).send(resultData);
     })
     .catch( function(err){
-      console.log(err, "ERROR INSIDE SIGNUP");
+      console.log("ERROR INSIDE SIGNUP", err, "ERROR INSIDE SIGNUP");
+      res.status(409).send(err);
     });
   }
 
