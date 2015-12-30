@@ -50,8 +50,6 @@ angular.module('shoutr.auth', [])
       });
     }
 
-
-  	
   }
 
 
@@ -60,11 +58,16 @@ angular.module('shoutr.auth', [])
   	console.log("here's the login data", $scope.loginData.user);
   	Users.login($scope.loginData.user).then(function(response) {
   		if (response.status === 200) {
+        console.log("successful login!");
   			$location.path('/#/newsfeed');
-  		} else {
-  			//TODO: figure out how to handle this case 
-  			console.log('problem with login');
-        // $scope.error.status = 
+  		} 
+
+      if (response.status === 422) {
+        $scope.error.status = "Incorrect password. Please try again.";
+      } 
+
+      if (response.status === 404) {
+        $scope.error.status = "That username does not exist.";
       }
   	})
   }
