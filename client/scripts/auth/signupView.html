@@ -5,17 +5,9 @@
     <input class='signup' type ='text' placeholder='username' ng-model='signupData.user.username' ng-minlength = '5' ng-maxlength = '10' required>
     <input class='signup' type='password' placeholder='password' ng-model='signupData.user.password' ng-minlength='6' ng-maxlength='18' required>
     <button class='signup'> Sign Up </button>
-  	<div ng-hide ng-model='error'>
+<!--   	<div ng-hide ng-model='error'>
   		<p> {{error.status}} </p>
-  	</div>
-<!-- 	  <pre>myForm.myName.$error = {{ myForm.myName.$error | json }}</pre>
-
-	  <div ng-messages="myForm.myName.$error" style="color:maroon" role="alert">
-	    <div ng-message="required">You did not enter a field</div>
-	    <div ng-message="minlength">Your field is too short</div>
-	    <div ng-message="maxlength">Your field is too long</div>
-	  </div> -->
-
+  	</div> -->
   </form>
   <p>Already have an account?</p><a href='#'> <strong> Login </strong></a>
 </div>
