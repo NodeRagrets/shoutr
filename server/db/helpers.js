@@ -35,12 +35,13 @@ helpers.addGroup = function(groupData) {
   .then(function(group){
     if(group){
       throw Error("Group name already taken!");
+    } else {
+      return db.Group.create({
+        groupName: groupData.groupName
+      }); 
     }
   })
 
-  return db.Group.create({
-    groupName: groupData.groupName
-  });
 
 };
 
@@ -158,6 +159,14 @@ helpers.getUser = function(username) {
   })
 };
 
+helpers.getUserGroups = function(username){
+  return helpers.getUser(username)
+          .then(function(user){
+            var userId = user.get('id');
+            return user.getGroups()
+          })
+}
+
 //
 
 //Function Tests:
@@ -170,6 +179,7 @@ helpers.getUser = function(username) {
 //   color: "#1eabd9"
 // });
 
+// console.log('notice me');
 
 // helpers.addUser({
 //   username: 'Malek',
@@ -181,7 +191,20 @@ helpers.getUser = function(username) {
 //   groupName: "Lizzzes groop"
 // });
 
-// helpers.addUserToGroup("Tom", "Tomz Group");
+// helpers.addGroup({
+//   groupName: "Tomz groop"
+// });
+
+// helpers.addUserToGroup("Malek", "Tomz groop");
+// helpers.addUserToGroup("Malek", "Lizzzes groop");
+
+
+// helpers.getUserGroups('Malek')
+//   .then(function(groups){
+//     groups.forEach(function(item){
+//       console.log(item.get('groupName'));
+//     })
+//   })
 
 
 //BELOW IS A TEMPLATE FOR HOW THE CALL TO GETSHOUtS SHOULD BE MADE:
