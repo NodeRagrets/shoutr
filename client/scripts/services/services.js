@@ -34,27 +34,31 @@ angular.module('shoutr.services', [])
 
 .factory('Users', ['$http', function($http) {
 
-  var login = function() {
+  var login = function(loginInfo) {
     return $http({
       method: 'POST',
       url: '/api/users/login',
-      data: userInfo
+      data: loginInfo
     }).then(function(response) {
       console.log('Successful Login');
+      return response;
     }).catch(function(error) {
       console.log(error);
+      return error;
     });
   }
 
-  var signup = function() {
+  var signup = function(signupInfo) {
     return $http({
       method: 'POST',
       url: '/api/users/signup',
       data: signupInfo
     }).then(function(response) {
       console.log('Successful Signup!');
+      return response;
     }).catch(function(error) {
       console.log(error);
+      return error;
     });
   }
 
