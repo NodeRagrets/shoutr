@@ -17,10 +17,25 @@ angular.module('shoutr.auth', [])
 		}
 	};
 
+  $scope.error = {
+  };
+
 	$scope.userSignedup = false;
 
   $scope.signup = function() { 
   	// TODO: add confirm password to signup view, and logic to accomodate it here
+
+    if($scope.signupData.user.password.length < 6 || 
+        $scope.signupData.user.password.length > 18) {
+
+    }
+
+    if($scope.signupData.user.username.length < 5 || 
+       $scope.signupData.user.username.length > 10) {
+
+    }
+
+
   	
   	Users.signup($scope.signupData.user).then(function(response){
   			if (response.status === 200) {
@@ -28,11 +43,13 @@ angular.module('shoutr.auth', [])
 		  		console.log("response is", response);
 		  		$scope.userSignedup = true;
 		  		$location.path('/#/newsfeed');
-  			} else {
-  				//TODO: display appropriate error to user
-  				$scope.error = response.status;
-  	  		console.log("HERE IS SCOPE ERROR", $scope.error);
-  			}
+  			} 
+
+        if (response.status === 409) {
+          $scope.error.status = "Sorry, that username has already been taken.";
+          // console.log("HERE IS RESPONSE", response);
+          // console.log("HERE IS SCOPE ERROR BOOOOYAH", $scope.error);
+        }
   	});
   }
 
