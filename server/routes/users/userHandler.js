@@ -10,22 +10,22 @@ module.exports = {
 
     var loginData = req.body;
     var loginPromise = helpers.getUser(loginData.username);
-    console.log("BOOYAH HERE IS DATA FROM LOGIN FN", req.body);
     
     loginPromise.then(function(resultData){
-      // console.log("HERE IS RESULTDATA", resultData);
+      //if the call to getUser does not resolve to an error, the passwords are compared 
       bcrypt.compare(loginData.password, resultData.password, function(err, result) {
         if (result === true) {
-          console.log('PASSWORDS ARE THE SAME, USER MAY PROCEED!');
+          // passwords are the same and user may proceed
           res.status(200).send(resultData);
         } else {
-
+          //passwords conflict (422)
+          res.status(422).send(err);
         }
       })
 
-    })
+    }) //if the call to getUser resolves to an error, we know the user does not exist and send them 404 
     .catch(function(err){
-      console.log(err, "ERROR INSIDE LOGIN");
+      res.status(404).send(err);
     }); 
   },
   
@@ -44,11 +44,12 @@ module.exports = {
     var userPromise = helpers.addUser(userData);
     
     userPromise.then(function(resultData){
-      console.log('SUCCESSFUL POST REQUEST, USERHANDLER');
+      // console.log('SUCCESSFUL POST REQUEST, USERHANDLER');
       res.status(200).send(resultData);
     })
     .catch( function(err){
-      console.log(err, "ERROR INSIDE SIGNUP");
+      // console.log("ERROR INSIDE SIGNUP", err, "ERROR INSIDE SIGNUP");
+      res.status(409).send(err);
     });
   }
 
