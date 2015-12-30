@@ -5,15 +5,15 @@ angular.module('shoutr.auth', [])
 	$scope.signupData = {
 		user: {
 			email: 'asd@asd.confirm',
-			username: 'asdasd',
-			password: 'asdsdsdsd'
+			username: '',
+			password: ''
 		}
 	};
 
 	$scope.loginData = {
 		user: {
-			username: 'woooohaa',
-			password: 'aekuhwa'
+			username: '',
+			password: ''
 		}
 	};
 
@@ -23,34 +23,35 @@ angular.module('shoutr.auth', [])
 	$scope.userSignedup = false;
 
   $scope.signup = function() { 
-  	// TODO: add confirm password to signup view, and logic to accomodate it here
-
-    if($scope.signupData.user.password.length < 6 || 
-        $scope.signupData.user.password.length > 18) {
-
+  	// LOW PRIORITY TODO: add confirm password to signup view, and logic to accomodate it here
+  
+    if ($scope.signupData.user.password === undefined) {
+      $scope.error.status = "Password must be 6-18 characters in length.";
+      return;
     }
 
-    if($scope.signupData.user.username.length < 5 || 
-       $scope.signupData.user.username.length > 10) {
+    if ($scope.signupData.user.username === undefined) {
+      $scope.error.status = "Username must be 5-10 characters in length.";
+      return;
+    } 
+      
+    else {
+      Users.signup($scope.signupData.user).then(function(response){
+        if (response.status === 200) {
+          // TODO: begin session here $window.localStorage.setItem
+          console.log("response is", response);
+          $scope.userSignedup = true;
+          $location.path('/#/newsfeed');
+        } 
 
+        if (response.status === 409) {
+          $scope.error.status = "Sorry, that username has already been taken.";
+        }
+      });
     }
 
 
   	
-  	Users.signup($scope.signupData.user).then(function(response){
-  			if (response.status === 200) {
-		  		// TODO: begin session here $window.localStorage.setItem
-		  		console.log("response is", response);
-		  		$scope.userSignedup = true;
-		  		$location.path('/#/newsfeed');
-  			} 
-
-        if (response.status === 409) {
-          $scope.error.status = "Sorry, that username has already been taken.";
-          // console.log("HERE IS RESPONSE", response);
-          // console.log("HERE IS SCOPE ERROR BOOOOYAH", $scope.error);
-        }
-  	});
   }
 
 
@@ -63,7 +64,8 @@ angular.module('shoutr.auth', [])
   		} else {
   			//TODO: figure out how to handle this case 
   			console.log('problem with login');
-  		}
+        // $scope.error.status = 
+      }
   	})
   }
 
