@@ -1,7 +1,7 @@
 var db = require('../db/sequelize.js');
 var helpers = {};
 //to be called from the requesthandlers to send the data to the database
-//this is our interface between server and DB. 
+//this is our interface between server and DB.
 helpers.addUser = function(userData) {
   //check to see if the user already exists before creating it.
   db.User.findOne({
@@ -21,8 +21,8 @@ helpers.addUser = function(userData) {
 
 };
 helpers.addGroup = function(groupData) {
-  //check to see if the group already exists before creating it. 
-  db.Group.findOne({
+  //check to see if the group already exists before creating it.
+  return db.Group.findOne({
     where: {"groupName":groupData.groupName}
   })
   .then(function(group){
@@ -31,7 +31,7 @@ helpers.addGroup = function(groupData) {
     }
   })
 
-  db.Group.create({
+  return db.Group.create({
     groupName: groupData.groupName
   });
 
@@ -41,17 +41,17 @@ helpers.addGroup = function(groupData) {
 helpers.addUserToGroup = function(username, groupName) {
     //queries to get the relevant user and group
     var userGroup = {};
-    db.User.findOne({
+    return db.User.findOne({
       where: {"username": username}
     })
     .then(function(user) {
       if(!user) {
         throw Error("User not found");
       }
-      
+
       userGroup.user = user;
 
-      db.Group.findOne({
+      return db.Group.findOne({
         where: {"groupName": groupName}
       })
       .then(function(group) {
@@ -59,9 +59,9 @@ helpers.addUserToGroup = function(username, groupName) {
           throw Error("Group not found");
         }
         //when you say, "belongsToMany" (in the sequelize.js file), it creates a lot of methods, one of which is addUser
-        group.addUser(userGroup.user);
+        return group.addUser(userGroup.user);
       });
-    }); 
+    });
     //query to get the groupId
 };
 
@@ -70,23 +70,23 @@ helpers.addShout = function(shoutData) {
   var shoutCreatorID;
   var shoutRecipientID;
   //queries to retrieve Id's for relevant group, shout creator and shout recipient
-  db.Group.findOne({
+  return db.Group.findOne({
     where: {groupName: shoutData.groupName}
   })
   .then(function(group){
     shoutGroupID = group.get('id');
-    db.User.findOne({
+    return db.User.findOne({
       where: {username: shoutData.creator}
     })
     .then(function(creator){
       shoutCreatorID = creator.get('id');
-      db.User.findOne({
+      return db.User.findOne({
         where: {username: shoutData.recipient}
       })
       .then(function(recipient){
         shoutRecipientID = recipient.get('id');
         return db.Shout.create({
-          GroupId: shoutGroupID, 
+          GroupId: shoutGroupID,
           blurb: shoutData.blurb,
           story: shoutData.story,
           color: shoutData.color,
@@ -96,20 +96,20 @@ helpers.addShout = function(shoutData) {
       })
     })
   });
-  
+
 };
 
 //no need for a getGroup function because all the group's table stores is groupName and IDs.
-helpers.getShouts = function(groupName, options) { 
+helpers.getShouts = function(groupName, options) {
   //options: for future versions of this project we'll want to sort the data in different way (e.g. hashtags or datatype)
-  //sort by user 
+  //sort by user
   var groupId;
   var shoutResults;
 
-  //when the getSHouts funciton is being used in the request handlers file, treat the return of that function 
-  //as a promise. So, use a .then(function(resultsArray){ }) 
+  //when the getSHouts funciton is being used in the request handlers file, treat the return of that function
+  //as a promise. So, use a .then(function(resultsArray){ })
   return db.Group.findOne({
-    where: {"groupName": groupName} 
+    where: {"groupName": groupName}
   })
   .then(function(group) {
     groupId = group.id;
@@ -121,7 +121,7 @@ helpers.getShouts = function(groupName, options) {
         shoutResults = shouts.filter(function(shout) {
           if(shout.groupId === groupId) {
             return true;
-          } 
+          }
           return false;
         });
       } else {
@@ -148,7 +148,7 @@ helpers.getUser = function(username) {
 
 //
 
-//Function Tests: 
+//Function Tests:
 // helpers.addShout({
 //   groupName: "Tomz Group",
 //   creator: 'Tom',
