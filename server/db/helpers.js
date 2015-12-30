@@ -149,6 +149,7 @@ helpers.getUser = function(username) {
     where: {"username":username}
   })
   .then(function(user){
+    console.log('INSIDE THE THEN OF GETUSER IN HELPERS. USER:', user);
     return user;
   })
 };
