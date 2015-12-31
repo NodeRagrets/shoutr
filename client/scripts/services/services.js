@@ -7,6 +7,7 @@ angular.module('shoutr.services', [])
       method: 'GET',
       url:'/api/shouts'
     }).then(function(response) {
+      console.log('res',response);
       return response.data;
     }).catch(function(error) {
       console.log(error);
