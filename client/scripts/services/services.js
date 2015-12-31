@@ -8,7 +8,6 @@ angular.module('shoutr.services', [])
       url:'/api/shouts',
       params: {group_name: groupname}
     }).then(function(response) {
-      console.log('res',response);
       return response.data;
     }).catch(function(error) {
       console.log(error);
