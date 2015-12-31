@@ -4,13 +4,10 @@ var helpers = require('./../../db/helpers.js');
 
 module.exports = {
     loadShouts: function(req, res){
-      // if(err){
-      //   console.log("ERROR", err);
-      // }
-      console.log("LOADSHOUTS", req.body, "LOADSHOUTS")
-      var groupNameData = req.params; //TODO find the data
+      console.log("LOADSHOUTS", req.query.groupName, "LOADSHOUTS")
+      var groupNameData = req.query.groupName; //TODO find the data
       // helpers.addGroup({groupName: 'Tomz Group'});
-      console.log(req.params, "REQ.PARAMS");
+      // console.log(req.params, "REQ.PARAMS");
       helpers.getShouts(groupNameData)
              .then( function(resultData){
               //  if(err){
@@ -29,8 +26,8 @@ module.exports = {
     },
 
     saveShout: function(req, res){
-      // console.log("SAVESHOUTS", req, "SAVESHOUTS")
-      var shoutData = req.body;//TODO find the data or req.params.shouts
+       console.log("SAVESHOUTS", req.body, "SAVESHOUTS")
+      var shoutData = req.body;//TODO find the groupname data
       helpers.addShout(shoutData)
              .then( function(resultData) {
               //  if(err){

@@ -6,7 +6,7 @@ angular.module('shoutr.services', [])
     return $http({
       method: 'GET',
       url:'/api/shouts',
-      params: {group_name: groupname}
+      params: {groupName: groupname}
     }).then(function(response) {
       return response.data;
     }).catch(function(error) {
