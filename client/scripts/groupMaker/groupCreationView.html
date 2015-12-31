@@ -1,0 +1,7 @@
+<div ng-controller='groupCreationController'>
+  <form ng-submit='groupSubmission()' name='groupCreator' novalidate>
+    <input placeholder='Group Name' type='text' name='groupnameText' ng-model='data.groupname'>
+    <input type='submit' value='Create Group'>
+  </form>
+  <h3 ng-if='groupCreated'> Group Created! </h3>
+</div>

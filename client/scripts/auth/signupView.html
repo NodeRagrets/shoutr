@@ -1,0 +1,27 @@
+<div ng-controller = 'authController'>
+  
+
+  <h1> SIGN UP </h1>
+  
+
+  <form name='signupForm' ng-submit='signup()'>
+    <input type ='email' ng-model = 'signupData.user.email' placeholder='Email address' required>
+
+
+    <input class='signup' type ='text' placeholder='username' ng-model='signupData.user.username' ng-minlength = '5' ng-maxlength = '10' required>
+
+
+    <input class='signup' type='password' placeholder='password' ng-model='signupData.user.password' ng-minlength='6' ng-maxlength='18' required>
+    
+
+    <button class='signup'> Sign Up </button>
+  	
+
+    <div ng-if="error.status" ng-model='error'>
+  		<p class="errorText"> {{error.status}} </p>
+  	</div>
+
+
+  </form>
+  <p>Already have an account?</p><a href='#'> <strong> Login </strong></a>
+</div>

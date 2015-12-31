@@ -1,0 +1,9 @@
+.cardContainer {
+  margin-bottom: 20px;
+  border: 5px solid black;
+}
+
+.errorText {
+	color: #A80015;
+	font-style: italic;	
+}

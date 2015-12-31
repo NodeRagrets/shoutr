@@ -1,0 +1,112 @@
+angular.module('shoutr.services', [])
+
+.factory('Shouts', ['$http', function($http) {
+
+  var getShouts = function(groupname) {
+    return $http({
+      method: 'GET',
+      url:'/api/shouts',
+      params: {group_name: groupname}
+    }).then(function(response) {
+      return response.data;
+    }).catch(function(error) {
+      console.log(error);
+    });
+  }
+
+  var saveShout = function(shout) {
+    return $http({
+      method: 'POST',
+      url:'/api/shouts',
+      data: shout
+    }).then(function(response) {
+      console.log('successful post')
+    }).catch(function(error) {
+      console.log(error);
+    });
+  }
+
+  return {
+    getShouts: getShouts,
+    saveShout: saveShout
+  }
+
+}])
+
+.factory('Users', ['$http', function($http) {
+
+  var login = function() {
+    return $http({
+      method: 'POST',
+      url: '/api/users/login',
+      data: userInfo
+    }).then(function(response) {
+      console.log('Successful Login');
+    }).catch(function(error) {
+      console.log(error);
+    });
+  }
+
+  var signup = function() {
+    return $http({
+      method: 'POST',
+      url: '/api/users/signup',
+      data: signupInfo
+    }).then(function(response) {
+      console.log('Successful Signup!');
+    }).catch(function(error) {
+      console.log(error);
+    });
+  }
+
+  var pullUser = function() {
+    return $http({
+      method: 'GET',
+      url: '/api/users/profile'
+    }).then(function(response) {
+      return response.data
+    }).catch(function(error) {
+      console.log(error);
+    });
+  }
+
+  return {
+    login: login,
+    signup: signup,
+    pullUser: pullUser
+  }
+
+}])
+
+.factory('Groups', ['$http', function($http){
+
+  var createGroup = function(groupName){
+    return $http({
+      method: 'POST',
+      url: '/api/groups/create',
+      data: groupName
+    }).then(function(response){
+      return response.data;
+    }).catch(function(error){
+      console.log(error);
+    })
+  }
+
+  var getGroups = function() {
+    return $http({
+      method: 'GET',
+      url: '/api/groups/load',
+    }).then(function(response){
+      return response.data;
+    }).catch(function(error){
+      console.log(error);
+    })
+  }
+
+  return {
+    createGroup: createGroup,
+    getGroups: getGroups
+  }
+
+
+}])
