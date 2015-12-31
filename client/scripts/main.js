@@ -22,7 +22,7 @@ angular.module('shoutr',[
       templateUrl: './scripts/auth/signupView.html'
     })
     .state('newsfeed', {
-      url: '/newsfeed',
+      url: '/newsfeed/:groupname',
       templateUrl: './scripts/newsFeed/newsFeedView.html'
     })
     .state('shoutmaker', {
@@ -39,3 +39,20 @@ angular.module('shoutr',[
     });
 
 }]);
+
+
+
+//subview method -> will be much cleaner and is part of a larger refactor of the routes coming soon.
+// <ul>
+//   <li ng-repeat="group in groups">
+//     <a ui-sref=".groupname({ groupname: group.name })">{{ group.name }}</a>
+//   </li>
+// </ul>
+
+// .state('newsfeed', {
+//   url: '/newsfeed',
+//   templateUrl: './scripts/newsFeed/newsFeedView.html'
+// })
+// .state('newsfeed.groupname', {
+//   url: '/:groupname'
+// })

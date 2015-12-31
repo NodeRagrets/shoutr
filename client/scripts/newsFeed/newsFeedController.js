@@ -1,7 +1,7 @@
 angular.module('shoutr.newsFeed', [
 
 ])
-.controller('newsFeedController', ['$scope', 'Shouts', function($scope, Shouts){
+.controller('newsFeedController', ['$scope', '$stateParams', 'Shouts', function($scope, $stateParams, Shouts) {
   $scope.data = {};
   $scope.data.shouts = [{recipient: 'Bob', title: 'Good job', message:'placeholder'},
   {recipient: 'Bobby', title: 'Good jobb', message:'placeholder'},
@@ -9,8 +9,12 @@ angular.module('shoutr.newsFeed', [
   {recipient: 'Bobi', title: 'Good jobd', message:'placeholder'},
   {recipient: 'Bobb', title: 'Good jobf', message:'placeholder'},
   {recipient: 'Bab', title: 'Good jobg', message:'placeholder'}]
+
+  $scope.data.groupname = $stateParams.groupname;
+  console.log($scope.data.groupname);
+
   $scope.getShout = function(){
-    Shouts.getShouts()
+    Shouts.getShouts($scope.data.groupname)
       .then(function(data){
         $scope.data['shouts'] = data;
       })

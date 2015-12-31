@@ -2,10 +2,11 @@ angular.module('shoutr.services', [])
 
 .factory('Shouts', ['$http', function($http) {
 
-  var getShouts = function() {
+  var getShouts = function(groupname) {
     return $http({
       method: 'GET',
-      url:'/api/shouts'
+      url:'/api/shouts',
+      params: {group_name: groupname}
     }).then(function(response) {
       return response.data;
     }).catch(function(error) {
@@ -34,31 +35,27 @@ angular.module('shoutr.services', [])
 
 .factory('Users', ['$http', function($http) {
 
-  var login = function(loginInfo) {
+  var login = function() {
     return $http({
       method: 'POST',
       url: '/api/users/login',
-      data: loginInfo
+      data: userInfo
     }).then(function(response) {
       console.log('Successful Login');
-      return response;
     }).catch(function(error) {
-      // console.log(error);
-      return error;
+      console.log(error);
     });
   }
 
-  var signup = function(signupInfo) {
+  var signup = function() {
     return $http({
       method: 'POST',
       url: '/api/users/signup',
       data: signupInfo
     }).then(function(response) {
       console.log('Successful Signup!');
-      return response;
     }).catch(function(error) {
       console.log(error);
-      return error;
     });
   }
 
@@ -95,8 +92,20 @@ angular.module('shoutr.services', [])
     })
   }
 
+  var getGroups = function() {
+    return $http({
+      method: 'GET',
+      url: '/api/groups/load',
+    }).then(function(response){
+      return response.data;
+    }).catch(function(error){
+      console.log(error);
+    })
+  }
+
   return {
-    createGroup: createGroup
+    createGroup: createGroup,
+    getGroups: getGroups
   }
 
 
