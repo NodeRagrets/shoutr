@@ -96,8 +96,20 @@ angular.module('shoutr.services', [])
     })
   }
 
+  var getGroups = function() {
+    return $http({
+      method: 'GET',
+      url: '/api/groups/load',
+    }).then(function(response){
+      return response.data;
+    }).catch(function(error){
+      console.log(error);
+    })
+  }
+
   return {
-    createGroup: createGroup
+    createGroup: createGroup,
+    getGroups: getGroups
   }
 
 
