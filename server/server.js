@@ -4,6 +4,7 @@ var app = express();
 //TODO: Add database stuff to connect it to server
 
 require('./config/middleware.js')(app, express);
+require('./config/utils.js');
 
 app.listen(port);
 
