@@ -7,20 +7,15 @@ module.exports = {
     // no getGroup helper?
     // },
     saveGroup: function(req, res){
-      console.log(req.body, "SAVEGROUP")
-      var groupData = req.body //TODO find where data is
+      console.log(req.body, 'SAVEGROUP')
+      var groupData = req.body
       helpers.addGroup(groupData)
              .then( function(resultData){
-              //  if(err){
-              //    console.log('ERROR INSIDE POSTGROUPHANDLER');
-              //    res.send(404);
-              //  } else{
-                 console.log('SUCCESS GOT A POST REQUEST, GROUPHANDLER');
+                 console.log('SUCCESS GOT A POST REQUEST, SAVEGROUP');
                  res.status(200).send(resultData);
-              //  }
              })
              .catch( function(err){
-               console.log('ERROR INSIDE SIGNUP');
+               console.log('ERROR INSIDE SAVEGROUP');
              });
 
     }
