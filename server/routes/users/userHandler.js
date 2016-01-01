@@ -2,6 +2,7 @@ var express = require('express');
 var app = express();
 var helpers = require('./../../db/helpers.js');
 var bcrypt = require('bcrypt-nodejs');
+var utils = require('./../../config/utils.js');
 
 module.exports = {
 
@@ -15,10 +16,10 @@ module.exports = {
       //if the call to getUser does not resolve to an error, the passwords are compared 
       bcrypt.compare(loginData.password, resultData.password, function(err, result) {
         if (result === true) {
-          // passwords are the same and user may proceed
-          res.status(200).send(resultData);
+          // Regenerate session when signing in to prevent fixation
+          utils.createSession(req, res, resultData);
+
         } else {
-          //passwords conflict (422)
           res.status(422).send(err);
         }
       })
@@ -28,7 +29,6 @@ module.exports = {
       res.status(404).send(err);
     }); 
   },
-  
 
 
 
@@ -44,13 +44,22 @@ module.exports = {
     var userPromise = helpers.addUser(userData);
     
     userPromise.then(function(resultData){
-      // console.log('SUCCESSFUL POST REQUEST, USERHANDLER');
-      res.status(200).send(resultData);
+      utils.createSession(req, res, resultData);
     })
     .catch( function(err){
-      // console.log("ERROR INSIDE SIGNUP", err, "ERROR INSIDE SIGNUP");
       res.status(409).send(err);
     });
+  },
+
+
+
+  //TODO: add logout button to client>index.html
+  logout: function(req, res) {
+  // destroy the user's session to log them out
+    req.session.destroy(function(){
+      res.redirect('/');
+    });
   }
+
 
 };

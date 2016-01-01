@@ -37,11 +37,11 @@ angular.module('shoutr.auth', [])
       
     else {
       Users.signup($scope.signupData.user).then(function(response){
+        
         if (response.status === 200) {
-          // TODO: begin session here $window.localStorage.setItem
           console.log("response is", response);
           $scope.userSignedup = true;
-          $location.path('/#/newsfeed');
+          $location.path('/groupmaker');
         } 
 
         if (response.status === 409) {
@@ -55,11 +55,11 @@ angular.module('shoutr.auth', [])
 
 
   $scope.login = function() {
-  	console.log("here's the login data", $scope.loginData.user);
   	Users.login($scope.loginData.user).then(function(response) {
-  		if (response.status === 200) {
+      
+      if (response.status === 200) {
         console.log("successful login!");
-  			$location.path('/#/newsfeed');
+  			$location.path('/newsfeed/:groupname');
   		} 
 
       if (response.status === 422) {
@@ -73,6 +73,8 @@ angular.module('shoutr.auth', [])
   }
 
 }])
+
+
 
 
 
