@@ -36,7 +36,7 @@ helpers.addGroup = function(groupData) {
     } else {
       return db.Group.create({
         groupName: groupData.groupName
-      }); 
+      });
     }
   })
 
