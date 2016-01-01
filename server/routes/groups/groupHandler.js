@@ -7,6 +7,7 @@ module.exports = {
     // no getGroup helper?
     // },
     saveGroup: function(req, res){
+      console.log(req.body, "SAVEGROUP")
       var groupData = req.body //TODO find where data is
       helpers.addGroup(groupData)
              .then( function(resultData){
