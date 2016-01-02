@@ -1,29 +1,46 @@
 <div ng-controller = 'shoutCreationController'>
   <!-- front of card -->
-  <div class= 'frontOfCard'>
-    <form ng-submit = 'postShout()'  name = 'frontCardForm' novalidate>
-      <input placeholder='Recipient' type = 'text' name = 'toText' ng-model = 'shout.recipient'>
-      <input placeholder='Title Text' type = 'text' name = 'blurbText' ng-model = 'shout.title'>
-    </form>
-    <!-- actual card -->
-    <div class = 'card'>
-      <p>Recipient: {{shout.recipient}}</p>
-      <p>Title: {{shout.title}} </p>
+  <div class='row'>
+    <div class='col-xs-6'>
+      <div class='frontOfCard creator'>
+        <form role='form' ng-submit = 'postShout()'  name = 'frontCardForm' novalidate>
+          <div class='form-group'>
+            <input class='form-control' placeholder='Recipient' type = 'text' name = 'toText' ng-model = 'shout.recipient'>
+          </div>
+          <div class='form-group'>
+            <input class='form-control' placeholder='Title Text' type = 'text' name = 'blurbText' ng-model = 'shout.title'>
+          </div>
+        </form>
+      </div>
+    </div>
+    <div class='col-xs-6'>
+      <!-- Front of card preview -->
+      <div class = 'cardContainer'>
+        <div class='cardTitleContainer'>
+          <h3 class='cardRecipient'>To: <span class='name'>{{shout.recipient}}</span></h3>
+          <h3 class='cardCreator'> From: <span class='name'>{{shout.creator}}</span></h3>
+        </div>
+        <h2 class='cardBlurb'>{{shout.title}}</h2>
+      </div>
     </div>
   </div>
-
-  <!-- back of card -->
-  <div class= 'backOfCard'>
-    <form ng-submit = 'postShout()' name = 'backCardForm' novalidate>
-      <input placeholder='Message' type = 'text' name = 'storyText' ng-model = 'shout.message'>
-    </form>
-    <!-- actual card -->
-    <div class = 'card'>
-      <p>Message: {{shout.message}} </p>
+  <div class='row'>
+    <div class='col-xs-6'>
+      <div class= 'backOfCard creator'>
+        <form role='form' ng-submit = 'postShout()' name = 'backCardForm' novalidate>
+          <div class='form-group'>
+            <input class='form-control' placeholder='Message' type = 'text' name = 'storyText' ng-model = 'shout.message'>
+          </div>
+        </form>
+      </div>
+    </div>
+    <div class='col-xs-6'>
+      <div class = 'cardContainer'>
+        <p>{{shout.message}}</p>
+      </div>
     </div>
   </div>
-
-  <button ng-click='postShout()'> Create Shout </button>
+      <button class='creator' ng-click='postShout()'> Create Shout </button>
 
   <h3 ng-if='shoutCreated'> Shout Created! </h3>
 
