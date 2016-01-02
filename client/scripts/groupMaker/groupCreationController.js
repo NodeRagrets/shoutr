@@ -16,4 +16,17 @@ angular.module('shoutr.groupCreation', [
     }
   }
 
+
+  $scope.data.groups = [{groupname: 'group1'}, {groupname: 'group2'}, {groupname: 'group3'}, {groupname: 'group4'}, {groupname: 'group5'}, {groupname: 'group6'}];
+
+  // $scope.loadGroups = function() {
+  //   Groups.getGroups()
+  //     .then(function(groups) {
+  //       $scope.data.groups = groups;
+  //     })
+  //     .catch(function(error) {
+  //       console.log(error);
+  //     });
+  // }
+
 }])
