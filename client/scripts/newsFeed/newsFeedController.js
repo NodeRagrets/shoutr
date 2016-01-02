@@ -1,7 +1,7 @@
 angular.module('shoutr.newsFeed', [
 
 ])
-.controller('newsFeedController', ['$scope', 'Shouts', function($scope, Shouts){
+.controller('newsFeedController', ['$scope', '$stateParams', 'Shouts', function($scope, $stateParams, Shouts){
   $scope.data = {};
   $scope.data.shouts = [{recipient: 'Bob', title: 'Good job', message:'placeholder', creator: 'Borb'},
   {recipient: 'Bobby', title: 'Good jobb', message:'placeholder', creator: 'Borb'},
