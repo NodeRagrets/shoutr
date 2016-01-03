@@ -1,11 +1,11 @@
 <div ng-controller = 'authController'>
-  
+
 
   <h1> LOGIN </h1>
-  
 
-  <form name='loginForm' ng-submit='login()'> 
-    
+
+  <form name='loginForm' ng-submit='login()'>
+
     <input class='login' placeholder='username' ng-model='loginData.user.username' type ='text' ng-model='' ng-minlength = '5' ng-maxlength = '10' required>
 
 
@@ -20,5 +20,5 @@
 
   </form>
 
-  <p>Don't have an account?</p><a href='#'> <strong> Sign Up </strong></a>
+  <p>Don't have an account?</p><a href='#/signup'> <strong> Sign Up </strong></a>
 </div>
