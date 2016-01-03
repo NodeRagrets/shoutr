@@ -19,5 +19,10 @@ module.exports = {
           res.status(200).send('Success!');
 	    });
 	}
+
+	persistGroup: function(req, res, group) {
+		req.session.group = group;
+		next();
+	}
 };
 
