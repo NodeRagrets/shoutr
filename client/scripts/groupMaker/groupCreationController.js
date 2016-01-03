@@ -8,11 +8,7 @@ angular.module('shoutr.groupCreation', [
   $scope.data['username'] = '';
   $scope.data['usersArray'] = [];
 
-  $scope.addUsersArray = function($scope.data['username']){
-    var temp =   $scope.data['usersArray']
-    var temp2 = $scope.data['username'];
-    temp.push(temp2);
-  }
+
 
   $scope.groupSubmission = function(){
     if($scope.data.groupName){
@@ -26,17 +22,22 @@ angular.module('shoutr.groupCreation', [
     }
   }
 
-  // $scope.usersAdded = false;
+  $scope.usersAdded = false;
 
-  // $scope.addingUsers = function(){
-  //   if($scope.data.username){
-  //     Groups.addGroupUsers($scope.data);
-  //     $scope.usersAdded = true;
-  //   }else {
-  //     alert('You must add at least one user!');
-  //   }
-  //
-  // }
+  $scope.addingUsers = function(){
+    if($scope.data.username){
+
+      var array = $scope.data['usersArray'];
+      var name = $scope.data['username'];
+      array.push(name);
+      console.log(array);
+      Groups.addGroupUsers($scope.data);
+      $scope.usersAdded = true;
+    }else {
+      alert('You must add at least one user!');
+    }
+
+  }
 
   $scope.data.groups = [{groupname: 'group1'}, {groupname: 'group2'}, {groupname: 'group3'}, {groupname: 'group4'}, {groupname: 'group5'}, {groupname: 'group6'}];
 
