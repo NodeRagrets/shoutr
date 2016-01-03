@@ -97,7 +97,8 @@ helpers.addShout = function(shoutData) {
           story: shoutData.story,
           color: shoutData.color,
           UserId: shoutCreatorID,
-          recipientId: shoutRecipientID
+          recipientId: shoutRecipientID,
+          imageLink: shoutData.imageLink
         });
       })
     })
@@ -164,6 +165,15 @@ helpers.getUserGroups = function(username){
           })
 }
 
+helpers.getGroupMembers = function(groupName){
+  return db.Group.findOne({
+    where: {"groupName":groupName}
+  })
+  .then(function(group){
+    return group.getUsers();
+  })
+}
+
 //
 
 //Function Tests:
@@ -173,10 +183,23 @@ helpers.getUserGroups = function(username){
 //   recipient: 'Tom',
 //   blurb: 'bah',
 //   story: 'THIS IS DIFFERENT',
-//   color: "#1eabd9"
+//   color: "#1eabd9",
+//   imageLink: 'whoah'
 // });
 
-// console.log('notice me');
+// helpers.getShouts('Tomz Group')
+// .then(function(shouts){
+//   shouts.forEach(function(shout){
+//     console.log(shout.get('imageLink'));
+//   })
+// })
+
+helpers.getGroupMembers('Tomz Group')
+.then(function(members){
+  members.forEach(function(member){
+    console.log(member.get('username'));
+  })
+});
 
 // helpers.addUser({
 //   username: 'Malek',
@@ -189,10 +212,12 @@ helpers.getUserGroups = function(username){
 // });
 
 // helpers.addGroup({
-//   groupName: "Tomz groop"
+//   groupName: "Tomz group"
 // });
 
-// helpers.addUserToGroup("Malek", "Tomz groop");
+// helpers.addUserToGroup("Malek", "Tomz Group");
+// helpers.addUserToGroup("Tom", "Tomz Group");
+
 // helpers.addUserToGroup("Malek", "Lizzzes groop");
 
 
