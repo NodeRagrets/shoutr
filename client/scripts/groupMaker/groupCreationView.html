@@ -1,13 +1,17 @@
 <div ng-controller='groupCreationController'>
-  
+
   <form ng-submit='groupSubmission()' name='groupCreator' novalidate>
     <input placeholder='Group Name' type='text' name='groupnameText' ng-model='data.groupName'>
+    <input placeholder="Who's in your group?" type='text' name='usernameText' ng-model='data.username'>
     <input type='submit' value='Create Group'>
   </form>
 
-  <form ng-submit='' name='userAdder' novalidate>
-    <input placeholder="Who's in your group?" type='text' name='usernameText' ng-model=''>
-    <input type='submit' value=''>
+  <form ng-submit='addingUsers()' name='userAdder' novalidate>
+    <!-- <input placeholder="Who's in your group?" type='text' name='usernameText' ng-model='data.username'> -->
+    <!-- <button ng-click = ''>
+      Add the user
+    </button> -->
+    <p> please use a comma to separate users </p>
   </form>
 
   <h3 ng-if='groupCreated'> Group Created! </h3>
