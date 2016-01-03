@@ -4,20 +4,32 @@ var helpers = require('./../../db/helpers.js');
 module.exports = {
 
     // loadGroup: function(req, res){
-    //   console.log('LOADGROUP',  req.body, 'LOADGROUP');
-    //   helper.getUserGroups()
+    //   //TODO ask rachel where it is
+    //   console.log('LOADGROUP', req.body, 'LOADGROUP');
+    //   helpers.getUserGroups()
+    //         .then( function(resultData){
+    //           console.log('SUCCESS INSIDE LOADGROUP');
+    //         })
     //
     // },
-    // addUser: function(req, res){
-        //this will be for existing groups
-    //   console.log('ADDUSER', req.body, 'ADDUSER'); // find users
-    //   var userString = req.body;
-    //   var userArray = userString.split(',');
-    //   var groupnameToPassIn// find groupname
-    //   helpers.addUserToGroup()
-    //
-    //
-    // },
+    addUser: function(req, res){
+        // this will be for existing groups
+      console.log('ADDUSER', req.body, 'ADDUSER'); // find users
+      var userArray = req.body.usersArray;
+      var groupNameForAddUsers = req.body.groupName;
+      for(var i = 0; i < userArray[i]; i++){
+        helpers.addUserToGroup(userArray[i], groupNameForAddUsers)
+               .then(function(results){
+                 console.log('SUCCESSFULLY ADDED MORE USERS');
+               })
+               .catch(function(err){
+                 console.log('ERROR')
+               });
+      }
+
+
+
+    },
     saveGroup: function(req, res){
 
       var groupData = {};

@@ -1,7 +1,7 @@
 angular.module('shoutr.newsFeed', [
 
 ])
-.controller('newsFeedController', ['$scope', '$stateParams', 'Shouts', function($scope, $stateParams, Shouts){
+.controller('newsFeedController', ['$scope', '$stateParams', 'Shouts', 'Groups', function($scope, $stateParams, Shouts, Groups){
   $scope.data = {};
   $scope.data.shouts = [{recipient: 'Bob', title: 'Good job', message:'placeholder', creator: 'Borb'},
   {recipient: 'Bobby', title: 'Good jobb', message:'placeholder', creator: 'Borb'},
@@ -10,11 +10,11 @@ angular.module('shoutr.newsFeed', [
   {recipient: 'Bobb', title: 'Good jobf', message:'placeholder', creator: 'Borb'},
   {recipient: 'Bab', title: 'Good jobg', message:'placeholder', creator: 'Borb'},]
 
-  $scope.data.groupname = $stateParams.groupname;
-  console.log($scope.data.groupname);
+  $scope.data.groupName = $stateParams.groupname;
+  console.log($scope.data.groupName);
 
   $scope.getShout = function(){
-    Shouts.getShouts()
+    Shouts.getShouts($scope.data.groupName)
       .then(function(data){
         $scope.data['shouts'] = data;
       })
@@ -24,6 +24,36 @@ angular.module('shoutr.newsFeed', [
   }
 
   $scope.getShout();
+
+  // the following is for users in the group
+
+  $scope.data.username = '';
+  //TODO :put existing users in usersArray
+  $scope.data.usersArray = [];
+  $scope.usersAdded = false;
+  $scope.addMoreUsers = function(){
+
+    if($scope.data.username){
+      var name = $scope.data.username;
+      var array = $scope.data.usersArray;
+
+      array.push(name);
+      console.log(array, "THIS ARRAYYYYY");
+
+      Groups.addGroupUsers($scope.data);
+      $scope.usersAdded = true;
+    } else{
+      alert('You must enter at least one name');
+    }
+  }
+
+
+
+
+
+
+
+
 
   //Below is the JS handling the flipping animations
 
