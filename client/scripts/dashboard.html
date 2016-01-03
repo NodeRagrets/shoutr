@@ -1,36 +1,4 @@
-<!DOCTYPE html>
-<html lang = 'en' ng-app ='shoutr'>
-  <head>
-    <meta charset = "utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Shoutr</title>
-
-    <!-- Stylesheets -->
-    <link rel = 'stylesheet' type ='text/css' href ='styles.css' />
-    <link rel='stylesheet' type='text/css' href='./permlib/rdash/rdash.min.css' />
-    <link rel='stylesheet' type='text/css' href='./permlib/bootstrap/dist/css/bootstrap.min.css' />
-    <link rel='stylesheet' type='text/css' href='./permlib/font-awesome/font-awesome.min.css' />
-
-    <!-- Javascript Library Dependencies -->
-    <script src = './permlib/angular/angular.min.js'></script>
-    <script src = './permlib/angular-ui-router/release/angular-ui-router.min.js'></script>
-    <script src = './permlib/jquery/dist/jquery.min.js'></script>
-    <script src = './permlib/bootstrap/dist/js/bootstrap.min.js'></script>
-    <script src = './permlib/angular-cookies/angular-cookies.min.js'></script>
-    <script src = './permlib/angular-bootstrap/ui-bootstrap-tpls.min.js'></script>
-    <script src = './permlib/rdash-controllers/master-ctrl.js'></script>
-
-    <!-- Native Javascript Dependencies -->
-    <script src = './scripts/services/services.js'></script>
-    <script src = './scripts/directives/directives.js'></script>
-    <script src = './scripts/groupMaker/groupCreationController.js'></script>
-    <script src = './scripts/newsFeed/newsFeedController.js'></script>
-    <script src = './scripts/shoutMaker/shoutMakerController.js'></script>
-    <script src = './scripts/auth/authController.js'></script>
-    <script src = './scripts/main.js'></script>
-
-  </head>
-    <body ng-controller="MasterCtrl">
+<div ng-controller="MasterCtrl">
     <div id="page-wrapper" ng-class="{'open': toggle}" ng-cloak>
 
     <!-- Sidebar -->
@@ -45,7 +13,7 @@
        <!--  <li class="sidebar-title"><span>NAVIGATION</span></li> -->
         <li class="sidebar-title"><span>Groups ({{data.groups.length}})</span><a href="#/groupmaker" style="display: inline" class="glyphicon glyphicon-plus" tool-tip="{title: 'Create new Group'}"></a></li>
         <li class="sidebar-list" ng-repeat="group in data.groups | limitTo: 5">
-          <a href="#/newsfeed/{{group.groupname}}">{{group.groupname}}</a>
+          <a href="#/dashboard/newsfeed/{{group.groupname}}">{{group.groupname}}</a>
         </li>
         <li class="sidebar-list">
           <a href="#/shoutmaker">Create a new shout!</a>
@@ -63,8 +31,8 @@
           </a>
         </div>
         <div class="col-xs-4">
-          <a href="#/logout">
-            Log Out
+          <a href="#">
+            Support
           </a>
         </div>
       </div>
@@ -135,6 +103,8 @@
             </div>
           </div>
         </div>
+      </div>
       <div ui-view></div>
-    </body>
-</html>
+    </div>
+  </div>
+</div>

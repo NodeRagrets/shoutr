@@ -10,6 +10,10 @@
           <div class='form-group'>
             <input class='form-control' placeholder='Title Text' type = 'text' name = 'blurbText' ng-model = 'shout.title'>
           </div>
+          <div class='btn-group' data-toggle='buttons-checkbox'>
+            <button type='button' class='btn btn-primary' ng-model='shout.color' btn-radio='red' ></button>
+            <button type='button' class='btn btn-primary' ng-model='shout.color' btn-radio='blue' ></button>
+          </div>
         </form>
       </div>
     </div>
@@ -18,7 +22,7 @@
       <div class = 'cardContainer'>
         <div class='cardTitleContainer'>
           <h3 class='cardRecipient'>To: <span class='name'>{{shout.recipient}}</span></h3>
-          <h3 class='cardCreator'> From: <span class='name'>{{shout.creator}}</span></h3>
+          <h3 class='cardCreator'> From: <span class='name'>{{shout.color}}</span></h3>
         </div>
         <h2 class='cardBlurb'>{{shout.title}}</h2>
       </div>

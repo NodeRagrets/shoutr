@@ -119,9 +119,22 @@ angular.module('shoutr.services', [])
     })
   }
 
+  var addGroupUsers = function(users){
+    return $http({
+      method: 'POST',
+      url: '/api/groups/addUsers',
+      data: users
+    }).then(function(response){
+      return response.data;
+    }).catch(function(error){
+      console.log(error);
+    })
+  }
+
   return {
     createGroup: createGroup,
-    getGroups: getGroups
+    getGroups: getGroups,
+    addGroupUsers: addGroupUsers
   }
 
 

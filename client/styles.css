@@ -81,6 +81,20 @@
   font-style: italic; 
 }
 
+body {
+  color: black;
+}
+
 .creator {
   margin: 0 20px;
+}
+
+.sidebar-main, .sidebar-title, #sidebar-wrapper, .sidebar-list, .sidebar {
+  background-color: #99ffd6;
+  color: black;
+}
+
+#sidebar-toggle, .sidebar-footer {
+  background-color: #00b38e;
+  color: black;
 }
