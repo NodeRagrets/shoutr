@@ -3,6 +3,21 @@
   <div>
     {{data.groupname}}
   </div>
+
+  <form ng-submit='addMoreUsers()' name='moreUserAdder' novalidate>
+    <input placeholder='Add a user' type='text' name='usernameText' ng-model='data.username'>
+    <input type ='submit' value = 'Add'>
+  </form>
+
+  <div>
+    Current Users:
+    <span ng-repeat = 'user in data.usersArray'>
+      <p>{{user}}</p>
+    </span>
+  <div>
+
+
+
   <button class='creator' ng-click='getShout()'> Refresh NewsFeed </button>
   <br>
   <br>
