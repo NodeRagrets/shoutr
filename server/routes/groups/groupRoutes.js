@@ -4,6 +4,6 @@ module.exports = function(app) {
 
   app.post('/create', groupHandler.saveGroup);
   // app.get('/load', groupHandler.loadGroup);
-  // app.post('/addUser', groupHandler.addUser);
+  app.post('/addUser', groupHandler.addUser);
 
 }
