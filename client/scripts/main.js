@@ -22,22 +22,43 @@ angular.module('shoutr',[
       url: '/signup',
       templateUrl: './scripts/auth/signupView.html'
     })
-    .state('newsfeed', {
+    // .state('newsfeed', {
+    //   url: '/newsfeed/:groupname',
+    //   templateUrl: './scripts/newsFeed/newsFeedView.html'
+    // })
+    // .state('shoutmaker', {
+    //   url: '/shoutmaker',
+    //   templateUrl: './scripts/shoutMaker/shoutMakerView.html'
+    // })
+    // .state('groupmaker', {
+    //   url: '/groupmaker',
+    //   templateUrl: './scripts/groupMaker/groupCreationView.html'
+    // })
+    // .state('userprofile', {
+    //   url: '/userprofile/:username',
+    //   templateUrl: './scripts/userProfile/userProfileView.html'
+    // });
+
+    .state('dashboard', {
+      url: '/dashboard',
+      templateUrl: './scripts/dashboard.html'
+    })
+    .state('dashboard.newsfeed', {
       url: '/newsfeed/:groupname',
       templateUrl: './scripts/newsFeed/newsFeedView.html'
     })
-    .state('shoutmaker', {
-      url: '/shoutmaker',
+    .state('dashboard.shoutcreate', {
+      url: '/shoutcreate',
       templateUrl: './scripts/shoutMaker/shoutMakerView.html'
     })
-    .state('groupmaker', {
-      url: '/groupmaker',
+    .state('dashboard.groupcreate', {
+      url: '/groupcreate',
       templateUrl: './scripts/groupMaker/groupCreationView.html'
     })
-    .state('userprofile', {
-      url: '/userprofile/:username',
-      templateUrl: './scripts/userProfile/userProfileView.html'
-    });
+    .state('dashboard.user', {
+      url: '/user/:username',
+      templateURL: './scripts/userProfile/userProfileView.html'
+    })
 
 }]);
 
