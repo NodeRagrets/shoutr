@@ -37,6 +37,10 @@ angular.module('shoutr',[
     .state('userprofile', {
       url: '/userprofile/:username',
       templateUrl: './scripts/userProfile/userProfileView.html'
+    })
+    .state('logout', {
+      url: '/logout',
+      templateUrl: './scripts/auth/logoutView.html'
     });
 
 }]);
