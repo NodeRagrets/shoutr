@@ -113,7 +113,7 @@ helpers.getShouts = function(groupName, options) {
   var groupId;
   var shoutResults;
 
-  //when the getSHouts funciton is being used in the request handlers file, treat the return of that function
+  //when the getSHouts function is being used in the request handlers file, treat the return of that function
   //as a promise. So, use a .then(function(resultsArray){ })
   return db.Group.findOne({
     where: {"groupName": groupName}
@@ -140,6 +140,31 @@ helpers.getShouts = function(groupName, options) {
     return shoutResults;
   })
 };
+
+
+
+helpers.getShoutsByRecipient = function(recipientName) {
+  var recipientId;
+  var shoutResults;
+
+  return db.User.findOne({
+    where: {"username": recipientName}
+  })
+  .then(function(recipient) {
+    recipientId = recipient.id;
+    // console.log("HERE IS RECIPIENTID, HELPERS.JS", recipientId);
+    return db.Shout.findAll({
+      where: {"recipientId": recipientId}
+    })
+      .then(function(shouts) {
+        return shouts;
+      });
+  })
+  .then(function(shoutsPromise) {
+    return shoutResults;
+  })
+};
+
 
 
 helpers.getUser = function(username) {
