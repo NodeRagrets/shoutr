@@ -42,6 +42,9 @@ models.Shout = sequelize.define('Shout', {
   },
   recipientId: {
     type: Sequelize.INTEGER
+  },
+  imageLink: {
+    type: Sequelize.STRING
   }
   // userId is added automatically by the "hasMany" relationship established below
 });
@@ -57,26 +60,30 @@ models.Group.hasMany(models.Shout);
 models.User.belongsToMany(models.Group, {through: 'UserGroupJoin'});
 models.Group.belongsToMany(models.User, {through: 'UserGroupJoin'});
 
+//NOTE: All of the model creations in the below .then functions are for testing purposes and are not necessary for the db functionality
+
 models.Group.sync({force: false}).then(function() {
-  // return models.Group.create({
-  //   groupName:"Tomz Group"
-  // });
+  return models.Group.create({
+    groupName:"Tomz Group"
+  });
 });
 
 models.Shout.sync({force: false}).then(function() {
+
   // return models.Shout.create({
   //   blurb: "I love puppies! Plus, node ragrets.",
   //   story: "Shoutout to puppies.",
-  //   color:"#1eabd9"
+  //   color:"#1eabd9",
+  //   imageLink: 'whoah'
   // });
 });
 
 models.User.sync({force: false}).then(function() {
-  // return models.User.create({
-  //   username: "Tom",
-  //   password: "abc123",
-  //   email:"tom@tom.com"
-  // });
+  return models.User.create({
+    username: "Tom",
+    password: "abc123",
+    email:"tom@tom.com"
+  });
 });
 
 models.UserGroupJoin.sync({force: false}).then(function() {
