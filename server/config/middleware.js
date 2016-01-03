@@ -1,7 +1,7 @@
 var morgan = require('morgan');
 var bodyParser = require('body-parser');
 var cookieParser = require('cookie-parser');
-var session = require('express-session'); 
+var session = require('express-session');
 var utils = require('./utils.js');
 
 
@@ -10,17 +10,17 @@ module.exports = function(app, express){
   app.use(bodyParser.json());
   app.use(express.static(__dirname + './../../client'));
   //ADDED THIS FOR SESSIONS
-  app.use(cookieParser());
-  app.use(session({secret: 'noderegrats123woooo415'}));
+  // app.use(cookieParser());
+  // app.use(session({secret: 'noderegrats123woooo415'}));
 
   var groupRouter = express.Router();
   var userRouter = express.Router();
   var shoutRouter = express.Router();
 
   //Use respective routers for all requests based on category
-  app.use('/api/groups', utils.restrict, groupRouter);
+  app.use('/api/groups', groupRouter);
   app.use('/api/users', userRouter);
-  app.use('/api/shouts', utils.restrict, shoutRouter);
+  app.use('/api/shouts', shoutRouter);
 
   //Inject routers into respective route files
   require('../routes/groups/groupRoutes.js')(groupRouter);

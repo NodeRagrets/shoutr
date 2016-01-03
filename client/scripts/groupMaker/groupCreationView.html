@@ -2,16 +2,22 @@
 
   <form ng-submit='groupSubmission()' name='groupCreator' novalidate>
     <input placeholder='Group Name' type='text' name='groupnameText' ng-model='data.groupName'>
-    <input placeholder="Who's in your group?" type='text' name='usernameText' ng-model='data.username'>
+    <!-- <input placeholder="Who's in your group?" type='text' name='usernameText' ng-model='data.username'> -->
     <input type='submit' value='Create Group'>
   </form>
 
   <form ng-submit='addingUsers()' name='userAdder' novalidate>
-    <!-- <input placeholder="Who's in your group?" type='text' name='usernameText' ng-model='data.username'> -->
-    <!-- <button ng-click = ''>
-      Add the user
-    </button> -->
-    <p> please use a comma to separate users </p>
+    <input placeholder="Who's in your group?" type='text' name='usernameText' ng-model='data.username'>
+    <input type ='submit' value = 'Add User' ng-click = 'addUsersArray(data.username)'>
+
+    <!-- when you click it'll add to the data.username array and then it should display the array -->
+    <div>
+    Users currently in group :
+  </div>
+    <div ng-repeat='user in data.userArray'>
+        <p>{{user}}</p>
+    </div>
+    <!-- <p> please use a comma to separate users </p> -->
   </form>
 
   <h3 ng-if='groupCreated'> Group Created! </h3>
