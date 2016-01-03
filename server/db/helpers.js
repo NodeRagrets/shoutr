@@ -194,12 +194,12 @@ helpers.getGroupMembers = function(groupName){
 //   })
 // })
 
-helpers.getGroupMembers('Tomz Group')
-.then(function(members){
-  members.forEach(function(member){
-    console.log(member.get('username'));
-  })
-});
+// helpers.getGroupMembers('Tomz Group')
+// .then(function(members){
+//   members.forEach(function(member){
+//     console.log(member.get('username'));
+//   })
+// });
 
 // helpers.addUser({
 //   username: 'Malek',
