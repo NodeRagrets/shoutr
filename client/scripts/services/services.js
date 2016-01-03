@@ -63,12 +63,23 @@ angular.module('shoutr.services', [])
     });
   }
 
-  var pullUser = function() {
+  var pullUser = function(username) {
     return $http({
       method: 'GET',
-      url: '/api/users/profile'
+      url: '/api/users/userprofile?username=' + username  
     }).then(function(response) {
       return response.data
+    }).catch(function(error) {
+      console.log(error);
+    });
+  }
+
+  var logoutUser = function() {
+    return $http({
+      method: 'GET',
+      url: '/api/users/logout'
+    }).then(function(response) {
+      return response.data;
     }).catch(function(error) {
       console.log(error);
     });
@@ -77,7 +88,8 @@ angular.module('shoutr.services', [])
   return {
     login: login,
     signup: signup,
-    pullUser: pullUser
+    pullUser: pullUser,
+    logoutUser: logoutUser
   }
 
 }])

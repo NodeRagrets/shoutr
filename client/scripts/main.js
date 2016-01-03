@@ -5,6 +5,7 @@ angular.module('shoutr',[
   'shoutr.shoutCreation',
   'shoutr.auth',
   'shoutr.newsFeed',
+  'shoutr.userProfile',
   'shoutr.services',
   'RDash'
 ])
@@ -15,7 +16,7 @@ angular.module('shoutr',[
   $stateProvider
 
     .state('login', {
-      url: '/',
+      url: '/login',
       templateUrl: './scripts/auth/loginView.html'
     })
     .state('signup', {
@@ -57,8 +58,12 @@ angular.module('shoutr',[
     })
     .state('dashboard.user', {
       url: '/user/:username',
-      templateURL: './scripts/userProfile/userProfileView.html'
+      templateUrl: './scripts/userProfile/userProfileView.html'
     })
+    .state('logout', {
+      url: '/logout',
+      templateUrl: './scripts/auth/logoutView.html'
+    });
 
 }]);
 

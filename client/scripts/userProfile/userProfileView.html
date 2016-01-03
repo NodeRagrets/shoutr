@@ -1,25 +1,43 @@
 <div ng-controller = 'userProfileController'>
   <nav class = 'navBar'></nav>
-  <!-- Profile Pic -->
+
+
+
+  <!-- Profile Pic --> 
   <img>
   <div class = 'userInfo'>
-    <p> Name: {{}} </p>
-    <p> Info: {{}} </p>
+    <h3>User Profile</h3>
+    <p> Name: {{ data.user.username }} </p>
+    <p> Email: {{ data.user.email }} </p>
   </div>
-  <!-- Shouts From  -->
-  <div>
-    <div ng-repeat= ''>
-      <p>recipient: {{}} </p>
-      <p>title: {{}} </p>
-      <p>message: {{}} </p>
-    </div>
-  </div>
+
+
+
+  <hr>
   <!-- Shouts To -->
   <div>
-    <div ng-repeat= ''>
+    <h4> Shouts to {{ data.user.username }}: </h4>
+    <!--<div ng-repeat= ''>-->
+    <div>
       <p>recipient: {{}} </p>
       <p>title: {{}} </p>
       <p>message: {{}} </p>
     </div>
   </div>
+
+
+
+  <hr>
+  <!-- Shouts From  -->
+  <div>
+    <h4> Shouts created by {{ data.user.username }}: </h4>
+    <!--<div ng-repeat= ''>-->
+    <div>
+      <p>recipient: {{}} </p>
+      <p>title: {{}} </p>
+      <p>message: {{}} </p>
+    </div>
+  </div>
+
+  
 </div>

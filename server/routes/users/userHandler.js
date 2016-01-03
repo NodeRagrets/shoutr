@@ -7,7 +7,7 @@ var utils = require('./../../config/utils.js');
 module.exports = {
 
 
-  login: function(req, res){
+  login: function(req, res) {
 
     var loginData = req.body;
     var loginPromise = helpers.getUser(loginData.username);
@@ -28,14 +28,14 @@ module.exports = {
     .catch(function(err){
       res.status(404).send(err);
     }); 
+  
   },
 
 
 
-  signup: function(req, res){
+  signup: function(req, res) {
 
     var userData = req.body;
-    // console.log("HERE IS THE USERDATA", userData);
 
     bcrypt.hash(req.body.password, null, null, function(err, hash){
       userData.password = hash;
@@ -49,16 +49,34 @@ module.exports = {
     .catch( function(err){
       res.status(409).send(err);
     });
+  
   },
 
 
 
-  //TODO: add logout button to client>index.html
+  profile: function(req, res) {
+    var username = req.query.username;
+    // console.log("HERE IS REQ FROM PROFILE FN:", req.query.username);
+    var usernamePromise = helpers.getUser(username);
+
+    usernamePromise.then(function(resultData) {
+      res.status(200).send(resultData);
+    })
+    .catch( function(err){
+      res.status(404).send(err);
+    });
+  
+  },
+
+
+ 
   logout: function(req, res) {
   // destroy the user's session to log them out
     req.session.destroy(function(){
-      res.redirect('/');
+      console.log('successful user session destruction!');
+      res.status(200).send("successful log out!");
     });
+  
   }
 
 
