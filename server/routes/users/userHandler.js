@@ -55,12 +55,12 @@ module.exports = {
 
 
   profile: function(req, res) {
-    var username = req.body.username;
-
+    var username = req.query.username;
+    // console.log("HERE IS REQ FROM PROFILE FN:", req.query.username);
     var usernamePromise = helpers.getUser(username);
 
     usernamePromise.then(function(resultData) {
-      res.data = resultData;
+      res.status(200).send(resultData);
     })
     .catch( function(err){
       res.status(404).send(err);
@@ -69,7 +69,7 @@ module.exports = {
   },
 
 
-
+ 
   logout: function(req, res) {
   // destroy the user's session to log them out
     req.session.destroy(function(){
