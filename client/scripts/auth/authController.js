@@ -1,6 +1,6 @@
 angular.module('shoutr.auth', [])
 
-.controller('authController', ['$scope', '$window', '$location', 'Users', function($scope, $window, $location, Users){
+.controller('authController', ['$scope', '$window', '$location', 'Users', '$state', function($scope, $window, $location, Users, $state){
 
 	$scope.signupData = {
 		user: {
@@ -71,6 +71,10 @@ angular.module('shoutr.auth', [])
       }
   	})
   }
+
+  if($state.current.name === 'logout') {
+    Users.logoutUser();
+  };
 
 }])
 
