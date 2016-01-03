@@ -15,7 +15,7 @@ angular.module('shoutr',[
   $stateProvider
 
     .state('login', {
-      url: '/login',
+      url: '/',
       templateUrl: './scripts/auth/loginView.html'
     })
     .state('signup', {
