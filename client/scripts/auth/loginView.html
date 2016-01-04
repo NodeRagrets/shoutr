@@ -1,0 +1,32 @@
+<div class='authPage' ng-controller = 'authController'>
+  
+
+
+  <img src='./../../assets/shoutrLogo1.png' class='authLogo'>
+  <div class='auth-wrapper st-animate-bounce-in-up'>
+    <div class='input-wrapper'>
+      <h1> LOGIN </h1>
+
+
+      <form role='form' name='loginForm' ng-submit='login()'>
+        <div class='form-group'>
+          <input class='login form-control' placeholder='username' ng-model='loginData.user.username' type ='text' ng-model='' ng-minlength = '5' ng-maxlength = '10' required>
+
+
+          <input class='login form-control' placeholder='password' ng-model='loginData.user.password' type='password' ng-model='' ng-minlength='6' ng-maxlength='18' required>
+
+          <div ng-if="error.status" ng-model='error'>
+        		<p class="errorText"> {{error.status}} </p>
+        	</div>
+
+
+          <button class='login'> Log in </button>
+        </div>
+
+      </form>
+
+      <p>Don't have an account?</p><a href='#/signup'> <strong> Sign Up </strong></a>
+    </div>
+  </div>
+
+</div>

@@ -1,0 +1,58 @@
+<div ng-controller='newsFeedController'>
+  <!-- add more users  -->
+  <div>
+    {{data.groupName}}
+  </div>
+
+  <form ng-submit='addMoreUsers()' name='moreUserAdder' novalidate>
+    <input placeholder='Add a user' type='text' name='usernameText' ng-model='data.username'>
+    <input class='button' type ='submit' value = 'Add'>
+  </form>
+
+  <div>
+    Current Users:
+    <span ng-repeat = 'user in data.usersArray'>
+      <p>{{user}}</p>
+    </span>
+  </div>
+
+
+  <div class= 'refreshButton'>
+    <button class='creator button' ng-click='getShout()'> Refresh NewsFeed </button>
+  </div>
+  <br>
+  <br>
+
+
+  <!-- <div class = 'container' > -->
+    <!-- <div class = 'col-xs-4' ng-repeat = 'i in [$index, $index + 1, $index + 2]' ng-if= 'data.shouts[i] !== undefined'> -->
+<!--     <div class='card-deck-wrapper'>
+      <div class='card-deck'> -->
+        <div class='cardContainer' ng-repeat='shout in data.shouts' ng-style='{"background-color": shout.color}'>
+          <!-- <div class='card-block'> -->
+          <!-- <div class='flipper'> -->
+            <div class='front'>
+              <div class='cardTitleContainer'>
+                <h3 class='cardRecipient'>To: <span class='name'>{{shout.recipient}}</span></h3>
+                 <h3 class='cardCreator'> From: <span class='name'>{{shout.creator}}</span></h3>
+              </div>
+              <h2 class='cardBlurb'>{{shout.title}}</h2>
+            </div>
+            <div class='back'>
+              <img class='cardBackImage' ng-src='{{shout.imageLink}}'></img>
+              <h4 class='cardBackMessage'>{{shout.message}}</h4>
+            </div>
+          <!-- </div> -->
+          <!-- </div> -->
+              <!-- <p>{{data.shouts[i].message}}</p>  -->
+        </div>
+
+        <div id='cardClone'>
+          <div id='cloneFront'></div>
+          <div id='cloneBack'></div>
+        </div>
+  <!--     </div>
+    </div> -->
+  <!-- </div> -->
+
+</div>

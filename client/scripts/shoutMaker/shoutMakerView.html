@@ -1,0 +1,87 @@
+<div ng-controller = 'shoutCreationController'>
+  <!-- front of card -->
+  <div class='row'>
+    <div class='col-xs-6'>
+      <h3> Front: </h3>
+      <div class='frontOfCard creator'>
+        <form role='form' ng-submit = 'postShout()'  name = 'frontCardForm' novalidate>
+          <div class='form-group'>
+            <input class='form-control' placeholder='Recipient' type = 'text' name = 'toText' ng-model = 'shout.recipient'>
+          </div>
+          <div class='form-group'>
+            <input class='form-control' placeholder='Title Text' type = 'text' name = 'blurbText' ng-model = 'shout.title'>
+          </div>
+          <div class='form-group'>
+            <!-- <label for='groupSelect'>Select Group:</label> -->
+            <select class='form-control' placeholder='Select Group' id='groupSelect' ng-model='shout.groupName'>
+              <option value='' disabled selected>Select Group</option>
+              <option ng-repeat='group in groups'>{{group.groupname}}</option>
+            </select>
+          </div>
+          <span>Card Color:</span>
+          <div class='btn-group'>
+            <label class='btn btn-primary' ng-repeat='color in colors' ng-style='{"background-color": color}' ng-model='shout.color' uib-btn-radio='color'></label>
+          </div>
+        </form>
+      </div>
+    </div>
+    <div class='col-xs-6'>
+      <!-- Front of card preview -->
+      <div class='flipWrapper'>
+        <div class = 'cardContainer' ng-style='{"background-color": shout.color}'>
+          <div class='cardTitleContainer'>
+            <div class='front'>
+              <h3 class='cardRecipient'>To: <span class='name'>{{shout.recipient}}</span></h3>
+              <h3 class='cardCreator'> From: <span class='name'>{{shout.creator}}</span></h3>
+            </div>
+            <div class='back' ng-style='{"background-color": shout.color, "background-image": "url("+shout.imageLink+")"}'>
+              <script>
+                $('.back').css('{"background-color": shout.color, "background-image": "url("+shout.imageLink+")"}');
+              </script>
+              <h4 class='cardBackMessage'>{{shout.message}}</h4>
+            </div>
+          </div>
+          <h2 class='cardBlurb'>{{shout.title}}</h2>
+        </div>
+        <h3 id='flipInstructions'> click to flip card </h3>
+    </div>
+    </div>
+  </div>
+  <div class='row'>
+    <div class='col-xs-6'>
+      <h3> Back: </h3>
+      <div class= 'backOfCard creator'>
+    <!--   <div class='btn-group'>
+        <label class='btn btn-primary' ng-model='backContent' uib-btn-radio='"text"'></label>
+      </div> -->
+        <form role='form' ng-submit = 'postShout()' name = 'backCardForm' novalidate>
+          <div class='form-group'>
+            <input class='form-control' placeholder='Message' type = 'text' name = 'storyText' ng-model = 'shout.message'>
+            <input class='form-control' placeholder='Link to Image' type = 'text' name ='imageHotLink' ng-model = 'shout.imageLink'>
+          </div>
+        </form>
+      </div>
+      <div class='createShoutButton'>
+        <button class='creator button' ng-click='postShout()'> Create Shout </button>
+      </div>
+    </div>
+    <div class='col-xs-6'>
+      <!-- <div class = 'cardContainer' ng-style='{"background-color": shout.color, "background-image": "url("+shout.imageLink+")"}'>
+        <h4 class='cardBackMessage'>{{shout.message}}</h4>
+
+      </div> -->
+
+    </div>
+  </div>
+
+  <div id='cardClone'>
+    <div id='cloneFront' ng-style='{"background-color": shout.color}'></div>
+    <div id='cloneBack' ng-style='{"background-color": shout.color}'>
+      <img class='cardBackImage' ng-src='{{shout.imageLink}}'></img>
+      <h4 class='cardBackMessage'>{{shout.message}}</h4>
+    </div>
+  </div>
+
+  <h3 ng-if='shoutCreated'> Shout Created! </h3>
+
+</div>

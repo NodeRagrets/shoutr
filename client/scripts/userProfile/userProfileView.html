@@ -1,0 +1,43 @@
+<div ng-controller = 'userProfileController'>
+  <nav class = 'navBar'></nav>
+
+
+
+  <!-- Profile Pic --> 
+  <img>
+  <div class = 'userInfo'>
+    <h3>User Profile</h3>
+    <p> Name: {{ data.user.username }} </p>
+    <p> Email: {{ data.user.email }} </p>
+  </div>
+
+
+
+  <hr>
+  <!-- Shouts To -->
+  <div>
+    <h4> Shouts to {{ data.user.username }}: </h4>
+    <!--<div ng-repeat= ''>-->
+    <div>
+      <p>recipient: {{}} </p>
+      <p>title: {{}} </p>
+      <p>message: {{}} </p>
+    </div>
+  </div>
+
+
+
+  <hr>
+  <!-- Shouts From  -->
+  <div>
+    <h4> Shouts created by {{ data.user.username }}: </h4>
+    <!--<div ng-repeat= ''>-->
+    <div>
+      <p>recipient: {{}} </p>
+      <p>title: {{}} </p>
+      <p>message: {{}} </p>
+    </div>
+  </div>
+
+  
+</div>

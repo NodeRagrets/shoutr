@@ -1,0 +1,224 @@
+body {
+  font-family: 'Montserrat', sans-serif;
+}
+
+h3 {
+  font-size: 15px;
+  margin-left: 10px;
+}
+
+ #flipInstructions{
+   text-align: center;
+   display: block;
+   margin:0 auto;
+   /*margin-top: -20px;*/
+
+}
+
+#navLogo{
+  height: 45%;
+  width: 50%;
+}
+
+.cardContainer {
+  margin: 0 20px 20px 20px;
+  border: 2px solid black;
+  height: 250px;
+  width: 300px;
+  display: inline-block;
+  overflow: hidden;
+  box-shadow: 2px 2px 2px;
+  border-radius: 7px;
+  background-size: 100%;
+  background-repeat: no-repeat;
+}
+.flipWrapper{
+  height: 220px;
+  width: 355px;
+  margin-bottom: 10px;
+}
+
+.refreshButton{
+  margin-top: 20px;
+  margin-left: 30px;
+}
+
+
+#cardClone {
+
+  position: fixed;
+  display: none;
+  height: 250px;
+  width:300px;
+  -webkit-transition: .6s;
+  transition: .6s;
+  -webkit-transform-style: preserve-3d;
+  transform-style: preserve-3d;
+  z-index: 99;
+  perspective: 1000px;
+  -webkit-perspective: 1000px;
+}
+
+#cloneFront, #cloneBack {
+  border: 2px solid black;
+  box-shadow: 2px 2px 2px;
+  border-radius: 7px;
+  backface-visibility: hidden;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  -webkit-transition: .6s;
+  transition: .6s;
+  overflow: hidden;
+}
+
+#cloneFront {
+  z-index: 100;
+  transform: translatez(0);
+  /*background-color: black;*/
+}
+
+#cloneBack {
+  transform: rotateY(-180deg);
+  z-index: 101;
+}
+
+.cardRecipient {
+  padding: 0;
+  margin: 0;
+  width:298px;
+}
+
+.cardCreator {
+  padding: 0;
+  margin: 0;
+  width:298px;
+}
+
+.cardTitleContainer {
+  background-color: rgba(20,20,20,0.2);
+  height:20%;
+}
+
+.cardBlurb {
+  text-align: center;
+}
+
+.back {
+  visibility: hidden;
+}
+
+.name {
+}
+
+.errorText {
+  color: #A80015;
+  font-style: italic;
+}
+
+body {
+  color: black;
+}
+
+
+
+.sidebar-main, .sidebar-title, #sidebar-wrapper, .sidebar-list, .sidebar {
+  background-color: #a3dcc5;
+  color: black;
+  font-family: 'Montserrat', sans-serif;
+
+}
+
+#page-wrapper:not(.open) ul.sidebar .sidebar-title.separator, .sidebar-footer, ul.sidebar .sidebar-list a:hover, ul.sidebar .sidebar-main a {
+  background-color: #009979;
+  /*font-size: 18px;*/
+}
+
+ul.sidebar .sidebar-list a{
+  color: #527a7a;
+  margin-top: 5px;
+}
+
+ul.sidebar .sidebar-title{
+  color: #527a7a;
+  font-size: 12px;
+}
+
+#sidebar-toggle, .sidebar-footer {
+  background-color:  #009979;
+  color: black;
+}
+
+.sidebar-footer div a{
+  color: #fff;
+}
+
+.row.header .meta .page{
+  font-size: 35px;
+  font-family: 'Montserrat', sans-serif;
+}
+
+input[type=text]{
+  /*margin-left: 20px;*/
+  font-size: 20px;
+  margin-bottom: 10px;
+  /*padding-bottom: 2px;*/
+}
+
+
+.button{
+cursor:pointer;
+padding:5px 10px;
+background:#009979;
+border:0px solid #33842a;
+-moz-border-radius: 5px;
+-webkit-border-radius: 5px;
+border-radius: 5px;
+color:#f3f3f3;
+font-size:12px;
+}
+
+.button:hover{
+background-color :  #a3dcc5;
+color: #527a7a;
+}
+
+.createShoutButton{
+  display: block;
+  margin: 0 auto;
+  float: right;
+
+
+
+}
+::-webkit-input-placeholder { /* WebKit, Blink, Edge */
+    font-size: 10px;
+    padding-top: 5px;
+}
+:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+   font-size: 10px;
+   padding-top: 5px;
+}
+::-moz-placeholder { /* Mozilla Firefox 19+ */
+   font-size: 10px;
+   padding-top: 5px;
+}
+:-ms-input-placeholder { /* Internet Explorer 10-11 */
+   font-size: 10px;
+   padding-top: 5px;
+}
+.cardBackMessage {
+  text-align: center;
+  z-index: 103;
+}
+
+.cardBackImage {
+  margin: auto;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  max-height: 75%;
+  max-width: 85%;
+}
