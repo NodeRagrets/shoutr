@@ -4,7 +4,7 @@ angular.module('shoutr.auth', [])
 
 	$scope.signupData = {
 		user: {
-			email: 'asd@asd.confirm',
+			email: '',
 			username: '',
 			password: ''
 		}
