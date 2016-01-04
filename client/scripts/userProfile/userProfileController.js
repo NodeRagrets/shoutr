@@ -1,6 +1,6 @@
 angular.module('shoutr.userProfile', ['ngFileUpload'])
 
-.controller('userProfileController', ['$scope', 'Users', '$stateParams', 'Upload', '$timeout', function($scope, Users, $stateParams, Upload, $timeout) {
+.controller('userProfileController', ['$scope', 'Users', '$stateParams', 'Upload', '$timeout', 'PicData', function($scope, Users, $stateParams, Upload, $timeout, PicData) {
 
   $scope.data = {};
 	$scope.data.username = $stateParams.username;
@@ -8,10 +8,6 @@ angular.module('shoutr.userProfile', ['ngFileUpload'])
 	$scope.data.shoutsFromUser;
   
   $scope.picFile;
-
-
-	console.log("HERE IS USERNAME", $scope.data.username);
-	
 
   $scope.getUser = function(username) {
     Users.pullUser(username).then(function(response) {
@@ -23,8 +19,10 @@ angular.module('shoutr.userProfile', ['ngFileUpload'])
 
 
   $scope.uploadPic = function(file) { 
-    $scope.picFile = file;
+    $scope.picFile.imgBlobUrl = file.$ngfBlobUrl;
     console.log("USERNAME IS HERE", $scope.data.username);
+
+    $scope.PicData.profilePic = file.$ngfBlobUrl;
 
     var userDataWithFile = {
       'blobUrl': file.$ngfBlobUrl,
