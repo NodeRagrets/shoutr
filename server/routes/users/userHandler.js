@@ -66,9 +66,9 @@ module.exports = {
         recipientShoutsPromise
           .then(function (shoutsArray) {
             //CURRENTLY, SHOUTSARRAY IS UNDEFINED. DOES THIS CHANGE ONCE THE DB CONTAINS SHOUTS RECEIVED BY A GIVEN USER?
-            console.log("HERE IS SHOUTSARRAY", shoutsArray);
+            // console.log("HERE IS SHOUTSARRAY", shoutsArray);
             resultData.shoutsReceived = shoutsArray;
-            console.log("HERE IS RESULTDATA INSIDE PROFILE FN, USERHANDLER", resultData);
+            // console.log("HERE IS RESULTDATA INSIDE PROFILE FN, USERHANDLER", resultData);
             //ADD SHOUTSSENT ARRAY HERE 
             res.status(200).send(resultData);
           }); 
@@ -82,8 +82,14 @@ module.exports = {
 
 
   storeProfilePic: function(req, res) {
-    // console.log("storeProfilePic function called! in userhandler. Req is:", req);
-    res.status(200).send("WOOT SUCCESS IN USERHANDLER");
+    // console.log("storeProfilePic function called! in userhandler. Req is:", req.body);
+    var addPicPromise = helpers.addProfilePicToUser(req.body);
+
+    addPicPromise.then(function(resultData) {
+      //
+      res.status(200).send("SUCCESS, DATA STORED", resultData);
+    });
+
   },
 
  
