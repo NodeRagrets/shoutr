@@ -11,6 +11,7 @@ angular.module('shoutr.shoutCreation', [])
     color: 'white'
   };
 
+
   $scope.loadGroups = function() {
     Groups.getGroups()
       .then(function(groups) {
@@ -30,14 +31,14 @@ angular.module('shoutr.shoutCreation', [])
   $scope.shoutCreated = false;
 
   $scope.postShout = function() {
-    Shouts.saveShout($scope.shout);
-    $scope.shout = {
-      recipient: '',
-      title: '',
-      message: '',
-      groupName: ''
-    };
-    $scope.shoutCreated = true;
+      Shouts.saveShout($scope.shout);
+      $scope.shout = {
+        recipient: '',
+        title: '',
+        message: '',
+        groupName: ''
+      };
+      $scope.shoutCreated = true;
   }
 
   // Groups.getGroups()
@@ -71,7 +72,6 @@ angular.module('shoutr.shoutCreation', [])
             $clone.hide();
             console.log($lastElement);
           } else {
-        console.log('transitionend');
             var cardBack = $lastElement.find('.back');
             // $('#cloneBack').html(cardBack.html());
 
@@ -86,7 +86,6 @@ angular.module('shoutr.shoutCreation', [])
     })
 
     $('.cardContainer').click(function() {
-      console.log('whoah');
 
       if(!cloneFlipped) {
         $lastElement = $(this);
