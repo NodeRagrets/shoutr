@@ -17,6 +17,7 @@
     "express-session": "^1.12.1",
     "grunt": "^0.4.5",
     "jasmine": "^2.4.1",
+    "jwt-simple": "^0.4.0",
     "karma": "^0.13.16",
     "morgan": "^1.6.1",
     "path": "^0.12.7",
