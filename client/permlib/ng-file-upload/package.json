@@ -1,0 +1,89 @@
+{
+  "_args": [
+    [
+      "ng-file-upload",
+      "/Users/rachel/Desktop/shoutr"
+    ]
+  ],
+  "_from": "ng-file-upload@*",
+  "_id": "ng-file-upload@11.0.0",
+  "_inCache": true,
+  "_location": "/ng-file-upload",
+  "_nodeVersion": "0.12.0",
+  "_npmUser": {
+    "email": "danial.farid@gmail.com",
+    "name": "danial.farid"
+  },
+  "_npmVersion": "2.12.1",
+  "_phantomChildren": {},
+  "_requested": {
+    "name": "ng-file-upload",
+    "raw": "ng-file-upload",
+    "rawSpec": "",
+    "scope": null,
+    "spec": "*",
+    "type": "range"
+  },
+  "_requiredBy": [
+    "#USER"
+  ],
+  "_resolved": "https://registry.npmjs.org/ng-file-upload/-/ng-file-upload-11.0.0.tgz",
+  "_shasum": "608c0e63a2a721226fa898ac15705e84bd1d5689",
+  "_shrinkwrap": null,
+  "_spec": "ng-file-upload",
+  "_where": "/Users/rachel/Desktop/shoutr",
+  "author": {
+    "name": "danial.farid@gmail.com"
+  },
+  "bugs": {
+    "url": "https://github.com/danialfarid/ng-file-upload/issues"
+  },
+  "dependencies": {},
+  "description": "An AngularJS directive for file upload using HTML5 with FileAPI polyfill for unsupported browsers",
+  "devDependencies": {
+    "grunt": "^0.4.5",
+    "grunt-contrib-clean": "^0.6.0",
+    "grunt-contrib-concat": "^0.5.1",
+    "grunt-contrib-copy": "~0.4.1",
+    "grunt-contrib-jshint": "^0.11.0",
+    "grunt-contrib-uglify": "^0.8.0",
+    "grunt-contrib-watch": "^0.6.1",
+    "grunt-git": "~0.2.14",
+    "grunt-serve": "^0.1.6",
+    "grunt-text-replace": "~0.3.12",
+    "jshint-stylish": "^1.0.0",
+    "load-grunt-tasks": "^3.1.0"
+  },
+  "directories": {},
+  "dist": {
+    "shasum": "608c0e63a2a721226fa898ac15705e84bd1d5689",
+    "tarball": "http://registry.npmjs.org/ng-file-upload/-/ng-file-upload-11.0.0.tgz"
+  },
+  "gitHead": "b837afe73b42e1ab6fd80bd24b90e7ea94673ac9",
+  "homepage": "https://github.com/danialfarid/ng-file-upload",
+  "installable": true,
+  "keywords": [
+    "angularjs",
+    "file-upload",
+    "javascript",
+    "ng-file-upload"
+  ],
+  "license": "MIT",
+  "main": "index.js",
+  "maintainers": [
+    {
+      "name": "danial.farid",
+      "email": "danial.farid@gmail.com"
+    }
+  ],
+  "name": "ng-file-upload",
+  "optionalDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/danialfarid/ng-file-upload.git"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "version": "11.0.0"
+}
