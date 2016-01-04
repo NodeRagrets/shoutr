@@ -9,6 +9,16 @@
   right: 0;
 }
 
+.authLogo {
+  height: 150px;
+  width: 250px;
+  display: block;
+  margin: auto;
+ /* position: absolute;
+  top: 0;
+  right: 50%;*/
+}
+
 /*html, body {
   height: 100%;
 }*/
