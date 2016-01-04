@@ -47,11 +47,16 @@
     
     <fieldset>
       
-      <h5>Choose a profile image:</h5>
-      
       <br>
 
       Photo:
+
+      <div ng-if="PicData.profilePic">
+        <img ng-src="{{PicData.profilePic}}">
+      </div>
+      
+      
+
       <input type="file" ngf-select ng-model="picFile" name="file"    
              accept="image/*" ngf-max-size="2MB" required>
       <i ng-show="myForm.file.$error.required">*required</i>
@@ -60,9 +65,10 @@
 
       <i ng-show="myForm.file.$error.maxSize">File too large 
           {{picFile.size / 1000000|number:1}}MB: max 2M</i>
-      
-      <img ng-show="myForm.file.$valid" ngf-thumbnail="picFile" class="thumb"> <button ng-click="picFile = null" ng-show="picFile">Choose new image</button>
-      
+      <div ng-if="!PicData.profilePic">
+        <img ng-show="myForm.file.$valid" ngf-thumbnail="picFile" class="thumb"> 
+        <button ng-click="picFile = null">Choose new image</button>
+      </div>
       <br>
 
       <button ng-disabled="!myForm.$valid" 
