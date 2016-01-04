@@ -1,7 +1,7 @@
 var db = require('../db/sequelize.js');
 var helpers = {};
 //to be called from the requesthandlers to send the data to the database
-//this is our interface between server and DB.
+//this is our interface between server and DB. 
 helpers.addUser = function(userData) {
   //check to see if the user already exists before creating it.
   return db.User.findOne({
@@ -191,6 +191,7 @@ helpers.getUserGroups = function(username){
           })
 };
 
+
 helpers.getGroupMembers = function(groupName){
   return db.Group.findOne({
     where: {"groupName":groupName}
@@ -200,24 +201,26 @@ helpers.getGroupMembers = function(groupName){
   })
 }
 
+
 helpers.getProfilePic = function(username) {
   return db.User.findOne({
     where: {"username":username}
   })
-  .then(function(user){
-    return user.pic;
-  })
+    .then(function(user){
+      return user.pic;
+    })
 }
 
-helpers.addProfilePicToUser = function(picData) {
 
+helpers.addProfilePicToUser = function(picData) {
   return db.User.findOne({
     where: { "username": picData.username }
   })
     .then(function(user){
       if(user) {
         user.pic = picData.pic;
-        user.save().then(function() {})
+        //retun statement below? 
+        return user.save().then(function() {})
       } else {
         throw Error("Cannot locate user!");
       }
