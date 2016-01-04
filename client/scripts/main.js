@@ -1,5 +1,6 @@
 angular.module('shoutr',[
   'ui.router',
+  'ui.bootstrap.buttons',
   'shoutr.directives',
   'shoutr.groupCreation',
   'shoutr.shoutCreation',
