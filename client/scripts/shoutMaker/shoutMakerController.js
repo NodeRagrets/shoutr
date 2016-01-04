@@ -11,9 +11,18 @@ angular.module('shoutr.shoutCreation', [])
     color: 'white'
   };
 
-  $scope.groups = [{groupname: 'group1'}, {groupname: 'group2'}, {groupname: 'group3'}, {groupname: 'group4'}, {groupname: 'group5'}, {groupname: 'group6'}];
+  $scope.loadGroups = function() {
+    Groups.getGroups()
+      .then(function(groups) {
+        $scope.groups = groups;
+        console.log($scope.groups);
+      })
+      .catch(function(error) {
+        console.log(error);
+      });
+  }
 
-
+  $scope.loadGroups();
   $scope.colors = ['white', '#ff1a1a', '#e60073', '#4d77ff', '#47d147', '#ffff1a', '#ff751a', '#81e8fd',  '#c6b4fe',  '#ffadee',  '#fec6b6',  '#a9faba',  '#fdfab5'];
 
 
