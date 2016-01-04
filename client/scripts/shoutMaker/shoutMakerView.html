@@ -2,6 +2,7 @@
   <!-- front of card -->
   <div class='row'>
     <div class='col-xs-6'>
+      <h3> Front: </h3>
       <div class='frontOfCard creator'>
         <form role='form' ng-submit = 'postShout()'  name = 'frontCardForm' novalidate>
           <div class='form-group'>
@@ -26,25 +27,29 @@
     </div>
     <div class='col-xs-6'>
       <!-- Front of card preview -->
-      <div class = 'cardContainer' ng-style='{"background-color": shout.color}'>
-        <div class='cardTitleContainer'>
-          <div class='front'>
-            <h3 class='cardRecipient'>To: <span class='name'>{{shout.recipient}}</span></h3>
-            <h3 class='cardCreator'> From: <span class='name'>{{shout.creator}}</span></h3>
+      <div class='flipWrapper'>
+        <div class = 'cardContainer' ng-style='{"background-color": shout.color}'>
+          <div class='cardTitleContainer'>
+            <div class='front'>
+              <h3 class='cardRecipient'>To: <span class='name'>{{shout.recipient}}</span></h3>
+              <h3 class='cardCreator'> From: <span class='name'>{{shout.creator}}</span></h3>
+            </div>
+            <div class='back' ng-style='{"background-color": shout.color, "background-image": "url("+shout.imageLink+")"}'>
+              <script>
+                $('.back').css('{"background-color": shout.color, "background-image": "url("+shout.imageLink+")"}');
+              </script>
+              <h4 class='cardBackMessage'>{{shout.message}}</h4>
+            </div>
           </div>
-          <div class='back' ng-style='{"background-color": shout.color, "background-image": "url("+shout.imageLink+")"}'>
-            <script>
-              $('.back').css('{"background-color": shout.color, "background-image": "url("+shout.imageLink+")"}');
-            </script>
-            <h4 class='cardBackMessage'>{{shout.message}}</h4>
-          </div>
+          <h2 class='cardBlurb'>{{shout.title}}</h2>
         </div>
-        <h2 class='cardBlurb'>{{shout.title}}</h2>
-      </div>
+        <h3 id='flipInstructions'> click to flip card </h3>
+    </div>
     </div>
   </div>
   <div class='row'>
     <div class='col-xs-6'>
+      <h3> Back: </h3>
       <div class= 'backOfCard creator'>
     <!--   <div class='btn-group'>
         <label class='btn btn-primary' ng-model='backContent' uib-btn-radio='"text"'></label>
@@ -62,9 +67,12 @@
         <h4 class='cardBackMessage'>{{shout.message}}</h4>
 
       </div> -->
+
     </div>
   </div>
+    <div class='createShoutButton'>
       <button class='creator button' ng-click='postShout()'> Create Shout </button>
+    <div>
   <div id='cardClone'>
     <div id='cloneFront' ng-style='{"background-color": shout.color}'></div>
     <div id='cloneBack' ng-style='{"background-color": shout.color}'>
