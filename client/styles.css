@@ -6,6 +6,14 @@ h3 {
   font-size: 15px;
   margin-left: 10px;
 }
+
+ #flipInstructions{
+   text-align: center;
+   display: block;
+   margin:0 auto;
+   /*margin-top: -20px;*/
+
+}
 .cardContainer {
   margin: 0 20px 20px 20px;
   border: 2px solid black;
@@ -17,6 +25,11 @@ h3 {
   border-radius: 7px;
   background-size: 100%;
   background-repeat: no-repeat;
+}
+.flipWrapper{
+  height: 220px;
+  width: 355px;
+  margin-bottom: 10px;
 }
 
 #cardClone {
@@ -157,6 +170,11 @@ background-color :  #a3dcc5;
 color: #527a7a;
 }
 
+.createShoutButton{
+  display: block;
+  margin: 0 auto;
+
+}
 ::-webkit-input-placeholder { /* WebKit, Blink, Edge */
     font-size: 10px;
     padding-top: 5px;
