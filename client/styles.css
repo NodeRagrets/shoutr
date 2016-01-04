@@ -39,11 +39,26 @@ h3 {
 }
 
 .refreshButton{
+  float:right;
   margin-top: 20px;
-  margin-left: 30px;
+  margin-right: 50px;
 }
 
+.inputUsers{
+  margin-left: 30px;
+  /*margin-top: 40px;*/
+  font-size: 20px;
+}
 
+.currentUsers{
+  margin-left: 30px;
+  font-size: 30px;
+}
+.users{
+  margin-top: 10px;
+  margin-left: 10px;
+  font-size:15px;
+}
 #cardClone {
 
   position: fixed;
