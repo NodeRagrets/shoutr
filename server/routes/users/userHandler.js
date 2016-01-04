@@ -18,9 +18,10 @@ module.exports = {
 
     helpers.getUser(username)
       .then(function(user) {
+        console.log("USER INFORMATION", user.get('username'));
         bcrypt.compare(password, user.password, function(error, result) {
           if(result) {
-            return res.status(200).json({user: user, token: utils.issueToken(user.username)});
+            return res.status(200).json({user: user, token: utils.issueToken({username: user.get('username')})});
           }
           if(error) {
             return res.status(401).send(error)

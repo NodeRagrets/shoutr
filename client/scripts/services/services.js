@@ -1,6 +1,6 @@
 angular.module('shoutr.services', [])
 
-.factory('Shouts', ['$http', function($http) {
+.factory('Shouts', ['$http', '$window', function($http, $window) {
 
   var getShouts = function(groupname) {
     return $http({
@@ -8,7 +8,8 @@ angular.module('shoutr.services', [])
       url:'/api/shouts',
       params: {groupName: groupname}
     }).then(function(response) {
-      return response.data;
+      $window.localStorage.setItem('shoutr_auth_token', response.data.token)
+      return response.data.result;
     }).catch(function(error) {
       console.log(error);
     });
