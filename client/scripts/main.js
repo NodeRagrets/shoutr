@@ -59,7 +59,7 @@ angular.module('shoutr',[
         templateUrl: './scripts/groupMaker/groupCreationView.html',
       })
       .state('user.dashboard.profile', {
-        url: 'profile/:username',
+        url: 'profile',
         templateUrl: './scripts/userProfile/userProfileView.html'
       })
 
