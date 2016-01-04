@@ -1,6 +1,6 @@
 angular.module('shoutr.shoutCreation', [])
 
-.controller('shoutCreationController', ['$scope', 'Shouts', 'Groups', function($scope, Shouts, Groups) {
+.controller('shoutCreationController', ['$scope', 'Shouts', 'Groups', 'Users', function($scope, Shouts, Groups, Users) {
 
   $scope.shout = {
     recipient: '',
@@ -8,7 +8,8 @@ angular.module('shoutr.shoutCreation', [])
     blurb: '',
     story: '',
     imageLink: '',
-    color: 'white'
+    color: 'white',
+    creator: Users.data.username
   };
 
 
