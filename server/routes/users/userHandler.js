@@ -80,6 +80,12 @@ module.exports = {
   },
 
 
+
+  storeProfilePic: function(req, res) {
+    // console.log("storeProfilePic function called! in userhandler. Req is:", req);
+    res.status(200).send("WOOT SUCCESS IN USERHANDLER");
+  },
+
  
   logout: function(req, res) {
   // destroy the user's session to log them out
