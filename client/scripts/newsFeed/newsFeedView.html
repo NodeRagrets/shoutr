@@ -1,20 +1,26 @@
 <div ng-controller='newsFeedController'>
   <!-- add more users  -->
-  <div>
+  <!-- <div>
     {{data.groupName}}
-  </div>
+  </div> -->
 
   <form ng-submit='addMoreUsers()' name='moreUserAdder' novalidate>
-    <input placeholder='Add a user' type='text' name='usernameText' ng-model='data.username'>
+    <span class = 'inputUsers'>
+      {{data.groupName}} ~
+    </span>
+
+    <span >
+      <input placeholder='Add a new user' type='text' name='usernameText' ng-model='data.username'>
+    </span>
     <input class='button' type ='submit' value = 'Add'>
   </form>
 
-  <div>
+  <!-- <div class='currentUsers'>
     Current Users:
-    <span ng-repeat = 'user in data.usersArray'>
-      <p>{{user}}</p>
-    </span>
-  </div>
+    <!-- <span  ng-repeat = 'user in data.usersArray'> -->
+      <!-- <p class= 'users'  ng-repeat = 'user in data.usersArray'>{{user}}</p> -->
+    <!-- </span> -->
+  <!-- </div> -- -->
 
 
   <div class= 'refreshButton'>
