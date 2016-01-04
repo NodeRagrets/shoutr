@@ -34,6 +34,14 @@ module.exports = {
 		}
 		console.log('nope! l32');
 
+	},
+
+	extendPayload: function(payload, newData) {
+		for(data in newData) {
+			payload[data] = newData[data];
+		}
+
+		return payload;
 	}
 
 };
