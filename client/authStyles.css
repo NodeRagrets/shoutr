@@ -1,0 +1,68 @@
+.authPage {
+  background-color: #00b38e; 
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+/*html, body {
+  height: 100%;
+}*/
+
+.input-wrapper {
+  width: 85%;
+  margin: 0 auto;
+}
+
+.auth-wrapper {
+  width: 425px;
+  height: 320px;
+  position: absolute;
+  margin: auto;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  text-align: center;
+  background-color: #a3dcc5;
+  border: 2px solid black;
+  box-shadow: 3px 3px 3px; 
+}
+
+.auth-wrapper input {
+  margin: 10px 0;
+}
+
+::-webkit-input-placeholder { 
+  color:#527a7a;
+  text-align: center;
+  font-weight: bold;
+  font-size: 14px; 
+};
+::-moz-placeholder { 
+  color:#527a7a;
+  text-align: center;
+  font-weight: bold;
+  font-size: 14px; 
+}; /* firefox 19+ */
+:-ms-input-placeholder { 
+  color:#527a7a;
+  text-align: center;
+  font-weight: bold;
+  font-size: 14px; 
+}; /* ie */
+input:-moz-placeholder { 
+  color:#527a7a;
+  text-align: center;
+  font-weight: bold;
+  font-size: 14px; 
+}
+
+.auth-wrapper button {
+  background-color: #00b38e;
+  color: white;
+}
