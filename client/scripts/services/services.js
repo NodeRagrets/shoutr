@@ -112,6 +112,16 @@ angular.module('shoutr.services', ['ngFileUpload'])
 
 }])
 
+
+
+.factory('PicData', ['$http', function($http) {
+
+  return {profilePic: ''};
+
+}])
+
+
+
 .factory('Groups', ['$http', function($http){
 
   var createGroup = function(groupName){
