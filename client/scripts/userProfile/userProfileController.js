@@ -31,7 +31,8 @@ angular.module('shoutr.userProfile', ['ngFileUpload'])
 
     Users.storeProfilePic(userDataWithFile)
       .then(function(response) {
-        console.log(response);
+        console.log("hello, response", response);
+        $scope.PicData.profilePic = response.config.data.blobUrl;
       });
   }
 
