@@ -1,28 +1,36 @@
+var jwt = require('jwt-simple');
 
-var isLoggedIn = function(req) {
-	return req.session ? !!req.session.user : false;
-};
+var secret = process.env.TOKEN_SECRET || 'superultramegasecretkeyofpeaceanddreamscollectorsedition';
 
 module.exports = {
-	restrict: function(req, res, next) {
-	console.log(req.session);
-	  if (!isLoggedIn(req)) {
-	    res.status(401).send("Unauthorized!");
-	  } else {
-	     next();
-	  }
+
+	issueToken: function(payload) {
+		var token = jwt.encode(payload, secret);
+		console.log(token);
+		return token;
 	},
 
-	createSession: function(req, res, newUser) {
-	  return req.session.regenerate(function() {
-	      req.session.user = newUser;
-          res.status(200).send('Success!');
-	    });
+	verifyToken: function(token) {
+		var decoded = jwt.decode(token, secret);
+		return decoded;
+	},
+
+	hasToken: function(req, res, next) {
+		var token = req.headers['authorization'];
+		var validToken;
+
+		if(req.headers && token) {
+			validToken = module.exports.verifyToken(token);
+			console.log(validToken);
+			if(!validToken) {
+				res.status(401).send();
+			}
+			req.token = validToken;
+			next();
+		}
+		res.status(401).send();
+
 	}
 
-	persistGroup: function(req, res, group) {
-		req.session.group = group;
-		next();
-	}
 };
 
