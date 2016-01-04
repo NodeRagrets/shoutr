@@ -6,5 +6,6 @@ app.post('/login', userHandler.login);
 app.post('/signup', userHandler.signup);
 app.get('/userprofile', userHandler.profile);
 app.get('/logout', userHandler.logout);
+app.post('/storeprofilepic', userHandler.storeProfilePic);
 
 }
