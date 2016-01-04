@@ -3,19 +3,16 @@
   <form ng-submit='groupSubmission()' name='groupCreator' novalidate>
     <input placeholder='Group Name' type='text' name='groupnameText' ng-model='data.groupName'>
     <!-- <input placeholder="Who's in your group?" type='text' name='usernameText' ng-model='data.username'> -->
-    <div>
-    <form ng-submit='addingUsers()' name='userAdder' novalidate>
-      <input placeholder="Who's in your group?" type='text' name='usernameText' ng-model='data.username'>
-      <input  class='button' type ='submit' value = 'Add User'>
-
-      <!-- when you click it'll add to the data.username array and then it should display the array -->
-
-      <!-- <p> please use a comma to separate users </p> -->
-    </form>
-  </div>
     <input class='button' type='submit' value='Create Group'>
   </form>
+  <form ng-submit='addingUsers()' name='userAdder' novalidate>
+    <input placeholder="Who's in your group?" type='text' name='usernameText' ng-model='data.username'>
+    <input  class='button' type ='submit' value = 'Add User'>
 
+    <!-- when you click it'll add to the data.username array and then it should display the array -->
+
+    <!-- <p> please use a comma to separate users </p> -->
+  </form>
   <!-- TODO: fix styling so that its less confusing, you should press Create group after you add users  -->
 
   <div>
