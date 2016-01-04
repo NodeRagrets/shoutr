@@ -30,7 +30,7 @@ module.exports = {
       .catch(function(error) {
         return res.status(401).send(error);
       })
-
+  
   },
 
   register: function(req, res) {
@@ -53,6 +53,47 @@ module.exports = {
           })
       });
     });
+  },
+
+  profile: function(req, res) {
+    var username = req.query.username;
+    var usernamePromise = helpers.getUser(username);
+    var recipientShoutsPromise;
+    usernamePromise
+      .then(function(resultData) {
+      
+        recipientShoutsPromise = helpers.getShoutsByRecipient(username);
+        recipientShoutsPromise
+          .then(function (shoutsArray) {
+            //CURRENTLY, SHOUTSARRAY IS UNDEFINED. DOES THIS CHANGE ONCE THE DB CONTAINS SHOUTS RECEIVED BY A GIVEN USER?
+            // console.log("HERE IS SHOUTSARRAY", shoutsArray);
+            resultData.shoutsReceived = shoutsArray;
+            // console.log("HERE IS RESULTDATA INSIDE PROFILE FN, USERHANDLER", resultData);
+            //ADD SHOUTSSENT ARRAY HERE 
+            res.status(200).send(resultData);
+          }); 
+      })
+    .catch( function(err){
+      res.status(404).send(err);
+    }); 
+  },
+
+  storeProfilePic: function(req, res) {
+    var addPicPromise = helpers.addProfilePicToUser(req.body);
+    var getPicPromise = helpers.getProfilePic(req.body.username);
+    addPicPromise
+      .then(function(resultData) {
+        return getPicPromise
+          .then(function(userPicUrl){
+            res.userPic = userPicUrl;
+            res.status(200).send("SUCCESS, DATA STORED");
+          })
+      })
+        .catch(function(err) {
+          res.status(404).send(err);
+        });
   }
+ 
+
   
 };

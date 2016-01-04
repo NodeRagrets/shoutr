@@ -1,4 +1,4 @@
-angular.module('shoutr.services', [])
+angular.module('shoutr.services', ['ngFileUpload'])
 
 .factory('Shouts', ['$http', function($http) {
 
@@ -32,6 +32,7 @@ angular.module('shoutr.services', [])
   }
 
 }])
+
 
 .factory('Users', ['$http', '$window', '$state', function($http, $window, $state) {
 
@@ -68,6 +69,7 @@ angular.module('shoutr.services', [])
       method: 'GET',
       url: '/api/users/userprofile?username=' + username
     }).then(function(response) {
+      console.log("HERE IS RESPONSE", response);
       return response.data
     }).catch(function(error) {
       console.log(error);
@@ -78,9 +80,25 @@ angular.module('shoutr.services', [])
     return !!$window.localStorage.getItem('shoutr_auth_token');
   }
 
+
   var logout = function(){
     $window.localStorage.removeItem('shoutr_auth_token');
     $state.go('anon.login')
+  }
+
+
+  var storeProfilePic = function(UserDataObj) {
+    return $http({
+      url: '/api/users/storeprofilepic',
+      data: UserDataObj,
+      method: 'POST'
+    }).then(function(response) {
+      // console.log('inside promise of storeprofilepic fn!');
+      // console.log(response.config.data.blobUrl);
+      return response;
+    }).catch(function(error) {
+      console.log(error);
+    });
   }
 
   return {
@@ -88,10 +106,21 @@ angular.module('shoutr.services', [])
     signup: signup,
     pullUser: pullUser,
     isAuth: isAuth,
-    logout: logout
+    logout: logout,
+    storeProfilePic: storeProfilePic
   }
 
 }])
+
+
+
+.factory('PicData', ['$http', function($http) {
+
+  return {profilePic: ''};
+
+}])
+
+
 
 .factory('Groups', ['$http', function($http){
 

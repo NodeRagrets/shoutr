@@ -1,7 +1,7 @@
 var db = require('../db/sequelize.js');
 var helpers = {};
 //to be called from the requesthandlers to send the data to the database
-//this is our interface between server and DB.
+//this is our interface between server and DB. 
 helpers.addUser = function(userData) {
   //check to see if the user already exists before creating it.
   return db.User.findOne({
@@ -71,6 +71,7 @@ helpers.addUserToGroup = function(username, groupName) {
     //query to get the groupId
 };
 
+
 helpers.addShout = function(shoutData) {
   var shoutGroupID;
   var shoutCreatorID;
@@ -106,6 +107,7 @@ helpers.addShout = function(shoutData) {
 
 };
 
+
 //no need for a getGroup function because all the group's table stores is groupName and IDs.
 helpers.getShouts = function(groupName, options) {
   //options: for future versions of this project we'll want to sort the data in different way (e.g. hashtags or datatype)
@@ -113,7 +115,7 @@ helpers.getShouts = function(groupName, options) {
   var groupId;
   var shoutResults;
 
-  //when the getSHouts funciton is being used in the request handlers file, treat the return of that function
+  //when the getSHouts function is being used in the request handlers file, treat the return of that function
   //as a promise. So, use a .then(function(resultsArray){ })
   return db.Group.findOne({
     where: {"groupName": groupName}
@@ -142,6 +144,29 @@ helpers.getShouts = function(groupName, options) {
 };
 
 
+helpers.getShoutsByRecipient = function(recipientName) {
+  var recipientId;
+  var shoutResults;
+
+  return db.User.findOne({
+    where: {"username": recipientName}
+  })
+  .then(function(recipient) {
+    recipientId = recipient.id;
+    // console.log("HERE IS RECIPIENTID, HELPERS.JS", recipientId);
+    return db.Shout.findAll({
+      where: {"recipientId": recipientId}
+    })
+      .then(function(shouts) {
+        return shouts;
+      });
+  })
+  .then(function(shoutsPromise) {
+    return shoutResults;
+  })
+};
+
+
 helpers.getUser = function(username) {
   var userId; //pretty sure this line is doing nothing...
 
@@ -158,12 +183,14 @@ helpers.getUser = function(username) {
   })
 };
 
+
 helpers.getUserGroups = function(username){
   return helpers.getUser(username)
           .then(function(user){
             return user.getGroups()
           })
-}
+};
+
 
 helpers.getGroupMembers = function(groupName){
   return db.Group.findOne({
@@ -174,7 +201,34 @@ helpers.getGroupMembers = function(groupName){
   })
 }
 
-//
+
+helpers.getProfilePic = function(username) {
+  return db.User.findOne({
+    where: {"username":username}
+  })
+    .then(function(user){
+      return user.pic;
+    })
+}
+
+
+helpers.addProfilePicToUser = function(picData) {
+  return db.User.findOne({
+    where: { "username": picData.username }
+  })
+    .then(function(user){
+      if(user) {
+        user.pic = picData.pic;
+        //retun statement below? 
+        return user.save().then(function() {})
+      } else {
+        throw Error("Cannot locate user!");
+      }
+    })
+}
+
+
+
 
 //Function Tests:
 // helpers.addShout({

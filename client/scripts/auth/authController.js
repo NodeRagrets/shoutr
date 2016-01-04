@@ -31,7 +31,7 @@ angular.module('shoutr.auth', [])
     }
 
     if ($scope.signupData.user.username === undefined) {
-      $scope.error.status = "Username must be 5-10 characters in length.";
+      $scope.error.status = "Username must be 5-20 characters in length.";
       return;
     } 
       

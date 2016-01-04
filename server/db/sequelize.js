@@ -24,9 +24,11 @@ models.User = sequelize.define('User', {
   password: {
     type: Sequelize.STRING 
   }, 
-  //photo: {},
   email: {
     type: Sequelize.STRING
+  },
+  pic: {
+    type: Sequelize.STRING 
   }
 });
 
@@ -55,10 +57,17 @@ models.UserGroupJoin = sequelize.define('UserGroupJoin', {
   }
 });
 
+// models.ProfilePic = sequelize.define('ProfilePic', {
+//   pic: {
+//     type: Sequelize.STRING 
+//   }
+// });
+
 models.User.hasMany(models.Shout);
 models.Group.hasMany(models.Shout);
 models.User.belongsToMany(models.Group, {through: 'UserGroupJoin'});
 models.Group.belongsToMany(models.User, {through: 'UserGroupJoin'});
+
 
 //NOTE: All of the model creations in the below .then functions are for testing purposes and are not necessary for the db functionality
 
@@ -82,7 +91,8 @@ models.User.sync({force: false}).then(function() {
   return models.User.create({
     username: "Tom",
     password: "abc123",
-    email:"tom@tom.com"
+    email:"tom@tom.com",
+    pic: "blob:http%3A//localhost%3A3000/30c2c1b5-8713-48af-9856-9fd2f6024b29"
   });
 });
 
