@@ -1,6 +1,6 @@
 angular.module('shoutr.auth', [])
 
-.controller('authController', ['$scope', '$window', '$location', 'Users', '$state', function($scope, $window, $location, Users, $state){
+.controller('authController', ['$scope', '$window', '$state', 'Users', function($scope, $window, $state, Users){
 
 	$scope.signupData = {
 		user: {
@@ -36,30 +36,28 @@ angular.module('shoutr.auth', [])
     } 
       
     else {
-      Users.signup($scope.signupData.user).then(function(response){
-        
-        if (response.status === 200) {
-          console.log("response is", response);
-          $scope.userSignedup = true;
-          $location.path('/groupmaker');
-        } 
+      Users.signup($scope.signupData.user)
+        .then(function(response){
+          if (response.status === 200) {
+            $scope.userSignedup = true;
+            $state.go('user.dashboard.groupcreate');
+          } 
 
-        if (response.status === 409) {
-          $scope.error.status = "Sorry, that username has already been taken.";
-        }
+          if (response.status === 409) {
+            $scope.error.status = "Sorry, that username has already been taken.";
+          }
       });
     }
 
   }
 
-
-
   $scope.login = function() {
-  	Users.login($scope.loginData.user).then(function(response) {
-      
+
+  	Users.login($scope.loginData.user)
+      .then(function(response) {
+  
       if (response.status === 200) {
-        console.log("successful login!");
-  			$location.path('/newsfeed/:groupname');
+  			$state.go('user.dashboard.groupcreate');
   		} 
 
       if (response.status === 422) {
@@ -72,11 +70,13 @@ angular.module('shoutr.auth', [])
   	})
   }
 
-  if($state.current.name === 'logout') {
-    Users.logoutUser();
-  };
+  $scope.logout = function() {
+    delete $window.localStorage.getItem('shoutr_auth_token');
+    $state.go('anon.login')
+  }
 
-}])
+}]);
+
 
 
 
