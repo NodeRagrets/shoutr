@@ -39,5 +39,6 @@ function MasterCtrl($scope, $cookieStore, Users) {
 
     $scope.logout = function(){
       Users.logout();
+      
     }
 }
