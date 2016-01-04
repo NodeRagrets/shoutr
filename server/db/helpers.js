@@ -71,6 +71,7 @@ helpers.addUserToGroup = function(username, groupName) {
     //query to get the groupId
 };
 
+
 helpers.addShout = function(shoutData) {
   var shoutGroupID;
   var shoutCreatorID;
@@ -105,6 +106,7 @@ helpers.addShout = function(shoutData) {
   });
 
 };
+
 
 //no need for a getGroup function because all the group's table stores is groupName and IDs.
 helpers.getShouts = function(groupName, options) {
@@ -142,7 +144,6 @@ helpers.getShouts = function(groupName, options) {
 };
 
 
-
 helpers.getShoutsByRecipient = function(recipientName) {
   var recipientId;
   var shoutResults;
@@ -166,7 +167,6 @@ helpers.getShoutsByRecipient = function(recipientName) {
 };
 
 
-
 helpers.getUser = function(username) {
   var userId; //pretty sure this line is doing nothing...
 
@@ -183,12 +183,13 @@ helpers.getUser = function(username) {
   })
 };
 
+
 helpers.getUserGroups = function(username){
   return helpers.getUser(username)
           .then(function(user){
             return user.getGroups()
           })
-}
+};
 
 helpers.getGroupMembers = function(groupName){
   return db.Group.findOne({
@@ -199,7 +200,32 @@ helpers.getGroupMembers = function(groupName){
   })
 }
 
-//
+helpers.getProfilePic = function(username) {
+  return db.User.findOne({
+    where: {"username":username}
+  })
+  .then(function(user){
+    return user.pic;
+  })
+}
+
+helpers.addProfilePicToUser = function(picData) {
+
+  return db.User.findOne({
+    where: { "username": picData.username }
+  })
+    .then(function(user){
+      if(user) {
+        user.pic = picData.pic;
+        user.save().then(function() {})
+      } else {
+        throw Error("Cannot locate user!");
+      }
+    })
+}
+
+
+
 
 //Function Tests:
 // helpers.addShout({
