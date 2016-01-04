@@ -1,6 +1,6 @@
-angular.module('shoutr.userProfile', ['ngFileUpload'])
+angular.module('shoutr.userProfile', [])
 
-.controller('userProfileController', ['$scope', 'Users', '$stateParams', 'Upload', '$timeout', 'PicData', function($scope, Users, $stateParams, Upload, $timeout, PicData) {
+.controller('userProfileController', ['$scope', 'Users', '$stateParams', '$timeout', 'PicData', function($scope, Users, $stateParams, $timeout, PicData) {
 
 
   $scope.data = {};
