@@ -39,8 +39,9 @@ h3 {
 }
 
 .refreshButton{
+  float:right;
   margin-top: 20px;
-  margin-left: 30px;
+  margin-right: 50px;
 }
 
 .inputUsers{
