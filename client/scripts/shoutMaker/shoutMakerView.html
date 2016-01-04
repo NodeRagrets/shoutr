@@ -6,14 +6,14 @@
       <div class='frontOfCard creator'>
         <form role='form' ng-submit = 'postShout()'  name = 'frontCardForm' novalidate>
           <div class='form-group'>
-            <input class='form-control' placeholder='Recipient' type = 'text' name = 'toText' ng-model = 'shout.recipient'>
+            <input class='form-control' placeholder='Recipient' type = 'text' name = 'toText' ng-model = 'shout.recipient' required>
           </div>
           <div class='form-group'>
             <input class='form-control' placeholder='Front Text' type = 'text' name = 'blurbText' ng-model = 'shout.blurb'>
           </div>
           <div class='form-group'>
             <!-- <label for='groupSelect'>Select Group:</label> -->
-            <select class='form-control' placeholder='Select Group' id='groupSelect' ng-model='shout.groupName'>
+            <select class='form-control' placeholder='Select Group' id='groupSelect' ng-model='shout.groupName' required>
               <option value='' disabled selected>Select Group</option>
               <option ng-repeat='group in groups'>{{group.groupName}}</option>
             </select>
