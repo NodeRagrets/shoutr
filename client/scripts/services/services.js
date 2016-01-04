@@ -86,19 +86,10 @@ angular.module('shoutr.services', ['ngFileUpload'])
     });
   }
 
-  var storeProfilePic = function(file) {
-    // return Upload.jsonBlob(file);
-    // return Upload.upload({ 
-    //   url: '/api/users/storeprofilepic',
-    //   data: {pic: file},
-    //   method: 'POST',
-    //   content/type: 
-    // }).then(function(response) {})
-
-    //   base64DataUrl(file);
-    return Upload.upload({
+  var storeProfilePic = function(UserDataObj) {
+    return $http({
       url: '/api/users/storeprofilepic',
-      data: {pic: file},
+      data: UserDataObj,
       method: 'POST'
     }).then(function(response) {
       console.log('inside promise of storeprofilepic fn!');
