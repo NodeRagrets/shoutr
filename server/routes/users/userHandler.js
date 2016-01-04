@@ -20,7 +20,7 @@ module.exports = {
       .then(function(user) {
         bcrypt.compare(password, user.password, function(error, result) {
           if(result) {
-            return res.status(200).json({user: user, token: utils.issueToken(user)});
+            return res.status(200).json({user: user, token: utils.issueToken(user.username)});
           }
           if(error) {
             return res.status(401).send(error)
