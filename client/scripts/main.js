@@ -10,77 +10,99 @@ angular.module('shoutr',[
   'shoutr.services',
   'RDash'
 ])
-.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider){
+.config(['$stateProvider', '$urlRouterProvider', '$httpProvider', function($stateProvider, $urlRouterProvider, $httpProvider){
 
-   $urlRouterProvider.otherwise('/newsfeed');
+  $urlRouterProvider.otherwise('/dashboard/groupcreate');
 
   $stateProvider
 
-    .state('login', {
-      url: '/login',
+    .state('anon', {
+      abstract: true,
+      template: '<ui-view/>',
+      data: {
+        access: false
+      }
+    })
+    .state('anon.login', {
+      url: '/',
       templateUrl: './scripts/auth/loginView.html'
     })
-    .state('signup', {
+    .state('anon.signup', {
       url: '/signup',
       templateUrl: './scripts/auth/signupView.html'
     })
-    // .state('newsfeed', {
-    //   url: '/newsfeed/:groupname',
-    //   templateUrl: './scripts/newsFeed/newsFeedView.html'
-    // })
-    // .state('shoutmaker', {
-    //   url: '/shoutmaker',
-    //   templateUrl: './scripts/shoutMaker/shoutMakerView.html'
-    // })
-    // .state('groupmaker', {
-    //   url: '/groupmaker',
-    //   templateUrl: './scripts/groupMaker/groupCreationView.html'
-    // })
-    // .state('userprofile', {
-    //   url: '/userprofile/:username',
-    //   templateUrl: './scripts/userProfile/userProfileView.html'
-    // });
 
-    .state('dashboard', {
-      url: '/dashboard',
-      templateUrl: './scripts/dashboard.html'
-    })
-    .state('dashboard.newsfeed', {
-      url: '/newsfeed/:groupname',
-      templateUrl: './scripts/newsFeed/newsFeedView.html'
-    })
-    .state('dashboard.shoutcreate', {
-      url: '/shoutcreate',
-      templateUrl: './scripts/shoutMaker/shoutMakerView.html'
-    })
-    .state('dashboard.groupcreate', {
-      url: '/groupcreate',
-      templateUrl: './scripts/groupMaker/groupCreationView.html'
-    })
-    .state('dashboard.user', {
-      url: '/user/:username',
-      templateUrl: './scripts/userProfile/userProfileView.html'
-    })
-    .state('logout', {
-      url: '/logout',
-      templateUrl: './scripts/auth/logoutView.html'
-    });
+    $stateProvider
 
+      .state('user', {
+        abstract: true,
+        template: '<ui-view/>',
+        data: {
+          access: true
+        }
+      })
+      .state('user.dashboard', {
+        abstract: true,
+        url: '/dashboard/',
+        templateUrl: './scripts/dashboard.html'
+      })
+      .state('user.dashboard.newsfeed', {
+        url: 'newsfeed/:groupname',
+        templateUrl: './scripts/newsFeed/newsFeedView.html'
+      })
+      .state('user.dashboard.shoutcreate', {
+        url: 'shoutcreate',
+        templateUrl: './scripts/shoutMaker/shoutMakerView.html'
+      })
+      .state('user.dashboard.groupcreate', {
+        url: 'groupcreate',
+        templateUrl: './scripts/groupMaker/groupCreationView.html',
+      })
+      .state('user.dashboard.profile', {
+        url: 'profile/:username',
+        templateUrl: './scripts/userProfile/userProfileView.html'
+      })
+
+    $httpProvider.interceptors.push('TokenAuth');
+
+}])
+
+.factory('TokenAuth', ['$window', function($window){
+
+  return {
+
+    request: function(request) {
+      var jwt = $window.localStorage.getItem('shoutr_auth_token');
+
+      if(jwt) {
+        request.headers['authorization'] = jwt;
+      }
+      request.headers['Allow-Control-Allow-Origin'] = '*';
+    
+      return request;
+    }
+
+  }
+
+}])
+
+.run(['$rootScope', '$state', 'Users', function($rootScope, $state, Users) {
+  $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams) {
+
+    if(!Users.isAuth() && toState.data.access) {
+      if(toState.name === "anon.login") {
+        return;
+      }
+      event.preventDefault();
+      $state.go('anon.login');
+      return;
+    }
+
+    if(Users.isAuth() && !toState.data.access) {
+      event.preventDefault();
+      $state.go('user.dashboard.groupcreate');
+      return;
+    }
+
+  });
 }]);
-
-
-
-//subview method -> will be much cleaner and is part of a larger refactor of the routes coming soon.
-// <ul>
-//   <li ng-repeat="group in groups">
-//     <a ui-sref=".groupname({ groupname: group.name })">{{ group.name }}</a>
-//   </li>
-// </ul>
-
-// .state('newsfeed', {
-//   url: '/newsfeed',
-//   templateUrl: './scripts/newsFeed/newsFeedView.html'
-// })
-// .state('newsfeed.groupname', {
-//   url: '/:groupname'
-// })
