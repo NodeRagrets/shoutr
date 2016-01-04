@@ -1,4 +1,4 @@
-angular.module('shoutr.services', [])
+angular.module('shoutr.services', ['ngFileUpload'])
 
 .factory('Shouts', ['$http', function($http) {
 
@@ -33,7 +33,7 @@ angular.module('shoutr.services', [])
 
 }])
 
-.factory('Users', ['$http', function($http) {
+.factory('Users', ['$http', 'Upload', function($http, Upload) {
 
   var login = function(userInfo) {
     return $http({
@@ -68,6 +68,7 @@ angular.module('shoutr.services', [])
       method: 'GET',
       url: '/api/users/userprofile?username=' + username  
     }).then(function(response) {
+      console.log("HERE IS RESPONSE", response);
       return response.data
     }).catch(function(error) {
       console.log(error);
@@ -85,11 +86,34 @@ angular.module('shoutr.services', [])
     });
   }
 
+  var storeProfilePic = function(file) {
+    // return Upload.jsonBlob(file);
+    // return Upload.upload({ 
+    //   url: '/api/users/storeprofilepic',
+    //   data: {pic: file},
+    //   method: 'POST',
+    //   content/type: 
+    // }).then(function(response) {})
+
+    //   base64DataUrl(file);
+    return Upload.upload({
+      url: '/api/users/storeprofilepic',
+      data: {pic: file},
+      method: 'POST'
+    }).then(function(response) {
+      console.log('inside promise of storeprofilepic fn!');
+      return response;
+    }).catch(function(error) {
+      console.log(error);
+    });
+  }
+
   return {
     login: login,
     signup: signup,
     pullUser: pullUser,
-    logoutUser: logoutUser
+    logoutUser: logoutUser,
+    storeProfilePic: storeProfilePic
   }
 
 }])
