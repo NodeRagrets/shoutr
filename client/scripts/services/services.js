@@ -33,7 +33,7 @@ angular.module('shoutr.services', [])
 
 }])
 
-.factory('Users', ['$http', '$window', function($http, $window) {
+.factory('Users', ['$http', '$window', '$state', function($http, $window, $state) {
 
   var login = function(userInfo) {
     return $http({
@@ -66,7 +66,7 @@ angular.module('shoutr.services', [])
   var pullUser = function(username) {
     return $http({
       method: 'GET',
-      url: '/api/users/userprofile?username=' + username  
+      url: '/api/users/userprofile?username=' + username
     }).then(function(response) {
       return response.data
     }).catch(function(error) {
@@ -78,11 +78,17 @@ angular.module('shoutr.services', [])
     return !!$window.localStorage.getItem('shoutr_auth_token');
   }
 
+  var logout = function(){
+    $window.localStorage.removeItem('shoutr_auth_token');
+    $state.go('anon.login')
+  }
+
   return {
     login: login,
     signup: signup,
     pullUser: pullUser,
-    isAuth: isAuth
+    isAuth: isAuth,
+    logout: logout
   }
 
 }])
