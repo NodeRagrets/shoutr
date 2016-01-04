@@ -14,6 +14,11 @@ h3 {
    /*margin-top: -20px;*/
 
 }
+
+#navLogo{
+  height: 45%;
+  width: 50%;
+}
 .cardContainer {
   margin: 0 20px 20px 20px;
   border: 2px solid black;
@@ -147,9 +152,10 @@ ul.sidebar .sidebar-title{
 }
 
 input[type=text]{
-  margin-left: 20px;
-  font-size: 15px;
+  /*margin-left: 20px;*/
+  font-size: 20px;
   margin-bottom: 10px;
+  /*padding-bottom: 2px;*/
 }
 
 
@@ -173,6 +179,9 @@ color: #527a7a;
 .createShoutButton{
   display: block;
   margin: 0 auto;
+  float: right;
+
+
 
 }
 ::-webkit-input-placeholder { /* WebKit, Blink, Edge */
