@@ -20,6 +20,7 @@ module.exports = {
     saveShout: function(req, res){
        console.log('SAVESHOUTS', req.body, 'SAVESHOUTS')
       var shoutData = req.body;//TODO find the groupname data
+      shoutData.username = req.token.username;
       helpers.addShout(shoutData)
              .then( function(resultData) {
                  console.log('SUCCESS GOT A POST REQUEST, SHOUTHANDLER')
