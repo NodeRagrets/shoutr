@@ -1,4 +1,4 @@
-angular.module('shoutr.services', ['ngFileUpload'])
+angular.module('shoutr.services', [])
 
 .factory('Shouts', ['$http', function($http) {
 
