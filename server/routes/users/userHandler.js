@@ -80,10 +80,14 @@ module.exports = {
 
   storeProfilePic: function(req, res) {
     var addPicPromise = helpers.addProfilePicToUser(req.body);
-
+    var getPicPromise = helpers.getProfilePic(req.body.username);
     addPicPromise
       .then(function(resultData) {
-        res.status(200).send("SUCCESS, DATA STORED", resultData);
+        return getPicPromise
+          .then(function(userPicUrl){
+            res.userPic = userPicUrl;
+            res.status(200).send("SUCCESS, DATA STORED");
+          })
       })
         .catch(function(err) {
           res.status(404).send(err);
