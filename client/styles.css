@@ -206,6 +206,20 @@ color: #527a7a;
 
 
 }
+
+.profileBasics{
+  margin-left: 60px;
+}
+
+.profilePicture{
+  margin-left: 60px;
+}
+
+.profileHeader {
+  font-size: 24px;
+  margin-left: 40px;
+}
+
 ::-webkit-input-placeholder { /* WebKit, Blink, Edge */
     font-size: 10px;
     padding-top: 5px;
