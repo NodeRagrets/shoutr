@@ -1,11 +1,11 @@
-/**
+/** 
  * Master Controller
  */
 
 angular.module('RDash', ['ngCookies'])
-    .controller('MasterCtrl', ['$scope', '$cookieStore', 'Users', MasterCtrl]);
+    .controller('MasterCtrl', ['$scope', '$cookieStore', 'Users', 'PicData', MasterCtrl]);
 
-function MasterCtrl($scope, $cookieStore, Users) {
+function MasterCtrl($scope, $cookieStore, Users, PicData) {
     /**
      * Sidebar Toggle & Cookie Control
      */
@@ -38,7 +38,9 @@ function MasterCtrl($scope, $cookieStore, Users) {
     };
 
     $scope.logout = function(){
-      Users.logout();
-      
+      Users.logout();  
     }
+
+    //allows profile pic to appear throughout app once loaded
+    $scope.PicData = PicData;
 }
