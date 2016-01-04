@@ -14,7 +14,7 @@
        <!--  <li class="sidebar-title"><span>NAVIGATION</span></li> -->
         <li class="sidebar-title"><span>Groups ({{data.groups.length}})</span><a href="#/dashboard/groupcreate" style="display: inline" class="glyphicon glyphicon-plus" tool-tip="{title: 'Create new Group'}"></a></li>
         <li class="sidebar-list" ng-repeat="group in data.groups | limitTo: 5">
-          <a href="#/dashboard/newsfeed/{{group.groupname}}">{{group.groupname}}</a>
+          <a href="#/dashboard/newsfeed/{{group.groupName}}">{{group.groupName}}</a>
         </li>
         <li class="sidebar-list">
           <a href="#/dashboard/shoutcreate">Create a new shout!</a>
