@@ -33,7 +33,7 @@ angular.module('shoutr.services', [])
 
 }])
 
-.factory('Users', ['$http', function($http) {
+.factory('Users', ['$http', '$window', function($http, $window) {
 
   var login = function(userInfo) {
     return $http({
@@ -41,7 +41,7 @@ angular.module('shoutr.services', [])
       url: '/api/users/login',
       data: userInfo
     }).then(function(response) {
-      console.log('Successful Login');
+      $window.localStorage.setItem('shoutr_auth_token', response.data.token);
       return response;
     }).catch(function(error) {
       console.log(error);
@@ -55,7 +55,7 @@ angular.module('shoutr.services', [])
       url: '/api/users/signup',
       data: signupInfo
     }).then(function(response) {
-      console.log('Successful Signup!');
+      $window.localStorage.setItem('shoutr_auth_token', response.data.token);
       return response;
     }).catch(function(error) {
       console.log(error);
@@ -74,22 +74,15 @@ angular.module('shoutr.services', [])
     });
   }
 
-  var logoutUser = function() {
-    return $http({
-      method: 'GET',
-      url: '/api/users/logout'
-    }).then(function(response) {
-      return response.data;
-    }).catch(function(error) {
-      console.log(error);
-    });
+  var isAuth = function() {
+    return !!$window.localStorage.getItem('shoutr_auth_token');
   }
 
   return {
     login: login,
     signup: signup,
     pullUser: pullUser,
-    logoutUser: logoutUser
+    isAuth: isAuth
   }
 
 }])
