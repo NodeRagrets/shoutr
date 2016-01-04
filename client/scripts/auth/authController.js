@@ -1,8 +1,6 @@
 angular.module('shoutr.auth', [])
 
-<<<<<<< HEAD
 .controller('authController', ['$scope', '$window', '$state', 'Users', function($scope, $window, $state, Users){
->>>>>>> [refactor] add state routing for user methods and logout method in authController.js
 
 	$scope.signupData = {
 		user: {
@@ -72,14 +70,13 @@ angular.module('shoutr.auth', [])
   	})
   }
 
-<<<<<<< HEAD
   $scope.logout = function() {
     delete $window.localStorage.getItem('shoutr_auth_token');
     $state.go('anon.login')
   }
 
 }]);
->>>>>>> [refactor] add state routing for user methods and logout method in authController.js
+
 
 
 
