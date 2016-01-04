@@ -20,7 +20,7 @@ module.exports = {
       .then(function(user) {
         bcrypt.compare(password, user.password, function(error, result) {
           if(result) {
-            return res.status(200).json({user: user, token: utils.issueToken(user)});
+            return res.status(200).json({user: user, token: utils.issueToken(user.username)});
           }
           if(error) {
             return res.status(401).send(error)
@@ -46,7 +46,7 @@ module.exports = {
         user.password = hash;
         helpers.addUser(user)
           .then(function(user) {
-            return res.status(200).send({user: user, token: utils.issueToken(user)});
+            return res.status(200).send({user: user, token: utils.issueToken(user.username)});
           })
           .catch(function(error) {
             return res.status(401).send(error);
