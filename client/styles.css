@@ -1,3 +1,11 @@
+body {
+  font-family: 'Montserrat', sans-serif;
+}
+
+h3 {
+  font-size: 15px;
+  margin-left: 10px;
+}
 .cardContainer {
   margin: 0 20px 20px 20px;
   border: 2px solid black;
@@ -12,7 +20,7 @@
 }
 
 #cardClone {
-  
+
   position: fixed;
   display: none;
   height: 250px;
@@ -80,27 +88,91 @@
 
 .errorText {
   color: #A80015;
-  font-style: italic; 
+  font-style: italic;
 }
 
 body {
   color: black;
 }
 
-.creator {
-  margin: 0 20px;
-}
+
 
 .sidebar-main, .sidebar-title, #sidebar-wrapper, .sidebar-list, .sidebar {
-  background-color: #99ffd6;
+  background-color: #a3dcc5;
   color: black;
+  font-family: 'Montserrat', sans-serif;
+
+}
+
+#page-wrapper:not(.open) ul.sidebar .sidebar-title.separator, .sidebar-footer, ul.sidebar .sidebar-list a:hover, ul.sidebar .sidebar-main a {
+  background-color: #009979;
+  /*font-size: 18px;*/
+}
+
+ul.sidebar .sidebar-list a{
+  color: #527a7a;
+  margin-top: 5px;
+}
+
+ul.sidebar .sidebar-title{
+  color: #527a7a;
+  font-size: 12px;
 }
 
 #sidebar-toggle, .sidebar-footer {
-  background-color: #00b38e;
+  background-color:  #009979;
   color: black;
 }
 
+.sidebar-footer div a{
+  color: #fff;
+}
+
+.row.header .meta .page{
+  font-size: 35px;
+  font-family: 'Montserrat', sans-serif;
+}
+
+input[type=text]{
+  margin-left: 20px;
+  font-size: 15px;
+  margin-bottom: 10px;
+}
+
+
+.button{
+cursor:pointer;
+padding:5px 10px;
+background:#009979;
+border:0px solid #33842a;
+-moz-border-radius: 5px;
+-webkit-border-radius: 5px;
+border-radius: 5px;
+color:#f3f3f3;
+font-size:12px;
+}
+
+.button:hover{
+background-color :  #a3dcc5;
+color: #527a7a;
+}
+
+::-webkit-input-placeholder { /* WebKit, Blink, Edge */
+    font-size: 10px;
+    padding-top: 5px;
+}
+:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+   font-size: 10px;
+   padding-top: 5px;
+}
+::-moz-placeholder { /* Mozilla Firefox 19+ */
+   font-size: 10px;
+   padding-top: 5px;
+}
+:-ms-input-placeholder { /* Internet Explorer 10-11 */
+   font-size: 10px;
+   padding-top: 5px;
+}
 .cardBackMessage {
   text-align: center;
   z-index: 103;
