@@ -32,12 +32,6 @@ angular.module('shoutr.userProfile', ['ngFileUpload'])
     Users.storeProfilePic(userDataWithFile)
       .then(function(response) {
         console.log(response);
-      // file.result = response.data;
-      // console.log("here is THE URL", response.config.data.pic.$ngfBlobUrl);
-      // if (response.status > 0) {
-      //   $scope.errorMsg = response.status + ': ' + response.data;
-      // }
-      // file.progress = Math.min(100, parseInt(100.0 * evt.loaded / evt.total));
       });
   }
 
