@@ -3,12 +3,12 @@ angular.module('shoutr.newsFeed', [
 ])
 .controller('newsFeedController', ['$scope', '$stateParams', 'Shouts', 'Groups', function($scope, $stateParams, Shouts, Groups){
   $scope.data = {};
-  $scope.data.shouts = [{recipient: 'Bob', title: 'Good job', message:'placeholder', creator: 'Borb'},
-  {recipient: 'Bobby', title: 'Good jobb', message:'placeholder', creator: 'Borb'},
-  {recipient: 'Bobbi', title: 'Good joba', message:'placeholder', creator: 'Borb'},
-  {recipient: 'Bobi', title: 'Good jobd', message:'placeholder', creator: 'Borb'},
-  {recipient: 'Bobb', title: 'Good jobf', message:'placeholder', creator: 'Borb'},
-  {recipient: 'Bab', title: 'Good jobg', message:'placeholder', creator: 'Borb'},]
+  $scope.data.shouts = [{recipient: 'Bob', title: 'Good job', message:'placeholder', creator: 'Borb', color: 'white'},
+  {recipient: 'Bobby', title: 'Good jobb', message:'placeholder', creator: 'Borb', color: 'green', imageLink: 'http://2.bp.blogspot.com/-qdtzy_7PEG4/U5f2GFtaSZI/AAAAAAAAIs0/-2xe5Xj8s_I/s1600/girl-smiley-face.png'},
+  {recipient: 'Bobbi', title: 'Good joba', message:'placeholder', creator: 'Borb', color: 'red'},
+  {recipient: 'Bobi', title: 'Good jobd', message:'placeholder', creator: 'Borb', color: 'white'},
+  {recipient: 'Bobb', title: 'Good jobf', message:'placeholder', creator: 'Borb', color: 'blue'},
+  {recipient: 'Bab', title: 'Good jobg', message:'placeholder', creator: 'Borb', color: 'white'},]
 
   $scope.data.groupName = $stateParams.groupname;
   console.log($scope.data.groupName);
@@ -84,6 +84,7 @@ angular.module('shoutr.newsFeed', [
         console.log('transitionend');
             var cardBack = $lastElement.find('.back');
             $('#cloneBack').html(cardBack.html());
+
             //TODO: attach rear contents of card
           }
         }
@@ -109,7 +110,20 @@ angular.module('shoutr.newsFeed', [
           rotateBack = 'rotateY(-360deg)';
         }
 
+        var cardBack = $(this).find('.back');
+
+        $clone.find('#cloneBack').html(cardBack.html());
+
         $clone.find('#cloneFront').html($lastElement.html());
+
+        var color = $(this).css('background-color');
+
+        $clone.find('#cloneFront').css({
+            'background-color': color
+          });
+          $clone.find('#cloneBack').css({
+            'background-color': color
+          });
 
         $clone.css({
           'display':'block',
@@ -126,10 +140,12 @@ angular.module('shoutr.newsFeed', [
             'width': $(document).width() - 400 + 'px'
           });
           $clone.find('#cloneFront').css({
-            'transform': rotateFront
+            'transform': rotateFront,
+            'background-color': color
           });
           $clone.find('#cloneBack').css({
-            'transform': rotateBack
+            'transform': rotateBack,
+            'background-color': color
           });
         }, 100);
       } else {
