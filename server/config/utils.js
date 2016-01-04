@@ -11,6 +11,7 @@ module.exports = {
 	},
 
 	verifyToken: function(token) {
+		console.log(token);
 		var decoded = jwt.decode(token, secret);
 		return decoded;
 	},
@@ -21,14 +22,17 @@ module.exports = {
 
 		if(req.headers && token) {
 			validToken = module.exports.verifyToken(token);
-			console.log(validToken);
+			console.log(!validToken);
 			if(!validToken) {
 				res.status(401).send();
 			}
 			req.token = validToken;
 			next();
+		} else  {
+			res.status(401).send();
+			
 		}
-		res.status(401).send();
+		console.log('nope! l32');
 
 	}
 
