@@ -1,7 +1,7 @@
 angular.module('shoutr.newsFeed', [
 
 ])
-.controller('newsFeedController', ['$scope', '$stateParams', 'Shouts', 'Groups', function($scope, $stateParams, Shouts, Groups){
+.controller('newsFeedController', ['$scope', '$stateParams', '$rootScope','Shouts', 'Groups', function($scope, $stateParams, $rootScope, Shouts, Groups){
   $scope.data = {};
   $scope.data.shouts = [{recipient: 'Bob', title: 'Good job', message:'placeholder', creator: 'Borb', color: 'white'},
   {recipient: 'Bobby', title: 'Good jobb', message:'placeholder', creator: 'Borb', color: 'green', imageLink: 'http://2.bp.blogspot.com/-qdtzy_7PEG4/U5f2GFtaSZI/AAAAAAAAIs0/-2xe5Xj8s_I/s1600/girl-smiley-face.png'},

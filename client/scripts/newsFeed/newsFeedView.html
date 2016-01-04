@@ -1,12 +1,12 @@
 <div ng-controller='newsFeedController'>
   <!-- add more users  -->
   <div>
-    {{data.groupname}}
+    {{data.groupName}}
   </div>
 
   <form ng-submit='addMoreUsers()' name='moreUserAdder' novalidate>
     <input placeholder='Add a user' type='text' name='usernameText' ng-model='data.username'>
-    <input type ='submit' value = 'Add'>
+    <input class='button' type ='submit' value = 'Add'>
   </form>
 
   <div>
@@ -14,11 +14,12 @@
     <span ng-repeat = 'user in data.usersArray'>
       <p>{{user}}</p>
     </span>
-  <div>
+  </div>
 
 
-
-  <button class='creator' ng-click='getShout()'> Refresh NewsFeed </button>
+  <div class= 'refreshButton'>
+    <button class='creator button' ng-click='getShout()'> Refresh NewsFeed </button>
+  </div>
   <br>
   <br>
 
