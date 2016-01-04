@@ -34,19 +34,19 @@
     <!-- <div class = 'col-xs-4' ng-repeat = 'i in [$index, $index + 1, $index + 2]' ng-if= 'data.shouts[i] !== undefined'> -->
 <!--     <div class='card-deck-wrapper'>
       <div class='card-deck'> -->
-        <div class='cardContainer' ng-repeat='shout in data.shouts' ng-style='{"background-color": shout.color}'>
+        <div class='cardContainer' ng-repeat='shout in data.shouts | orderBy : null : true' ng-style='{"background-color": shout.color}'>
           <!-- <div class='card-block'> -->
           <!-- <div class='flipper'> -->
             <div class='front'>
               <div class='cardTitleContainer'>
-                <h3 class='cardRecipient'>To: <span class='name'>{{shout.recipient}}</span></h3>
-                 <h3 class='cardCreator'> From: <span class='name'>{{shout.creator}}</span></h3>
+                <h3 class='cardRecipient'>To: <span class='name'>{{shout.recipientId}}</span></h3>
+                 <h3 class='cardCreator'> From: <span class='name'>{{shout.UserId}}</span></h3>
               </div>
-              <h2 class='cardBlurb'>{{shout.title}}</h2>
+              <h2 class='cardBlurb'>{{shout.blurb}}</h2>
             </div>
             <div class='back'>
               <img class='cardBackImage' ng-src='{{shout.imageLink}}'></img>
-              <h4 class='cardBackMessage'>{{shout.message}}</h4>
+              <h4 class='cardBackMessage'>{{shout.story}}</h4>
             </div>
           <!-- </div> -->
           <!-- </div> -->

@@ -5,8 +5,8 @@ angular.module('shoutr.shoutCreation', [])
   $scope.shout = {
     recipient: '',
     groupName: '',
-    title: '',
-    message: '',
+    blurb: '',
+    story: '',
     imageLink: '',
     color: 'white'
   };

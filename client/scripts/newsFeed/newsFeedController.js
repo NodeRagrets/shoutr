@@ -3,12 +3,6 @@ angular.module('shoutr.newsFeed', [
 ])
 .controller('newsFeedController', ['$scope', '$stateParams', '$rootScope','Shouts', 'Groups', function($scope, $stateParams, $rootScope, Shouts, Groups){
   $scope.data = {};
-  $scope.data.shouts = [{recipient: 'Bob', title: 'Good job', message:'placeholder', creator: 'Borb', color: 'white'},
-  {recipient: 'Bobby', title: 'Good jobb', message:'placeholder', creator: 'Borb', color: 'green', imageLink: 'http://2.bp.blogspot.com/-qdtzy_7PEG4/U5f2GFtaSZI/AAAAAAAAIs0/-2xe5Xj8s_I/s1600/girl-smiley-face.png'},
-  {recipient: 'Bobbi', title: 'Good joba', message:'placeholder', creator: 'Borb', color: 'red'},
-  {recipient: 'Bobi', title: 'Good jobd', message:'placeholder', creator: 'Borb', color: 'white'},
-  {recipient: 'Bobb', title: 'Good jobf', message:'placeholder', creator: 'Borb', color: 'blue'},
-  {recipient: 'Bab', title: 'Good jobg', message:'placeholder', creator: 'Borb', color: 'white'},]
 
   $scope.data.groupName = $stateParams.groupname;
   console.log($scope.data.groupName);
@@ -24,6 +18,8 @@ angular.module('shoutr.newsFeed', [
   }
 
   $scope.getShout();
+
+  console.log($scope.data.shouts);
 
   // the following is for users in the group
 
@@ -58,6 +54,7 @@ angular.module('shoutr.newsFeed', [
   //Below is the JS handling the flipping animations
 
   function animationListeners(){
+    console.log($scope.data.shouts);
 
 
     var $clone = $('#cardClone');
@@ -81,7 +78,6 @@ angular.module('shoutr.newsFeed', [
             $clone.hide();
             console.log($lastElement);
           } else {
-        console.log('transitionend');
             var cardBack = $lastElement.find('.back');
             $('#cloneBack').html(cardBack.html());
 
@@ -92,7 +88,6 @@ angular.module('shoutr.newsFeed', [
     })
 
     $('.cardContainer').click(function() {
-      console.log('whoah');
 
       if(!cloneFlipped) {
         $lastElement = $(this);
