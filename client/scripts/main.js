@@ -8,7 +8,8 @@ angular.module('shoutr',[
   'shoutr.newsFeed',
   'shoutr.userProfile',
   'shoutr.services',
-  'RDash'
+  'RDash',
+  'ngFileUpload'
 ])
 .config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider){
 
