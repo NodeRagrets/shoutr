@@ -37,6 +37,10 @@ angular.module('shoutr.services', [])
 
 .factory('Users', ['$http', '$window', '$state', function($http, $window, $state) {
 
+  var data = {
+    username: ''
+  }
+
   var login = function(userInfo) {
     return $http({
       method: 'POST',
@@ -44,6 +48,7 @@ angular.module('shoutr.services', [])
       data: userInfo
     }).then(function(response) {
       $window.localStorage.setItem('shoutr_auth_token', response.data.token);
+      data.username = response.data.user.username;
       return response;
     }).catch(function(error) {
       console.log(error);
@@ -108,7 +113,8 @@ angular.module('shoutr.services', [])
     pullUser: pullUser,
     isAuth: isAuth,
     logout: logout,
-    storeProfilePic: storeProfilePic
+    storeProfilePic: storeProfilePic,
+    data: data
   }
 
 }])
@@ -168,3 +174,22 @@ angular.module('shoutr.services', [])
 
 
 }])
+
+.factory('Data', function() {
+
+  var data = {
+    username: ''
+  };
+
+  return {
+
+    getUsername: function() {
+      return data.username;
+    },
+
+    setUsername: function(username) {
+      data.Username = username;
+    }
+  }
+
+})
