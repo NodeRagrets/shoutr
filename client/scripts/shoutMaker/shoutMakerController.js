@@ -1,19 +1,30 @@
 angular.module('shoutr.shoutCreation', [])
 
-.controller('shoutCreationController', ['$scope', 'Shouts', 'Groups', function($scope, Shouts, Groups) {
+.controller('shoutCreationController', ['$scope', 'Shouts', 'Groups', 'Users', function($scope, Shouts, Groups, Users) {
 
   $scope.shout = {
     recipient: '',
     groupName: '',
-    title: '',
-    message: '',
+    blurb: '',
+    story: '',
     imageLink: '',
-    color: 'white'
+    color: 'white',
+    creator: Users.data.username
   };
 
-  $scope.groups = [{groupname: 'group1'}, {groupname: 'group2'}, {groupname: 'group3'}, {groupname: 'group4'}, {groupname: 'group5'}, {groupname: 'group6'}];
 
+  $scope.loadGroups = function() {
+    Groups.getGroups()
+      .then(function(groups) {
+        $scope.groups = groups;
+        console.log($scope.groups);
+      })
+      .catch(function(error) {
+        console.log(error);
+      });
+  }
 
+  $scope.loadGroups();
   $scope.colors = ['white', '#ff1a1a', '#e60073', '#4d77ff', '#47d147', '#ffff1a', '#ff751a', '#81e8fd',  '#c6b4fe',  '#ffadee',  '#fec6b6',  '#a9faba',  '#fdfab5'];
 
 
@@ -21,14 +32,14 @@ angular.module('shoutr.shoutCreation', [])
   $scope.shoutCreated = false;
 
   $scope.postShout = function() {
-    Shouts.saveShout($scope.shout);
-    $scope.shout = {
-      recipient: '',
-      title: '',
-      message: '',
-      groupName: ''
-    };
-    $scope.shoutCreated = true;
+      Shouts.saveShout($scope.shout);
+      $scope.shout = {
+        recipient: '',
+        title: '',
+        message: '',
+        groupName: ''
+      };
+      $scope.shoutCreated = true;
   }
 
   // Groups.getGroups()
@@ -62,7 +73,6 @@ angular.module('shoutr.shoutCreation', [])
             $clone.hide();
             console.log($lastElement);
           } else {
-        console.log('transitionend');
             var cardBack = $lastElement.find('.back');
             // $('#cloneBack').html(cardBack.html());
 
@@ -77,7 +87,6 @@ angular.module('shoutr.shoutCreation', [])
     })
 
     $('.cardContainer').click(function() {
-      console.log('whoah');
 
       if(!cloneFlipped) {
         $lastElement = $(this);

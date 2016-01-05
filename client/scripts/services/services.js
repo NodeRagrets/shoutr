@@ -1,6 +1,6 @@
 angular.module('shoutr.services', [])
 
-.factory('Shouts', ['$http', function($http) {
+.factory('Shouts', ['$http', '$window', function($http, $window) {
 
   var getShouts = function(groupname) {
     return $http({
@@ -8,7 +8,8 @@ angular.module('shoutr.services', [])
       url:'/api/shouts',
       params: {groupName: groupname}
     }).then(function(response) {
-      return response.data;
+      $window.localStorage.setItem('shoutr_auth_token', response.data.token)
+      return response.data.result;
     }).catch(function(error) {
       console.log(error);
     });
@@ -33,7 +34,12 @@ angular.module('shoutr.services', [])
 
 }])
 
-.factory('Users', ['$http', function($http) {
+
+.factory('Users', ['$http', '$window', '$state', function($http, $window, $state) {
+
+  var data = {
+    username: ''
+  }
 
   var login = function(userInfo) {
     return $http({
@@ -41,7 +47,8 @@ angular.module('shoutr.services', [])
       url: '/api/users/login',
       data: userInfo
     }).then(function(response) {
-      console.log('Successful Login');
+      $window.localStorage.setItem('shoutr_auth_token', response.data.token);
+      data.username = response.data.user.username;
       return response;
     }).catch(function(error) {
       console.log(error);
@@ -55,7 +62,7 @@ angular.module('shoutr.services', [])
       url: '/api/users/signup',
       data: signupInfo
     }).then(function(response) {
-      console.log('Successful Signup!');
+      $window.localStorage.setItem('shoutr_auth_token', response.data.token);
       return response;
     }).catch(function(error) {
       console.log(error);
@@ -66,20 +73,35 @@ angular.module('shoutr.services', [])
   var pullUser = function(username) {
     return $http({
       method: 'GET',
-      url: '/api/users/userprofile?username=' + username  
+      url: '/api/users/userprofile?username=' + username
     }).then(function(response) {
+      console.log("HERE IS RESPONSE", response);
       return response.data
     }).catch(function(error) {
       console.log(error);
     });
   }
 
-  var logoutUser = function() {
+  var isAuth = function() {
+    return !!$window.localStorage.getItem('shoutr_auth_token');
+  }
+
+
+  var logout = function(){
+    $window.localStorage.removeItem('shoutr_auth_token');
+    $state.go('anon.login')
+  }
+
+
+  var storeProfilePic = function(UserDataObj) {
     return $http({
-      method: 'GET',
-      url: '/api/users/logout'
+      url: '/api/users/storeprofilepic',
+      data: UserDataObj,
+      method: 'POST'
     }).then(function(response) {
-      return response.data;
+      // console.log('inside promise of storeprofilepic fn!');
+      // console.log(response.config.data.blobUrl);
+      return response;
     }).catch(function(error) {
       console.log(error);
     });
@@ -89,10 +111,23 @@ angular.module('shoutr.services', [])
     login: login,
     signup: signup,
     pullUser: pullUser,
-    logoutUser: logoutUser
+    isAuth: isAuth,
+    logout: logout,
+    storeProfilePic: storeProfilePic,
+    data: data
   }
 
 }])
+
+
+
+.factory('PicData', ['$http', function($http) {
+
+  return {profilePic: ''};
+
+}])
+
+
 
 .factory('Groups', ['$http', function($http){
 
@@ -139,3 +174,22 @@ angular.module('shoutr.services', [])
 
 
 }])
+
+.factory('Data', function() {
+
+  var data = {
+    username: ''
+  };
+
+  return {
+
+    getUsername: function() {
+      return data.username;
+    },
+
+    setUsername: function(username) {
+      data.Username = username;
+    }
+  }
+
+})

@@ -6,16 +6,16 @@
       <div class='frontOfCard creator'>
         <form role='form' ng-submit = 'postShout()'  name = 'frontCardForm' novalidate>
           <div class='form-group'>
-            <input class='form-control' placeholder='Recipient' type = 'text' name = 'toText' ng-model = 'shout.recipient'>
+            <input class='form-control' placeholder='Recipient' type = 'text' name = 'toText' ng-model = 'shout.recipient' required>
           </div>
           <div class='form-group'>
-            <input class='form-control' placeholder='Title Text' type = 'text' name = 'blurbText' ng-model = 'shout.title'>
+            <input class='form-control' placeholder='Front Text' type = 'text' name = 'blurbText' ng-model = 'shout.blurb'>
           </div>
           <div class='form-group'>
             <!-- <label for='groupSelect'>Select Group:</label> -->
-            <select class='form-control' placeholder='Select Group' id='groupSelect' ng-model='shout.groupName'>
+            <select class='form-control' placeholder='Select Group' id='groupSelect' ng-model='shout.groupName' required>
               <option value='' disabled selected>Select Group</option>
-              <option ng-repeat='group in groups'>{{group.groupname}}</option>
+              <option ng-repeat='group in groups'>{{group.groupName}}</option>
             </select>
           </div>
           <span>Card Color:</span>
@@ -38,10 +38,10 @@
               <script>
                 $('.back').css('{"background-color": shout.color, "background-image": "url("+shout.imageLink+")"}');
               </script>
-              <h4 class='cardBackMessage'>{{shout.message}}</h4>
+              <h4 class='cardBackMessage'>{{shout.story}}</h4>
             </div>
           </div>
-          <h2 class='cardBlurb'>{{shout.title}}</h2>
+          <h2 class='cardBlurb'>{{shout.blurb}}</h2>
         </div>
         <h3 id='flipInstructions'> click to flip card </h3>
     </div>
@@ -56,7 +56,7 @@
       </div> -->
         <form role='form' ng-submit = 'postShout()' name = 'backCardForm' novalidate>
           <div class='form-group'>
-            <input class='form-control' placeholder='Message' type = 'text' name = 'storyText' ng-model = 'shout.message'>
+            <input class='form-control' placeholder='Message' type = 'text' name = 'storyText' ng-model = 'shout.story'>
             <input class='form-control' placeholder='Link to Image' type = 'text' name ='imageHotLink' ng-model = 'shout.imageLink'>
           </div>
         </form>
@@ -78,7 +78,7 @@
     <div id='cloneFront' ng-style='{"background-color": shout.color}'></div>
     <div id='cloneBack' ng-style='{"background-color": shout.color}'>
       <img class='cardBackImage' ng-src='{{shout.imageLink}}'></img>
-      <h4 class='cardBackMessage'>{{shout.message}}</h4>
+      <h4 class='cardBackMessage'>{{shout.story}}</h4>
     </div>
   </div>
 
