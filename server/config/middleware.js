@@ -14,7 +14,7 @@ module.exports = function(app, express){
 
   //Use respective routers for all requests based on category
   app.use('/api/groups', utils.hasToken, groupRouter);
-  app.use('/api/users', userRouter);
+  app.use('/api/users', utils.hasToken, userRouter);
   app.use('/api/shouts', utils.hasToken, shoutRouter);
 
   //Inject routers into respective route files
