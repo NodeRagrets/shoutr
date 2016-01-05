@@ -9,9 +9,9 @@ angular.module('shoutr.shoutCreation', [])
     story: '',
     imageLink: '',
     color: 'white',
-    creator: Users.data.username
   };
 
+  $scope.creator = Users.data.username;
 
   $scope.loadGroups = function() {
     Groups.getGroups()
