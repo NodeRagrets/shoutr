@@ -47,6 +47,12 @@ models.Shout = sequelize.define('Shout', {
   },
   imageLink: {
     type: Sequelize.STRING
+  },
+  creatorName: {
+    type: Sequelize.STRING
+  },
+  recipientName: {
+    type: Sequelize.STRING
   }
   // userId is added automatically by the "hasMany" relationship established below
 });
