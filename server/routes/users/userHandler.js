@@ -47,7 +47,7 @@ module.exports = {
         user.password = hash;
         helpers.addUser(user)
           .then(function(user) {
-            return res.status(200).send({user: user, token: utils.issueToken(user.username)});
+            return res.status(200).json({user: user, token: utils.issueToken({username: user.get('username')})});
           })
           .catch(function(error) {
             return res.status(401).send(error);
@@ -57,22 +57,12 @@ module.exports = {
   },
 
   profile: function(req, res) {
-    var username = req.query.username;
+    var username = req.token.username;
     var usernamePromise = helpers.getUser(username);
-    var recipientShoutsPromise;
+    console.log("HERE IS REQ.TOKEN", req.token);
     usernamePromise
       .then(function(resultData) {
-      
-        recipientShoutsPromise = helpers.getShoutsByRecipient(username);
-        recipientShoutsPromise
-          .then(function (shoutsArray) {
-            //CURRENTLY, SHOUTSARRAY IS UNDEFINED. DOES THIS CHANGE ONCE THE DB CONTAINS SHOUTS RECEIVED BY A GIVEN USER?
-            // console.log("HERE IS SHOUTSARRAY", shoutsArray);
-            resultData.shoutsReceived = shoutsArray;
-            // console.log("HERE IS RESULTDATA INSIDE PROFILE FN, USERHANDLER", resultData);
-            //ADD SHOUTSSENT ARRAY HERE 
-            res.status(200).send(resultData);
-          }); 
+        res.status(200).send(resultData);
       })
     .catch( function(err){
       res.status(404).send(err);
@@ -80,6 +70,7 @@ module.exports = {
   },
 
   storeProfilePic: function(req, res) {
+    console.log('HERE IS REQ INSIDE USERHANDLER, STOREPROFILEPIC', req);
     var addPicPromise = helpers.addProfilePicToUser(req.body);
     var getPicPromise = helpers.getProfilePic(req.body.username);
     addPicPromise
