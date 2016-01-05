@@ -31,7 +31,7 @@ module.exports = {
       .catch(function(error) {
         return res.status(401).send(error);
       })
-  
+
   },
 
   register: function(req, res) {
@@ -47,7 +47,7 @@ module.exports = {
         user.password = hash;
         helpers.addUser(user)
           .then(function(user) {
-            return res.status(200).send({user: user, token: utils.issueToken(user.username)});
+            return res.status(200).json({user: user, token: utils.issueToken({username: user.get('username')})});
           })
           .catch(function(error) {
             return res.status(401).send(error);
@@ -62,7 +62,7 @@ module.exports = {
     var recipientShoutsPromise;
     usernamePromise
       .then(function(resultData) {
-      
+
         recipientShoutsPromise = helpers.getShoutsByRecipient(username);
         recipientShoutsPromise
           .then(function (shoutsArray) {
@@ -70,13 +70,13 @@ module.exports = {
             // console.log("HERE IS SHOUTSARRAY", shoutsArray);
             resultData.shoutsReceived = shoutsArray;
             // console.log("HERE IS RESULTDATA INSIDE PROFILE FN, USERHANDLER", resultData);
-            //ADD SHOUTSSENT ARRAY HERE 
+            //ADD SHOUTSSENT ARRAY HERE
             res.status(200).send(resultData);
-          }); 
+          });
       })
     .catch( function(err){
       res.status(404).send(err);
-    }); 
+    });
   },
 
   storeProfilePic: function(req, res) {
@@ -94,7 +94,7 @@ module.exports = {
           res.status(404).send(err);
         });
   }
- 
 
-  
+
+
 };
