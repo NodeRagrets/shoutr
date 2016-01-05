@@ -220,6 +220,11 @@ color: #527a7a;
   margin-left: 40px;
 }
 
+.profileHeader2 {
+  font-size: 18px;
+  margin-left: 60px;
+}
+
 ::-webkit-input-placeholder { /* WebKit, Blink, Edge */
     font-size: 10px;
     padding-top: 5px;
