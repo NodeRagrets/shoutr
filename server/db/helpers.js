@@ -75,6 +75,8 @@ helpers.addUserToGroup = function(username, groupName) {
 helpers.addShout = function(shoutData) {
   var shoutGroupID;
   var shoutCreatorID;
+  var shoutCreatorName;
+  var shoutRecipientName;
   var shoutRecipientID;
   //queries to retrieve Id's for relevant group, shout creator and shout recipient
   return db.Group.findOne({
@@ -87,13 +89,17 @@ helpers.addShout = function(shoutData) {
     })
     .then(function(creator){
       shoutCreatorID = creator.get('id');
+      shoutCreatorName = creator.get('username');
       return db.User.findOne({
         where: {username: shoutData.recipient}
       })
       .then(function(recipient){
         shoutRecipientID = recipient.get('id');
+        shoutRecipientName = recipient.get('username');
         return db.Shout.create({
           GroupId: shoutGroupID,
+          creatorName: shoutCreatorName,
+          recipientName: shoutRecipientName,
           blurb: shoutData.blurb,
           story: shoutData.story,
           color: shoutData.color,
