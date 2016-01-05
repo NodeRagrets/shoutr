@@ -2,8 +2,8 @@
  * Master Controller
  */
 
-angular.module('RDash', ['ngCookies'])
-    .controller('MasterCtrl', ['$scope', '$cookieStore', 'Users', 'PicData', MasterCtrl]);
+angular.module('RDash', ['ngCookies', 'ngFileUpload'])
+    .controller('MasterCtrl', ['$scope', '$cookieStore', 'Users', 'Upload', 'PicData', MasterCtrl]);
 
 function MasterCtrl($scope, $cookieStore, Users, PicData) {
     /**
