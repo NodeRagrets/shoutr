@@ -75,8 +75,8 @@ angular.module('shoutr.services', [])
       method: 'GET',
       url: '/api/users/userprofile'
     }).then(function(response) {
-      console.log("HERE IS RESPONSE.TOKEN", response.token);
-      return response.data
+      console.log("HERE IS RESPONSE-AUTH", response);
+      return response;
     }).catch(function(error) {
       console.log(error);
     });
@@ -99,8 +99,8 @@ angular.module('shoutr.services', [])
       data: UserDataObj,
       method: 'POST'
     }).then(function(response) {
-      // console.log('inside promise of storeprofilepic fn!');
-      // console.log(response.config.data.blobUrl);
+      console.log('inside promise of storeprofilepic fn!');
+      console.log(response.config.data.blobUrl);
       return response;
     }).catch(function(error) {
       console.log(error);
