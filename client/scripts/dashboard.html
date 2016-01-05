@@ -14,27 +14,33 @@
        <!--  <li class="sidebar-title"><span>NAVIGATION</span></li> -->
         <li class="sidebar-title"><span>Groups ({{data.groups.length}})</span><a href="#/dashboard/groupcreate" style="display: inline" class="glyphicon glyphicon-plus" tool-tip="{title: 'Create new Group'}"></a></li>
         <li class="sidebar-list" ng-repeat="group in data.groups | limitTo: 5">
-          <a href="#/dashboard/newsfeed/{{group.groupname}}">{{group.groupname}}</a>
+          <a href="#/dashboard/newsfeed/{{group.groupName}}">{{group.groupName}}</a>
         </li>
         <li class="sidebar-list">
           <a href="#/dashboard/shoutcreate">Create a new shout!</a>
         </li>
       </ul>
       <div class="sidebar-footer">
-        <div class="col-xs-4">
+        <!-- <div class="col-xs-4">
           <a href="https://github.com/rdash/rdash-angular" target="_blank">
             Github
           </a>
         </div>
-        <div class="col-xs-4">
-          <a href="https://github.com/rdash/rdash-angular/README.md" target="_blank">
+        <div class="col-xs-4"> -->
+          <!-- <a href="https://github.com/rdash/rdash-angular/README.md" target="_blank">
             About
-          </a>
-        </div>
+          </a> -->
+        <!-- </div> -->
         <div class="col-xs-4">
-          <a href="#">
-            Support
+
+
+          <a ng-click='logout()' href="#/login">
+            Logout
           </a>
+
+
+
+
         </div>
       </div>
     </div>
@@ -49,8 +55,12 @@
             <div class="user pull-right">
               <div class="item dropdown">
                 <a href="#" class="dropdown-toggle">
-                  <!-- <img src="img/avatar.jpg"> -->
-                  <img src='./../assets/stu.jpg'>
+                  <img ng-src="{{PicData.profilePic}}">
+
+
+
+
+                  <!-- <img src='./../assets/stu.jpg'> -->
                 </a>
                 <ul class="dropdown-menu dropdown-menu-right">
                   <li class="dropdown-header">

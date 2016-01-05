@@ -3,15 +3,16 @@ var app = express();
 var helpers = require('./../../db/helpers.js');
 module.exports = {
 
-    // loadGroup: function(req, res){
-    //   //TODO ask rachel where it is
-    //   console.log('LOADGROUP', req.body, 'LOADGROUP');
-    //   helpers.getUserGroups()
-    //         .then( function(resultData){
-    //           console.log('SUCCESS INSIDE LOADGROUP');
-    //         })
-    //
-    // },
+    loadGroup: function(req, res){
+      //TODO ask rachel where it is
+      console.log('LOADGROUP', req.token.username);
+
+      helpers.getUserGroups(req.token.username)
+            .then( function(resultData){
+              res.status(201).send(resultData);
+            })
+    
+    },
     addUser: function(req, res){
         // this will be for existing groups
       console.log('ADDUSER', req.body, 'ADDUSER'); // find users
@@ -51,6 +52,13 @@ module.exports = {
                             console.log('ERROR ADDING USER', err);
                           })
                  }
+                 helpers.addUserToGroup(req.token.username, groupNameForAddUsers)
+                        .then(function(result){
+                          console.log('added group creator to group')
+                        })
+                        .catch(function(err){
+                          console.log('ERROR IN GROUPHANDLER LINE 60');
+                        });
                  res.status(200).send(resultData);
              })
              .catch( function(err){

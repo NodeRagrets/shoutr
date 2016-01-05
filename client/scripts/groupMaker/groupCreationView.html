@@ -6,7 +6,6 @@
     <input class='button' type='submit' value='Create Group'>
   </form>
 
-  <!-- TODO: fix styling so that its less confusing, you should press Create group after you add users  -->
   <form ng-submit='addingUsers()' name='userAdder' novalidate>
     <input placeholder="Who's in your group?" type='text' name='usernameText' ng-model='data.username'>
     <input  class='button' type ='submit' value = 'Add User'>
@@ -15,6 +14,8 @@
 
     <!-- <p> please use a comma to separate users </p> -->
   </form>
+  <!-- TODO: fix styling so that its less confusing, you should press Create group after you add users  -->
+
   <div>
     <h3>Users currently in group :<h3>
   </div>
