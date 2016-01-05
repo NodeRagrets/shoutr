@@ -2,106 +2,76 @@
   <nav class = 'navBar'>
   </nav>
 
-  <p class='profileHeader'>User Profile</p>
-  <div class='profileBasics'>
+  <p class="profileHeader">User Profile</p>
 
-    <!--Basic user info -->
-      <div class = 'userInfo'>
-        <p> Name: {{ data.user.username }} </p>
-        <p> Email: {{ data.user.email }} </p>
-      </div>
-
-  </div>
-
-    <!-- Profile Pic --> 
-    <div class='profileHeader'>
-      <hr>
-      <p>Avatar</p>
+  <!--Basic user info -->
+    <div class = 'profileBasics'>
+      <p> Name: {{ data.username }} </p>
+      <p> Email: {{ data.email }} </p>
     </div>
-    <div class='profilePicture'>
+
+
+
+  <hr>
+  <!-- Profile Pic --> 
+  <p class="profileHeader2">Avatar</p>
+  <div class='profilePicture'>
+
+    <form name="myForm">
+    
+    <fieldset>
       
-      <form name="myForm">
-      
-      <fieldset>
-        
-        <br>
-
-        Photo:
-
-        <div ng-if="PicData.profilePic">
-          <img ng-src="{{PicData.profilePic}}">
-        </div>
-        
-        
-
-        <input type="file" ngf-select ng-model="picFile" name="file"    
-               accept="image/*" ngf-max-size="2MB" required>
-        <i ng-show="myForm.file.$error.required">*required</i>
-
-        <br>
-
-        <i ng-show="myForm.file.$error.maxSize">File too large 
-            {{picFile.size / 1000000|number:1}}MB: max 2M</i>
-        <div ng-if="!PicData.profilePic">
-          <img ng-show="myForm.file.$valid" ngf-thumbnail="picFile" class="thumb"> 
-          <button ng-click="picFile = null" ng-if="PicData.profilePic">Choose new image</button>
-        </div>
-        <br>
-
-        <button ng-disabled="!myForm.$valid" 
-                ng-click="uploadPic(picFile)">Submit</button>
-
-        <span class="progress" ng-show="picFile.progress >= 0">
-
-          <div style="width:{{picFile.progress}}%" 
-              ng-bind="picFile.progress + '%'"></div>
-
-        </span>
-
-        <span ng-show="picFile.result">Upload Successful</span>
-        <span class="err" ng-show="errorMsg">{{errorMsg}}</span>
-
-      </fieldset>
+      <p>Choose a Photo:</p>
 
       <br>
 
-    </form>
-  <!--     <img src = "blob:http%3A//localhost%3A3000/30c2c1b5-8713-48af-9856-9fd2f6024b29"> -->
-      <!-- <img ng-src="{{ data.userImage }}" height="200" alt="Image preview..."/>
+      <div ng-if="PicData.profilePic">
+        <img ng-src="{{PicData.profilePic}}">
+      </div>
+      
+      
 
-      <button ng-click='storeImageFile()' ng-if="data.userImage"> Use this image </button>
-   -->
-    </div>
+      <input type="file" ngf-select ng-model="picFile" name="file"    
+             accept="image/*" ngf-max-size="2MB" required>
 
+      <br>
 
+      <i ng-show="myForm.file.$error.maxSize">File too large 
+          {{picFile.size / 1000000|number:1}}MB: max 2M</i>
+      
+      <div ng-if="!PicData.profilePic">
+        
+        <img ng-show="myForm.file.$valid" ngf-thumbnail="picFile" class="thumb"> 
+        
+        <button ng-click="picFile = null" ng-if="PicData.profilePic">Choose new image</button>
+      
+      </div>
+      
+      <br>
 
-  <!-- ideal profile will include the following. work still in progress. -->
-    <!-- <hr> -->
-    <!-- Shouts To -->
-    <!-- <div> -->
-      <!-- <h4> Shouts received by {{ data.user.username }}: </h4> -->
-      <!--<div ng-repeat= ''>-->
-      <!-- <div> -->
-        <!-- <p>recipient: {{ data.user.username }} </p> -->
-        <!-- <p>title: {{ data. }} </p> -->
-        <!-- <p>message: {{ data.shoutsToUser }} </p> -->
-      <!-- </div> -->
-    <!-- </div> -->
+      <button ng-disabled="!myForm.$valid" 
+              ng-click="uploadPic(picFile)">Submit</button>
 
+      <span class="progress" ng-show="picFile.progress >= 0">
 
+        <div style="width:{{picFile.progress}}%" 
+            ng-bind="picFile.progress + '%'"></div>
 
-    <!-- <hr> -->
-    <!-- Shouts From  -->
-    <!-- <div> -->
-      <!-- <h4> Shouts created by {{ data.user.username }}: </h4> -->
-      <!--<div ng-repeat= ''>-->
-      <!-- <div> -->
-        <!-- <p>recipient: {{}} </p> -->
-        <!-- <p>title: {{}} </p> -->
-        <!-- <p>message: {{}} </p> -->
-      <!-- </div> -->
-    <!-- </div> -->
+      </span>
+
+      <span ng-show="picFile.result">Upload Successful</span>
+      <span class="err" ng-show="errorMsg">{{errorMsg}}</span>
+
+    </fieldset>
+
+    <br>
+
+  </form>
+<!--     <img src = "blob:http%3A//localhost%3A3000/30c2c1b5-8713-48af-9856-9fd2f6024b29"> -->
+    <!-- <img ng-src="{{ data.userImage }}" height="200" alt="Image preview..."/>
+    <button ng-click='storeImageFile()' ng-if="data.userImage"> Use this image </button>
+ -->
   </div>
+
   
 </div>
-
