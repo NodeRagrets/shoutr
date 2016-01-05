@@ -70,12 +70,12 @@ angular.module('shoutr.services', [])
     });
   }
 
-  var pullUser = function(username) {
+  var pullUser = function() {
     return $http({
       method: 'GET',
-      url: '/api/users/userprofile?username=' + username
+      url: '/api/users/userprofile'
     }).then(function(response) {
-      console.log("HERE IS RESPONSE", response);
+      console.log("HERE IS RESPONSE.TOKEN", response.token);
       return response.data
     }).catch(function(error) {
       console.log(error);

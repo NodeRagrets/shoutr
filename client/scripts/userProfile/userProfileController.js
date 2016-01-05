@@ -4,20 +4,17 @@ angular.module('shoutr.userProfile', [])
 
 
   $scope.data = {};
-	$scope.data.username = $stateParams.username;
+	$scope.data.username;
 	$scope.data.shoutsToUser;
 	$scope.data.shoutsFromUser;
   
   $scope.picFile;
 
 
-	console.log("HERE IS USERNAME", $scope.data.username);
-
-  $scope.getUser = function(username) {
-    Users.pullUser(username).then(function(response) {
-      $scope.data.user = response;
-      // $scope.data.shoutsToUser = response.shoutsReceived;
-      // console.log(response.shoutsReceived);
+  $scope.getUser = function() {
+    Users.pullUser().then(function(response) {
+      $scope.data.username = response.token.username;
+      console.log("HERE IS USERNAME", $scope.data.username);
     });
   }
 
@@ -40,7 +37,7 @@ angular.module('shoutr.userProfile', [])
       });
   }
 
-  $scope.getUser($scope.data.username);
+  $scope.getUser();
   
 }]);
 
